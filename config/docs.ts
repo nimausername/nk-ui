@@ -31,6 +31,11 @@ export const docsGuideItems: readonly DocsNavItem[] = [
  */
 export const componentItems: readonly DocsNavItem[] = [
   {
+    title: "Breadcrumb",
+    href: "/docs/components/breadcrumb",
+    description: "Composable navigation trail — icons, separators, ellipsis via composition.",
+  },
+  {
     title: "Button",
     href: "/docs/components/button",
     description: "Accessible actions built on Base UI.",

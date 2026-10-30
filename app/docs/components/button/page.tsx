@@ -18,10 +18,11 @@ export default function ButtonDocsPage() {
         </p>
         <h1 className="text-3xl font-semibold tracking-tight">Button</h1>
         <p className="text-muted-foreground text-pretty">
-          Built on Base UI. Toggle RTL in a preview to see Persian copy — the same idea as shadcn
-          RTL examples. In your app, set{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">dir=&quot;rtl&quot;</code> on
-          the document.
+          Base UI behavior with nk black/white styles. Core{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">Button</code> covers variants,
+          sizes, and loading. Button-family extras like{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-xs">ProgressButton</code> are
+          documented here too, then published separately when ready.
         </p>
       </header>
 

@@ -3,6 +3,7 @@
 import { Languages } from "lucide-react"
 import { useState, type ReactNode } from "react"
 
+import { PreviewCodePanel } from "@/components/docs/preview-code-panel"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -12,15 +13,21 @@ type PreviewContent = ReactNode | ((direction: PreviewDirection) => ReactNode)
 
 type ComponentPreviewProps = {
   readonly children: PreviewContent
+  /** Example source shown under the live preview (View Code / Copy). */
+  readonly code?: string
   readonly className?: string
   readonly title?: string
 }
 
 /**
- * Scoped example frame with an LTR/RTL toggle. Docs chrome stays LTR.
- * Pass a render function to swap English vs Persian/Arabic copy in RTL.
+ * Docs example frame: live preview, LTR/RTL toggle, optional View Code panel.
  */
-const ComponentPreview = ({ children, className, title = "Preview" }: ComponentPreviewProps) => {
+const ComponentPreview = ({
+  children,
+  code,
+  className,
+  title = "Preview",
+}: ComponentPreviewProps) => {
   const [direction, setDirection] = useState<PreviewDirection>("ltr")
 
   const handleToggleDirection = () => {
@@ -52,10 +59,11 @@ const ComponentPreview = ({ children, className, title = "Preview" }: ComponentP
         data-nk-preview=""
         dir={direction}
         lang={direction === "rtl" ? "fa" : "en"}
-        className="flex min-h-28 flex-wrap items-center gap-3 bg-background p-6"
+        className="flex min-h-28 flex-wrap items-center justify-center gap-3 bg-background p-6"
       >
         {content}
       </div>
+      {code ? <PreviewCodePanel code={code} /> : null}
     </div>
   )
 }
