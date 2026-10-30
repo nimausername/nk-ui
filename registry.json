@@ -17,6 +17,20 @@
       ]
     },
     {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Composable breadcrumb primitives for icons, separators, ellipsis, and custom links.",
+      "dependencies": ["@radix-ui/react-slot", "lucide-react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",

@@ -29,6 +29,15 @@ registry.json           Registry source of truth for `pnpm registry:build`
 | `config/*` | Never | Docs/site configuration. |
 | `lib/utils.ts` | Yes (as `@nk/utils`) | Keep dependency-free of site code. |
 
+## Composition over variant explosion
+
+Prefer **composable parts** (like Breadcrumb: `List` / `Item` / `Link` / `Page` / `Separator`)
+over one component with dozens of `variant` flags for every layout.
+
+- Icons, slash vs chevron, ellipsis menus = **composition in the consumer**
+- Shared look = tokens + small primitive pieces in `components/ui`
+- Docs show several compositions; new “kinds” usually need no API change
+
 ## Adding a registry component
 
 1. Implement in `components/ui/<name>.tsx` (split variants into a non-client file if needed).
