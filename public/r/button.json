@@ -1,0 +1,63 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "title": "Button",
+  "description": "Accessible button built on Base UI with nk product variants.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/button.tsx",
+      "content": "\"use client\"\n\nimport { Button as BaseButton } from \"@base-ui/react/button\"\nimport type { ComponentProps } from \"react\"\n\nimport {\n  buttonVariants,\n  type ButtonVariantProps,\n} from \"@/components/ui/button-variants\"\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the nk Button built on Base UI.\n */\ntype ButtonProps = ComponentProps<typeof BaseButton> & ButtonVariantProps\n\n/**\n * Accessible button with nk product styling. Uses Base UI for behavior\n * and gap-based spacing so LTR and RTL both work.\n */\nconst Button = ({ className, variant, size, ...props }: ButtonProps) => {\n  return (\n    <BaseButton\n      className={cn(buttonVariants({ variant, size }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Button, buttonVariants }\nexport type { ButtonProps }\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/button-variants.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\n\n/**\n * Visual variants for the nk Button component.\n */\nconst buttonVariants = cva(\n  \"inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground hover:bg-primary/90\",\n        secondary:\n          \"bg-secondary text-secondary-foreground hover:bg-secondary/80\",\n        outline:\n          \"border border-border bg-background hover:bg-accent hover:text-accent-foreground\",\n        ghost: \"hover:bg-accent hover:text-accent-foreground\",\n        destructive:\n          \"bg-destructive text-destructive-foreground hover:bg-destructive/90\",\n      },\n      size: {\n        sm: \"h-8 px-3 text-xs\",\n        default: \"h-9 px-4 py-2\",\n        lg: \"h-10 px-6\",\n        icon: \"size-9\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n)\n\ntype ButtonVariantProps = VariantProps<typeof buttonVariants>\n\nexport { buttonVariants }\nexport type { ButtonVariantProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "background": "#ffffff",
+      "foreground": "#000000",
+      "primary": "#000000",
+      "primary-foreground": "#ffffff",
+      "secondary": "#f4f4f4",
+      "secondary-foreground": "#000000",
+      "muted": "#f4f4f4",
+      "muted-foreground": "#525252",
+      "accent": "#f4f4f4",
+      "accent-foreground": "#000000",
+      "destructive": "#dc2626",
+      "destructive-foreground": "#ffffff",
+      "border": "#e5e5e5",
+      "input": "#e5e5e5",
+      "ring": "#000000"
+    },
+    "dark": {
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "primary": "#ffffff",
+      "primary-foreground": "#000000",
+      "secondary": "#171717",
+      "secondary-foreground": "#ffffff",
+      "muted": "#171717",
+      "muted-foreground": "#a3a3a3",
+      "accent": "#171717",
+      "accent-foreground": "#ffffff",
+      "destructive": "#ef4444",
+      "destructive-foreground": "#ffffff",
+      "border": "#262626",
+      "input": "#262626",
+      "ring": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils",
+  "title": "Utils",
+  "description": "Shared cn() helper for merging Tailwind classes.",
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\n/**\n * Merges Tailwind class names, resolving conflicts with the last class winning.\n */\nexport const cn = (...inputs: ClassValue[]) => {\n  return twMerge(clsx(inputs))\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}
