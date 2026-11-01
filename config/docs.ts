@@ -62,9 +62,26 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Accessible actions built on Base UI.",
   },
   {
+    title: "Dialog",
+    href: "/docs/components/dialog",
+    description: "Modal dialogs on Base UI — confirmations, forms, and focused tasks.",
+  },
+  {
     title: "GlyphFlux",
     href: "/docs/components/glyph-flux",
     description: "WebGL gradient field as animated ASCII glyphs — shapes, grain, pointer scramble.",
+  },
+  {
+    title: "Scroll Area",
+    href: "/docs/components/scroll-area",
+    description:
+      "Native scroll container with custom scrollbars on Base UI — pair with Scroll Fade on the viewport.",
+  },
+  {
+    title: "Scroll Fade",
+    href: "/docs/components/scroll-fade",
+    description:
+      "CSS edge fades for scroll containers — position-aware by default, optional direction-smart hook.",
   },
 ] as const
 

@@ -217,8 +217,8 @@ const RailSidebar = ({
   const [centers, setCenters] = useState<number[]>([])
   const [internalValue, setInternalValue] = useState(defaultValue)
   const [hoverIndex, setHoverIndex] = useState<number | null>(null)
+  const [focusIndex, setFocusIndex] = useState<number | null>(null)
   const [pointerInside, setPointerInside] = useState(false)
-  const [focusInside, setFocusInside] = useState(false)
   const [detectedDir, setDetectedDir] = useState<"ltr" | "rtl">("ltr")
 
   const dir = dirProp ?? detectedDir
@@ -228,6 +228,12 @@ const RailSidebar = ({
   const routed = flatItems.some((item) => item.href)
   const routeIndex = findActiveIndex(flatItems, pathname)
   const activeIndex = value ?? (routed ? routeIndex : internalValue)
+  /**
+   * Pointer owns the preview rail while inside the list. After leave, only the
+   * focused item may preview — never a stale hoverIndex left by the last pass
+   * (click keeps focus on the active link and previously stuck the hover rail).
+   */
+  const previewIndex = pointerInside ? hoverIndex : focusIndex
 
   useLayoutEffect(() => {
     if (dirProp) {
@@ -284,17 +290,22 @@ const RailSidebar = ({
   /** Top-level rail ends at the parent when a nested leaf is active. */
   const activeRootY = activeParentY !== null ? activeParentY : activeLeafY
 
-  const hoverItem = hoverIndex !== null ? flatItems[hoverIndex] : undefined
-  const hoverParentIndex = hoverItem?.parentIndex ?? null
-  const hoverParentY =
-    hoverParentIndex !== null ? (centers[hoverParentIndex] ?? null) : null
-  const hoverLeafY = hoverIndex === null ? null : (centers[hoverIndex] ?? null)
+  const previewItem =
+    previewIndex !== null ? flatItems[previewIndex] : undefined
+  const previewParentIndex = previewItem?.parentIndex ?? null
+  const previewParentY =
+    previewParentIndex !== null ? (centers[previewParentIndex] ?? null) : null
+  const previewLeafY =
+    previewIndex === null ? null : (centers[previewIndex] ?? null)
 
-  const hoverRootY = hoverParentY !== null ? hoverParentY : hoverLeafY
+  const previewRootY =
+    previewParentY !== null ? previewParentY : previewLeafY
 
-  const hoverRootFrom =
-    activeRootY !== null && hoverRootY !== null && hoverRootY <= activeRootY
-      ? Math.max(0, hoverRootY - CORNER)
+  const previewRootFrom =
+    activeRootY !== null &&
+    previewRootY !== null &&
+    previewRootY <= activeRootY
+      ? Math.max(0, previewRootY - CORNER)
       : (activeRootY ?? 0)
 
   const nestedActiveVisible =
@@ -303,22 +314,26 @@ const RailSidebar = ({
     activeParentIndex !== null &&
     activeIndex !== activeParentIndex
 
-  const nestedHoverVisible =
-    (pointerInside || focusInside) &&
-    hoverParentY !== null &&
-    hoverLeafY !== null &&
-    hoverParentIndex !== null &&
-    hoverIndex !== activeIndex &&
-    hoverIndex !== hoverParentIndex
+  const previewVisible =
+    previewIndex !== null &&
+    previewIndex !== activeIndex &&
+    previewRootY !== null
 
-  const nestedHoverFrom =
+  const nestedPreviewVisible =
+    previewVisible &&
+    previewParentY !== null &&
+    previewLeafY !== null &&
+    previewParentIndex !== null &&
+    previewIndex !== previewParentIndex
+
+  const nestedPreviewFrom =
     nestedActiveVisible &&
-    activeParentIndex === hoverParentIndex &&
-    hoverLeafY !== null &&
+    activeParentIndex === previewParentIndex &&
+    previewLeafY !== null &&
     activeLeafY !== null &&
-    hoverLeafY <= activeLeafY
-      ? Math.max(activeParentY ?? 0, hoverLeafY - CORNER)
-      : (hoverParentY ?? activeParentY ?? 0)
+    previewLeafY <= activeLeafY
+      ? Math.max(activeParentY ?? 0, previewLeafY - CORNER)
+      : (previewParentY ?? activeParentY ?? 0)
 
   const handleSelect = (index: number) => {
     if (value === undefined) {
@@ -351,17 +366,15 @@ const RailSidebar = ({
         className="relative flex flex-col gap-0.5"
       >
         <Rail
-          from={hoverRootFrom}
-          y={hoverRootY}
+          from={previewRootFrom}
+          y={previewRootY}
           visible={
-            (pointerInside || focusInside) &&
-            hoverIndex !== activeIndex &&
-            hoverRootY !== null &&
+            previewVisible &&
             !(
               nestedActiveVisible &&
-              hoverParentIndex === activeParentIndex &&
-              hoverItem?.depth &&
-              hoverItem.depth > 0
+              previewParentIndex === activeParentIndex &&
+              previewItem?.depth &&
+              previewItem.depth > 0
             )
           }
           dashed={dashed}
@@ -377,9 +390,9 @@ const RailSidebar = ({
           className="text-foreground"
         />
         <Rail
-          from={nestedHoverFrom}
-          y={hoverLeafY}
-          visible={Boolean(nestedHoverVisible)}
+          from={nestedPreviewFrom}
+          y={previewLeafY}
+          visible={Boolean(nestedPreviewVisible)}
           dashed={dashed}
           insetStart={14}
           rtl={isRtl}
@@ -402,6 +415,16 @@ const RailSidebar = ({
             activeParentIndex !== null && index === activeParentIndex
           const setRef = (el: HTMLElement | null) => {
             itemRefs.current[index] = el
+          }
+          const handlePointerEnter = () => {
+            setHoverIndex(index)
+            setPointerInside(true)
+          }
+          const handleFocus = () => {
+            setFocusIndex(index)
+          }
+          const handleBlur = () => {
+            setFocusIndex((current) => (current === index ? null : current))
           }
           const rowClassName = cn(
             "flex w-full items-center gap-2 rounded-md py-1.5 pe-2 text-start text-sm transition-colors duration-200 motion-reduce:transition-none",
@@ -436,15 +459,9 @@ const RailSidebar = ({
                 data-active={isActive}
                 data-depth={item.depth}
                 aria-current={isActive ? "page" : undefined}
-                onMouseEnter={() => {
-                  setHoverIndex(index)
-                  setPointerInside(true)
-                }}
-                onFocus={() => {
-                  setHoverIndex(index)
-                  setFocusInside(true)
-                }}
-                onBlur={() => setFocusInside(false)}
+                onMouseEnter={handlePointerEnter}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
                 onClick={() => handleSelect(index)}
                 className={rowClassName}
               >
@@ -462,15 +479,9 @@ const RailSidebar = ({
               data-active={isActive}
               data-depth={item.depth}
               aria-current={isActive ? "true" : undefined}
-              onMouseEnter={() => {
-                setHoverIndex(index)
-                setPointerInside(true)
-              }}
-              onFocus={() => {
-                setHoverIndex(index)
-                setFocusInside(true)
-              }}
-              onBlur={() => setFocusInside(false)}
+              onMouseEnter={handlePointerEnter}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               onClick={() => handleSelect(index)}
               className={rowClassName}
             >

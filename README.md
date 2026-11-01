@@ -7,7 +7,7 @@ Base UI components you own — black/white product styling, light/dark, and real
 
 - **Docs (planned):** [ui.nimakhabbazi.com](https://ui.nimakhabbazi.com)
 - **Install:** shadcn-compatible registry `@nk/...`
-- **Status:** pre-release (`0.x`) — `utils`, `button`, `breadcrumb`, `progress-button`, and `rail-sidebar` shipped
+- **Status:** pre-release (`0.x`) — `utils`, `button`, `breadcrumb`, `dialog`, `progress-button`, `rail-sidebar`, `glyph-flux`, `scroll-area`, and `scroll-fade` shipped
 
 ## Stack
 
