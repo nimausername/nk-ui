@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "Mutually exclusive radio options on Base UI.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/radio-group.tsx",
+      "content": "\"use client\"\n\nimport { Radio as RadioPrimitive } from \"@base-ui/react/radio\"\nimport { RadioGroup as RadioGroupPrimitive } from \"@base-ui/react/radio-group\"\nimport type { ReactNode } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the radio group root (`value`, `name`, `onValueChange`, …).\n */\ntype RadioGroupProps = RadioGroupPrimitive.Props\n\n/**\n * Groups mutually exclusive radio options. Pair with Field for labels and errors.\n */\nconst RadioGroup = ({ className, ...props }: RadioGroupProps) => {\n  return (\n    <RadioGroupPrimitive\n      data-slot=\"radio-group\"\n      className={cn(\"grid gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for a single radio option (`value`, `disabled`, …).\n */\ntype RadioProps = RadioPrimitive.Root.Props\n\n/**\n * One radio button inside a RadioGroup.\n */\nconst Radio = ({ className, ...props }: RadioProps) => {\n  return (\n    <RadioPrimitive.Root\n      data-slot=\"radio\"\n      className={cn(\n        \"peer inline-flex size-4 shrink-0 items-center justify-center rounded-full border border-input bg-transparent text-primary shadow-none transition-colors outline-none\",\n        \"focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"data-checked:border-primary\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/30\",\n        \"data-invalid:border-destructive data-invalid:ring-2 data-invalid:ring-destructive/30\",\n        \"data-valid:border-success data-valid:ring-2 data-valid:ring-success/30\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ntype RadioIndicatorProps = RadioPrimitive.Indicator.Props & {\n  readonly children?: ReactNode\n}\n\n/**\n * Filled center mark for the selected radio.\n */\nconst RadioIndicator = ({\n  className,\n  children,\n  ...props\n}: RadioIndicatorProps) => {\n  return (\n    <RadioPrimitive.Indicator\n      data-slot=\"radio-indicator\"\n      className={cn(\n        \"flex size-2 items-center justify-center rounded-full bg-primary\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </RadioPrimitive.Indicator>\n  )\n}\n\nexport { Radio, RadioGroup, RadioIndicator }\nexport type { RadioGroupProps, RadioIndicatorProps, RadioProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "primary": "#000000",
+      "input": "#e5e5e5",
+      "ring": "#000000",
+      "destructive": "#dc2626",
+      "success": "#16a34a"
+    },
+    "dark": {
+      "primary": "#ffffff",
+      "input": "#262626",
+      "ring": "#ffffff",
+      "destructive": "#ef4444",
+      "success": "#22c55e"
+    }
+  },
+  "type": "registry:ui"
+}

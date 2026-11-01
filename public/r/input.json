@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "title": "Input",
+  "description": "Accessible text input on Base UI with nk product styling. Pair with Field for labeled forms.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils",
+    "@nk/field"
+  ],
+  "files": [
+    {
+      "path": "components/ui/input.tsx",
+      "content": "\"use client\"\n\nimport { Input as InputPrimitive } from \"@base-ui/react/input\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the nk Input built on Base UI.\n */\ntype InputProps = ComponentProps<typeof InputPrimitive>\n\n/** Stable base classes — avoid rebuilding long cn() strings during SSR/hydrate. */\nconst inputBaseClassName =\n  \"flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm text-foreground transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/30 data-invalid:border-destructive data-invalid:ring-2 data-invalid:ring-destructive/30 data-valid:border-success data-valid:ring-2 data-valid:ring-success/30 focus-visible:aria-invalid:border-destructive focus-visible:aria-invalid:ring-destructive/30 focus-visible:data-invalid:border-destructive focus-visible:data-invalid:ring-destructive/30 focus-visible:data-valid:border-success focus-visible:data-valid:ring-success/30 file:me-2 file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground\"\n\n/**\n * Accessible text field with nk product styling.\n *\n * Pair with Field / FieldLabel / FieldDescription / FieldError / FieldSuccess.\n * Failed and approved chrome come from `aria-invalid` / `data-invalid` / `data-valid`\n * (Field wires these) — not from variant props.\n */\nconst Input = ({ className, type = \"text\", ...props }: InputProps) => {\n  return (\n    <InputPrimitive\n      type={type}\n      data-slot=\"input\"\n      className={className ? cn(inputBaseClassName, className) : inputBaseClassName}\n      {...props}\n    />\n  )\n}\n\nexport { Input }\nexport type { InputProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "background": "#ffffff",
+      "foreground": "#000000",
+      "muted-foreground": "#525252",
+      "border": "#e5e5e5",
+      "input": "#e5e5e5",
+      "ring": "#000000",
+      "destructive": "#dc2626",
+      "success": "#16a34a"
+    },
+    "dark": {
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "muted-foreground": "#a3a3a3",
+      "border": "#262626",
+      "input": "#262626",
+      "ring": "#ffffff",
+      "destructive": "#ef4444",
+      "success": "#22c55e"
+    }
+  },
+  "type": "registry:ui"
+}

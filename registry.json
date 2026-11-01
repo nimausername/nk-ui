@@ -86,6 +86,38 @@
       }
     },
     {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Accessible checkbox on Base UI with checked and indeterminate states.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "primary": "#000000",
+          "primary-foreground": "#ffffff",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626",
+          "success": "#16a34a"
+        },
+        "dark": {
+          "primary": "#ffffff",
+          "primary-foreground": "#000000",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444",
+          "success": "#22c55e"
+        }
+      }
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -125,6 +157,248 @@
           "ring": "#ffffff"
         }
       }
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Composable form field shell on Base UI — label, description, error, and success with automatic associations.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "foreground": "#000000",
+          "muted-foreground": "#525252",
+          "destructive": "#dc2626",
+          "success": "#16a34a"
+        },
+        "dark": {
+          "foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "destructive": "#ef4444",
+          "success": "#22c55e"
+        }
+      }
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Base UI Form that runs Field validationMode onSubmit and supports form-level errors.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/form.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Accessible text input on Base UI with nk product styling. Pair with Field for labeled forms.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils", "@nk/field"],
+      "files": [
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626",
+          "success": "#16a34a"
+        },
+        "dark": {
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444",
+          "success": "#22c55e"
+        }
+      }
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input OTP",
+      "description": "One-time code slots on Base UI OTP Field — paste, mask, and grouped layouts.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626"
+        },
+        "dark": {
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444"
+        }
+      }
+    },
+    {
+      "name": "number-field",
+      "type": "registry:ui",
+      "title": "Number Field",
+      "description": "Composable numeric input on Base UI — steppers, min/max/step, optional scrub area.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/number-field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "muted-foreground": "#525252",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "border": "#e5e5e5",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626"
+        },
+        "dark": {
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "border": "#262626",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444"
+        }
+      }
+    },
+    {
+      "name": "phone-input",
+      "type": "registry:ui",
+      "title": "Phone Input",
+      "description": "Composable phone field with country picker and E.164 output — Base UI via phonefield.",
+      "dependencies": ["phonefield", "lucide-react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/phone-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "border": "#e5e5e5",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626"
+        },
+        "dark": {
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "border": "#262626",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444"
+        }
+      }
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Mutually exclusive radio options on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "primary": "#000000",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626",
+          "success": "#16a34a"
+        },
+        "dark": {
+          "primary": "#ffffff",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444",
+          "success": "#22c55e"
+        }
+      }
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "Password field with a show / hide toggle, built on Input and Button.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@nk/input", "@nk/button"],
+      "files": [
+        {
+          "path": "components/ui/password-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
     },
     {
       "name": "progress-button",
@@ -201,6 +475,120 @@
         "@import \"../styles/scroll-fade.css\"": {}
       },
       "docs": "Add `scroll-fade` to the overflow element (or Scroll Area viewport). For direction-aware exit fades, also add `scroll-fade-smart` and `useScrollFadeDirection`. Idle clears the override so position-aware fades resume."
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Composable dropdown select on Base UI — trigger, popup, items, and groups.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "muted-foreground": "#525252",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "border": "#e5e5e5",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626",
+          "success": "#16a34a"
+        },
+        "dark": {
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "border": "#262626",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444",
+          "success": "#22c55e"
+        }
+      }
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Accessible on/off switch on Base UI with an RTL-aware thumb.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "primary": "#000000",
+          "background": "#ffffff",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626",
+          "success": "#16a34a"
+        },
+        "dark": {
+          "primary": "#ffffff",
+          "background": "#000000",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444",
+          "success": "#22c55e"
+        }
+      }
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Multi-line text field with Input styling, wired through Field.Control.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils", "@nk/field"],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626",
+          "success": "#16a34a"
+        },
+        "dark": {
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444",
+          "success": "#22c55e"
+        }
+      }
     }
   ]
 }

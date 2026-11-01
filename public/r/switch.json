@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "title": "Switch",
+  "description": "Accessible on/off switch on Base UI with an RTL-aware thumb.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/switch.tsx",
+      "content": "\"use client\"\n\nimport { Switch as SwitchPrimitive } from \"@base-ui/react/switch\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the switch root (`checked`, `name`, `disabled`, …).\n */\ntype SwitchProps = SwitchPrimitive.Root.Props\n\n/**\n * Accessible on/off switch. Pair with Field or a wrapping label.\n */\nconst Switch = ({ className, ...props }: SwitchProps) => {\n  return (\n    <SwitchPrimitive.Root\n      data-slot=\"switch\"\n      className={cn(\n        \"peer inline-flex h-5 w-9 shrink-0 items-center rounded-full border border-transparent bg-input p-0.5 transition-colors outline-none\",\n        \"focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"data-checked:bg-primary\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"aria-invalid:ring-2 aria-invalid:ring-destructive/30\",\n        \"data-invalid:ring-2 data-invalid:ring-destructive/30\",\n        \"data-valid:ring-2 data-valid:ring-success/30\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the sliding thumb.\n */\ntype SwitchThumbProps = SwitchPrimitive.Thumb.Props\n\n/**\n * Thumb that slides with the checked state (logical start → end).\n */\nconst SwitchThumb = ({ className, ...props }: SwitchThumbProps) => {\n  return (\n    <SwitchPrimitive.Thumb\n      data-slot=\"switch-thumb\"\n      className={cn(\n        \"pointer-events-none block size-4 rounded-full bg-background shadow-sm ring-0 transition-transform\",\n        \"data-checked:translate-x-4 rtl:data-checked:-translate-x-4\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Switch, SwitchThumb }\nexport type { SwitchProps, SwitchThumbProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "primary": "#000000",
+      "background": "#ffffff",
+      "input": "#e5e5e5",
+      "ring": "#000000",
+      "destructive": "#dc2626",
+      "success": "#16a34a"
+    },
+    "dark": {
+      "primary": "#ffffff",
+      "background": "#000000",
+      "input": "#262626",
+      "ring": "#ffffff",
+      "destructive": "#ef4444",
+      "success": "#22c55e"
+    }
+  },
+  "type": "registry:ui"
+}

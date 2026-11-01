@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp",
+  "title": "Input OTP",
+  "description": "One-time code slots on Base UI OTP Field — paste, mask, and grouped layouts.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/input-otp.tsx",
+      "content": "\"use client\"\n\nimport { OTPField as OTPFieldPrimitive } from \"@base-ui/react/otp-field\"\nimport { Minus } from \"lucide-react\"\nimport type { ComponentProps, ReactNode } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the OTP root (`length`, `value`, `mask`, `validationType`, …).\n */\ntype InputOTPProps = OTPFieldPrimitive.Root.Props\n\n/**\n * One-time code field root. Render `InputOTPSlot` children equal to `length`.\n * Pair with Field or a native label via `id` / `htmlFor`.\n */\nconst InputOTP = ({ className, ...props }: InputOTPProps) => {\n  return (\n    <OTPFieldPrimitive.Root\n      data-slot=\"input-otp\"\n      className={cn(\n        \"flex items-center gap-2 has-disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Optional layout wrapper for a run of slots (e.g. before / after a separator).\n */\nconst InputOTPGroup = ({ className, ...props }: ComponentProps<\"div\">) => {\n  return (\n    <div\n      data-slot=\"input-otp-group\"\n      className={cn(\"flex items-center gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for a single character slot.\n */\ntype InputOTPSlotProps = OTPFieldPrimitive.Input.Props\n\n/**\n * Single OTP character input with nk cell styling.\n */\nconst InputOTPSlot = ({ className, ...props }: InputOTPSlotProps) => {\n  return (\n    <OTPFieldPrimitive.Input\n      data-slot=\"input-otp-slot\"\n      className={cn(\n        \"flex size-9 shrink-0 items-center justify-center rounded-md border border-input bg-transparent text-center text-sm text-foreground tabular-nums transition-colors outline-none\",\n        \"placeholder:text-muted-foreground\",\n        \"focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"disabled:cursor-not-allowed\",\n        \"aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/30\",\n        \"data-invalid:border-destructive data-invalid:ring-2 data-invalid:ring-destructive/30\",\n        \"data-valid:border-success data-valid:ring-2 data-valid:ring-success/30\",\n        \"focus-visible:aria-invalid:border-destructive focus-visible:aria-invalid:ring-destructive/30\",\n        \"focus-visible:data-invalid:border-destructive focus-visible:data-invalid:ring-destructive/30\",\n        \"focus-visible:data-valid:border-success focus-visible:data-valid:ring-success/30\",\n        \"data-filled:border-foreground/40 data-filled:data-invalid:border-destructive data-filled:data-valid:border-success\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ntype InputOTPSeparatorProps = ComponentProps<typeof OTPFieldPrimitive.Separator> & {\n  readonly children?: ReactNode\n}\n\n/**\n * Accessible separator between slot groups (e.g. 3 + 3). Defaults to a Minus mark.\n */\nconst InputOTPSeparator = ({\n  className,\n  children,\n  ...props\n}: InputOTPSeparatorProps) => {\n  return (\n    <OTPFieldPrimitive.Separator\n      data-slot=\"input-otp-separator\"\n      className={cn(\n        \"flex items-center text-muted-foreground [&_svg]:size-4\",\n        className\n      )}\n      {...props}\n    >\n      {children ?? <Minus aria-hidden=\"true\" />}\n    </OTPFieldPrimitive.Separator>\n  )\n}\n\ntype InputOTPSlotsProps = {\n  /** Must match `InputOTP` `length`. */\n  readonly length: number\n  readonly className?: string\n  /** Accessible name for slot 1 when no external label is used. */\n  readonly firstSlotLabel?: string\n}\n\n/**\n * Renders `length` slots with default aria-labels for slots 2…n.\n */\nconst InputOTPSlots = ({\n  length,\n  className,\n  firstSlotLabel,\n}: InputOTPSlotsProps) => {\n  return (\n    <>\n      {Array.from({ length }, (_, index) => (\n        <InputOTPSlot\n          key={index}\n          className={className}\n          aria-label={\n            index === 0\n              ? firstSlotLabel\n              : `Character ${index + 1} of ${length}`\n          }\n        />\n      ))}\n    </>\n  )\n}\n\nexport {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n  InputOTPSlots,\n}\nexport type {\n  InputOTPProps,\n  InputOTPSeparatorProps,\n  InputOTPSlotProps,\n  InputOTPSlotsProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "background": "#ffffff",
+      "foreground": "#000000",
+      "muted-foreground": "#525252",
+      "border": "#e5e5e5",
+      "input": "#e5e5e5",
+      "ring": "#000000",
+      "destructive": "#dc2626"
+    },
+    "dark": {
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "muted-foreground": "#a3a3a3",
+      "border": "#262626",
+      "input": "#262626",
+      "ring": "#ffffff",
+      "destructive": "#ef4444"
+    }
+  },
+  "type": "registry:ui"
+}

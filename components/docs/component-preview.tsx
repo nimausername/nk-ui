@@ -1,7 +1,7 @@
 "use client"
 
 import { Languages } from "lucide-react"
-import { useState, type ReactNode } from "react"
+import { useState, useSyncExternalStore, type ReactNode } from "react"
 
 import { PreviewCodePanel } from "@/components/docs/preview-code-panel"
 import { Button } from "@/components/ui/button"
@@ -23,8 +23,15 @@ type ComponentPreviewProps = {
   readonly showDirectionToggle?: boolean
 }
 
+const subscribe = () => () => {}
+const getClientSnapshot = () => true
+const getServerSnapshot = () => false
+
 /**
  * Docs example frame: live preview, optional LTR/RTL toggle, optional View Code panel.
+ *
+ * Interactive children mount only on the client so Base UI Field/Input (and similar)
+ * do not SSR/hydrate with mismatched control state attributes.
  */
 const ComponentPreview = ({
   children,
@@ -35,13 +42,16 @@ const ComponentPreview = ({
   showDirectionToggle = true,
 }: ComponentPreviewProps) => {
   const [direction, setDirection] = useState<PreviewDirection>("ltr")
+  const isClient = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot)
 
   const handleToggleDirection = () => {
     setDirection((current) => (current === "ltr" ? "rtl" : "ltr"))
   }
 
-  const content = typeof children === "function" ? children(direction) : children
-  const toolbarActions = typeof actions === "function" ? actions(direction) : actions
+  const content =
+    isClient && (typeof children === "function" ? children(direction) : children)
+  const toolbarActions =
+    isClient && (typeof actions === "function" ? actions(direction) : actions)
   const showToolbar = Boolean(toolbarActions) || showDirectionToggle
 
   return (
@@ -76,7 +86,11 @@ const ComponentPreview = ({
         lang={direction === "rtl" ? "fa" : "en"}
         className="flex min-h-28 flex-wrap items-center justify-center gap-3 bg-background p-6"
       >
-        {content}
+        {isClient ? (
+          content
+        ) : (
+          <div className="h-9 w-full max-w-sm rounded-md border border-dashed border-border/80" />
+        )}
       </div>
       {code ? <PreviewCodePanel code={code} /> : null}
     </div>

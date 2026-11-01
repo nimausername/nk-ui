@@ -62,14 +62,56 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Accessible actions built on Base UI.",
   },
   {
+    title: "Checkbox",
+    href: "/docs/components/checkbox",
+    description: "Accessible checkbox with indeterminate support — pair with Field.",
+  },
+  {
     title: "Dialog",
     href: "/docs/components/dialog",
     description: "Modal dialogs on Base UI — confirmations, forms, and focused tasks.",
   },
   {
+    title: "Field",
+    href: "/docs/components/field",
+    description:
+      "Form field shell — label, description, error, and success with Base UI associations.",
+  },
+  {
+    title: "Form",
+    href: "/docs/components/form",
+    description:
+      "Base UI Form for Field onSubmit validation and form-level errors — not a native form.",
+  },
+  {
     title: "GlyphFlux",
     href: "/docs/components/glyph-flux",
     description: "WebGL gradient field as animated ASCII glyphs — shapes, grain, pointer scramble.",
+  },
+  {
+    title: "Input",
+    href: "/docs/components/input",
+    description: "Accessible text input on Base UI. Pair with Field for labeled forms.",
+  },
+  {
+    title: "Input OTP",
+    href: "/docs/components/input-otp",
+    description: "One-time verification code slots — paste, mask, grouped 3+3 layouts.",
+  },
+  {
+    title: "Number Field",
+    href: "/docs/components/number-field",
+    description: "Numeric input with steppers and optional scrub — not type=number alone.",
+  },
+  {
+    title: "Phone Input",
+    href: "/docs/components/phone-input",
+    description: "Country picker + national number with E.164 output (phonefield / Base UI).",
+  },
+  {
+    title: "Radio Group",
+    href: "/docs/components/radio-group",
+    description: "Mutually exclusive options — small choice sets with Field validation.",
   },
   {
     title: "Scroll Area",
@@ -83,6 +125,21 @@ export const componentItems: readonly DocsNavItem[] = [
     description:
       "CSS edge fades for scroll containers — position-aware by default, optional direction-smart hook.",
   },
+  {
+    title: "Select",
+    href: "/docs/components/select",
+    description: "Composable dropdown select on Base UI — trigger, popup, items, groups.",
+  },
+  {
+    title: "Switch",
+    href: "/docs/components/switch",
+    description: "On/off switch for settings toggles — RTL-aware thumb.",
+  },
+  {
+    title: "Textarea",
+    href: "/docs/components/textarea",
+    description: "Multi-line text field with Input styling and Field validation wiring.",
+  },
 ] as const
 
 /**
@@ -91,14 +148,19 @@ export const componentItems: readonly DocsNavItem[] = [
  */
 export const compositeItems: readonly DocsNavItem[] = [
   {
-    title: "Rail Sidebar",
-    href: "/docs/composites/rail-sidebar",
-    description: "Animated dashed-rail sidebar with nested items and active route rails.",
+    title: "Password Input",
+    href: "/docs/composites/password-input",
+    description: "Password field with show / hide toggle on top of Input and Button.",
   },
   {
     title: "Progress Button",
     href: "/docs/composites/progress-button",
     description: "Download progress with stable label width on top of Button.",
+  },
+  {
+    title: "Rail Sidebar",
+    href: "/docs/composites/rail-sidebar",
+    description: "Animated dashed-rail sidebar with nested items and active route rails.",
   },
 ] as const
 
