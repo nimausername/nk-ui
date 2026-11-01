@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "Multi-line text field with Input styling, wired through Field.Control.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils",
+    "@nk/field"
+  ],
+  "files": [
+    {
+      "path": "components/ui/textarea.tsx",
+      "content": "\"use client\"\n\nimport { Field as FieldPrimitive } from \"@base-ui/react/field\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the nk Textarea (native textarea via Field.Control for Field wiring).\n */\ntype TextareaProps = Omit<ComponentProps<\"textarea\">, \"size\">\n\n/** Stable base classes — match Input chrome for failed / approved states. */\nconst textareaBaseClassName =\n  \"flex min-h-20 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-2 text-sm text-foreground transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/30 data-invalid:border-destructive data-invalid:ring-2 data-invalid:ring-destructive/30 data-valid:border-success data-valid:ring-2 data-valid:ring-success/30 focus-visible:aria-invalid:border-destructive focus-visible:aria-invalid:ring-destructive/30 focus-visible:data-invalid:border-destructive focus-visible:data-invalid:ring-destructive/30 focus-visible:data-valid:border-success focus-visible:data-valid:ring-success/30 field-sizing-content resize-y\"\n\n/**\n * Multi-line text field with nk Input styling.\n *\n * Built on Field.Control so it wires into Field validation like Base UI Input.\n * Pair with Field / FieldLabel / FieldError / FieldSuccess.\n */\nconst Textarea = ({ className, ...props }: TextareaProps) => {\n  return (\n    <FieldPrimitive.Control\n      data-slot=\"textarea\"\n      render={(controlProps) => (\n        <textarea\n          {...controlProps}\n          {...props}\n          className={cn(textareaBaseClassName, className, controlProps.className)}\n        />\n      )}\n    />\n  )\n}\n\nexport { Textarea }\nexport type { TextareaProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "background": "#ffffff",
+      "foreground": "#000000",
+      "muted-foreground": "#525252",
+      "border": "#e5e5e5",
+      "input": "#e5e5e5",
+      "ring": "#000000",
+      "destructive": "#dc2626",
+      "success": "#16a34a"
+    },
+    "dark": {
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "muted-foreground": "#a3a3a3",
+      "border": "#262626",
+      "input": "#262626",
+      "ring": "#ffffff",
+      "destructive": "#ef4444",
+      "success": "#22c55e"
+    }
+  },
+  "type": "registry:ui"
+}

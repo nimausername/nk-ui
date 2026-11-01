@@ -1,0 +1,52 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select",
+  "title": "Select",
+  "description": "Composable dropdown select on Base UI — trigger, popup, items, and groups.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/select.tsx",
+      "content": "\"use client\"\n\nimport { Select as SelectPrimitive } from \"@base-ui/react/select\"\nimport { Check, ChevronDown, ChevronUp } from \"lucide-react\"\nimport type { ReactNode } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the select root (`value`, `items`, `onValueChange`, …).\n */\ntype SelectProps<\n  Value = unknown,\n  Multiple extends boolean | undefined = false,\n> = SelectPrimitive.Root.Props<Value, Multiple>\n\n/**\n * Select root. Owns value state; compose Trigger / Popup / Items inside.\n */\nconst Select = <Value, Multiple extends boolean | undefined = false>({\n  ...props\n}: SelectProps<Value, Multiple>) => {\n  return <SelectPrimitive.Root data-slot=\"select\" {...props} />\n}\n\n/**\n * Props for the optional select-owned label.\n */\ntype SelectLabelProps = SelectPrimitive.Label.Props\n\n/**\n * Label owned by Select (prefer FieldLabel when using Field).\n */\nconst SelectLabel = ({ className, ...props }: SelectLabelProps) => {\n  return (\n    <SelectPrimitive.Label\n      data-slot=\"select-label\"\n      className={cn(\"text-sm font-medium text-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the trigger button.\n */\ntype SelectTriggerProps = SelectPrimitive.Trigger.Props\n\n/**\n * Opens the select popup. Matches Input height and validation rings.\n */\nconst SelectTrigger = ({ className, children, ...props }: SelectTriggerProps) => {\n  return (\n    <SelectPrimitive.Trigger\n      data-slot=\"select-trigger\"\n      className={cn(\n        \"flex h-9 w-full min-w-0 items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-sm text-foreground transition-colors outline-none\",\n        \"focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50\",\n        \"data-placeholder:text-muted-foreground\",\n        \"aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/30\",\n        \"data-invalid:border-destructive data-invalid:ring-2 data-invalid:ring-destructive/30\",\n        \"data-valid:border-success data-valid:ring-2 data-valid:ring-success/30\",\n        \"*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n      <SelectPrimitive.Icon\n        data-slot=\"select-icon\"\n        className=\"size-4 shrink-0 text-muted-foreground\"\n      >\n        <ChevronDown className=\"size-4\" aria-hidden=\"true\" />\n      </SelectPrimitive.Icon>\n    </SelectPrimitive.Trigger>\n  )\n}\n\n/**\n * Props for the selected value display.\n */\ntype SelectValueProps = SelectPrimitive.Value.Props\n\n/**\n * Shows the selected item label or placeholder.\n */\nconst SelectValue = ({ className, ...props }: SelectValueProps) => {\n  return (\n    <SelectPrimitive.Value\n      data-slot=\"select-value\"\n      className={cn(\"flex-1 text-start\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the portaled popup content.\n */\ntype SelectContentProps = SelectPrimitive.Popup.Props & {\n  readonly sideOffset?: SelectPrimitive.Positioner.Props[\"sideOffset\"]\n  readonly alignItemWithTrigger?: SelectPrimitive.Positioner.Props[\"alignItemWithTrigger\"]\n}\n\n/**\n * Portaled list surface with scroll arrows.\n */\nconst SelectContent = ({\n  className,\n  children,\n  sideOffset = 4,\n  alignItemWithTrigger = false,\n  ...props\n}: SelectContentProps) => {\n  return (\n    <SelectPrimitive.Portal>\n      <SelectPrimitive.Positioner\n        className=\"isolate z-50 outline-none\"\n        sideOffset={sideOffset}\n        alignItemWithTrigger={alignItemWithTrigger}\n      >\n        <SelectPrimitive.Popup\n          data-slot=\"select-content\"\n          className={cn(\n            \"relative z-50 max-h-(--available-height) w-(--anchor-width) min-w-32 origin-(--transform-origin) overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-md outline-none\",\n            \"duration-150 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95\",\n            className\n          )}\n          {...props}\n        >\n          <SelectScrollUpButton />\n          <SelectPrimitive.List\n            data-slot=\"select-list\"\n            className=\"max-h-(--available-height) scroll-py-1 overflow-y-auto p-1\"\n          >\n            {children}\n          </SelectPrimitive.List>\n          <SelectScrollDownButton />\n        </SelectPrimitive.Popup>\n      </SelectPrimitive.Positioner>\n    </SelectPrimitive.Portal>\n  )\n}\n\n/**\n * Props for a select option.\n */\ntype SelectItemProps = SelectPrimitive.Item.Props\n\n/**\n * One selectable option.\n */\nconst SelectItem = ({ className, children, ...props }: SelectItemProps) => {\n  return (\n    <SelectPrimitive.Item\n      data-slot=\"select-item\"\n      className={cn(\n        \"relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 ps-2 pe-8 text-sm outline-none select-none\",\n        \"data-highlighted:bg-accent data-highlighted:text-accent-foreground\",\n        \"data-disabled:pointer-events-none data-disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      <SelectPrimitive.ItemText className=\"flex flex-1 items-center gap-2\">\n        {children}\n      </SelectPrimitive.ItemText>\n      <SelectPrimitive.ItemIndicator\n        data-slot=\"select-item-indicator\"\n        className=\"absolute end-2 flex size-3.5 items-center justify-center\"\n      >\n        <Check className=\"size-4\" aria-hidden=\"true\" />\n      </SelectPrimitive.ItemIndicator>\n    </SelectPrimitive.Item>\n  )\n}\n\n/**\n * Props for a labeled option group.\n */\ntype SelectGroupProps = SelectPrimitive.Group.Props\n\n/**\n * Groups related options.\n */\nconst SelectGroup = ({ className, ...props }: SelectGroupProps) => {\n  return (\n    <SelectPrimitive.Group\n      data-slot=\"select-group\"\n      className={cn(\"p-1\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for a group heading.\n */\ntype SelectGroupLabelProps = SelectPrimitive.GroupLabel.Props\n\n/**\n * Heading for a SelectGroup.\n */\nconst SelectGroupLabel = ({ className, ...props }: SelectGroupLabelProps) => {\n  return (\n    <SelectPrimitive.GroupLabel\n      data-slot=\"select-group-label\"\n      className={cn(\"px-2 py-1.5 text-xs text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for a list separator.\n */\ntype SelectSeparatorProps = SelectPrimitive.Separator.Props\n\n/**\n * Visual divider between options or groups.\n */\nconst SelectSeparator = ({ className, ...props }: SelectSeparatorProps) => {\n  return (\n    <SelectPrimitive.Separator\n      data-slot=\"select-separator\"\n      className={cn(\"-mx-1 my-1 h-px bg-border\", className)}\n      {...props}\n    />\n  )\n}\n\ntype SelectScrollButtonProps = {\n  readonly className?: string\n  readonly children?: ReactNode\n}\n\n/**\n * Scroll-up control shown when the list can scroll upward.\n */\nconst SelectScrollUpButton = ({\n  className,\n  children,\n}: SelectScrollButtonProps) => {\n  return (\n    <SelectPrimitive.ScrollUpArrow\n      data-slot=\"select-scroll-up\"\n      className={cn(\n        \"flex w-full cursor-default items-center justify-center py-1 text-muted-foreground\",\n        className\n      )}\n    >\n      {children ?? <ChevronUp className=\"size-4\" aria-hidden=\"true\" />}\n    </SelectPrimitive.ScrollUpArrow>\n  )\n}\n\n/**\n * Scroll-down control shown when the list can scroll downward.\n */\nconst SelectScrollDownButton = ({\n  className,\n  children,\n}: SelectScrollButtonProps) => {\n  return (\n    <SelectPrimitive.ScrollDownArrow\n      data-slot=\"select-scroll-down\"\n      className={cn(\n        \"flex w-full cursor-default items-center justify-center py-1 text-muted-foreground\",\n        className\n      )}\n    >\n      {children ?? <ChevronDown className=\"size-4\" aria-hidden=\"true\" />}\n    </SelectPrimitive.ScrollDownArrow>\n  )\n}\n\nexport {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectGroupLabel,\n  SelectItem,\n  SelectLabel,\n  SelectSeparator,\n  SelectTrigger,\n  SelectValue,\n}\nexport type {\n  SelectContentProps,\n  SelectGroupLabelProps,\n  SelectGroupProps,\n  SelectItemProps,\n  SelectLabelProps,\n  SelectProps,\n  SelectSeparatorProps,\n  SelectTriggerProps,\n  SelectValueProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "background": "#ffffff",
+      "foreground": "#000000",
+      "muted-foreground": "#525252",
+      "accent": "#f4f4f4",
+      "accent-foreground": "#000000",
+      "popover": "#ffffff",
+      "popover-foreground": "#000000",
+      "border": "#e5e5e5",
+      "input": "#e5e5e5",
+      "ring": "#000000",
+      "destructive": "#dc2626",
+      "success": "#16a34a"
+    },
+    "dark": {
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "muted-foreground": "#a3a3a3",
+      "accent": "#171717",
+      "accent-foreground": "#ffffff",
+      "popover": "#0a0a0a",
+      "popover-foreground": "#ffffff",
+      "border": "#262626",
+      "input": "#262626",
+      "ring": "#ffffff",
+      "destructive": "#ef4444",
+      "success": "#22c55e"
+    }
+  },
+  "type": "registry:ui"
+}

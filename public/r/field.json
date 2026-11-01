@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "title": "Field",
+  "description": "Composable form field shell on Base UI — label, description, error, and success with automatic associations.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/field.tsx",
+      "content": "\"use client\"\n\nimport { Field as FieldPrimitive } from \"@base-ui/react/field\"\nimport type { ComponentProps, ReactNode } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the field root (name, disabled, validate, validationMode).\n */\ntype FieldProps = FieldPrimitive.Root.Props\n\n/**\n * Groups a control with its label, description, error, and success.\n * Base UI wires associations automatically — no manual `htmlFor` / `id` required.\n */\nconst Field = ({ className, ...props }: FieldProps) => {\n  return (\n    <FieldPrimitive.Root\n      data-slot=\"field\"\n      className={cn(\"flex w-full flex-col gap-1.5\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the accessible field label.\n */\ntype FieldLabelProps = FieldPrimitive.Label.Props\n\n/**\n * Label linked to the field control via Base UI Field context.\n * Picks up `data-invalid` / `data-valid` after validation.\n */\nconst FieldLabel = ({ className, ...props }: FieldLabelProps) => {\n  return (\n    <FieldPrimitive.Label\n      data-slot=\"field-label\"\n      className={cn(\n        \"text-sm leading-none font-medium text-foreground select-none\",\n        \"data-disabled:pointer-events-none data-disabled:opacity-50\",\n        \"data-invalid:text-destructive\",\n        \"data-valid:text-success\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for helper text under the control.\n */\ntype FieldDescriptionProps = FieldPrimitive.Description.Props\n\n/**\n * Supporting copy announced with the control (`aria-describedby`).\n */\nconst FieldDescription = ({ className, ...props }: FieldDescriptionProps) => {\n  return (\n    <FieldPrimitive.Description\n      data-slot=\"field-description\"\n      className={cn(\"text-sm text-muted-foreground text-pretty\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the validation error message.\n */\ntype FieldErrorProps = FieldPrimitive.Error.Props\n\n/**\n * Error message shown when the field fails validation (or `match` forces it).\n */\nconst FieldError = ({ className, ...props }: FieldErrorProps) => {\n  return (\n    <FieldPrimitive.Error\n      data-slot=\"field-error\"\n      className={cn(\"text-sm text-destructive\", className)}\n      {...props}\n    />\n  )\n}\n\ntype FieldSuccessProps = Omit<ComponentProps<\"p\">, \"children\"> & {\n  /** Approved message. Defaults to “Looks good.” */\n  readonly children?: ReactNode\n}\n\n/**\n * Success message when the field is valid and has a value.\n * Hidden for pristine / empty fields (`valid === null` or empty value).\n */\nconst FieldSuccess = ({\n  className,\n  children = \"Looks good.\",\n  ...props\n}: FieldSuccessProps) => {\n  return (\n    <FieldPrimitive.Validity>\n      {(state) => {\n        const hasValue =\n          state.value != null && String(state.value).trim() !== \"\"\n        if (state.validity.valid !== true || !hasValue) {\n          return null\n        }\n\n        return (\n          <p\n            data-slot=\"field-success\"\n            className={cn(\"text-sm text-success\", className)}\n            {...props}\n          >\n            {children}\n          </p>\n        )\n      }}\n    </FieldPrimitive.Validity>\n  )\n}\n\n/**\n * Props for the validity render-prop helper.\n */\ntype FieldValidityProps = FieldPrimitive.Validity.Props\n\n/**\n * Render-prop access to Base UI field validity for custom messages.\n */\nconst FieldValidity = ({ children }: FieldValidityProps) => {\n  return <FieldPrimitive.Validity>{children}</FieldPrimitive.Validity>\n}\n\nexport {\n  Field,\n  FieldDescription,\n  FieldError,\n  FieldLabel,\n  FieldSuccess,\n  FieldValidity,\n}\nexport type {\n  FieldDescriptionProps,\n  FieldErrorProps,\n  FieldLabelProps,\n  FieldProps,\n  FieldSuccessProps,\n  FieldValidityProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "foreground": "#000000",
+      "muted-foreground": "#525252",
+      "destructive": "#dc2626",
+      "success": "#16a34a"
+    },
+    "dark": {
+      "foreground": "#ffffff",
+      "muted-foreground": "#a3a3a3",
+      "destructive": "#ef4444",
+      "success": "#22c55e"
+    }
+  },
+  "type": "registry:ui"
+}

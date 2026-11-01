@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form",
+  "title": "Form",
+  "description": "Base UI Form that runs Field validationMode onSubmit and supports form-level errors.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/form.tsx",
+      "content": "\"use client\"\n\nimport { Form as FormPrimitive } from \"@base-ui/react/form\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the nk Form built on Base UI.\n */\ntype FormProps = FormPrimitive.Props\n\n/**\n * Form that wires Base UI Field `validationMode=\"onSubmit\"` (and form-level errors).\n * Use instead of a native `<form>` when you need Field validation on submit.\n */\nconst Form = ({ className, ...props }: FormProps) => {\n  return (\n    <FormPrimitive\n      data-slot=\"form\"\n      className={cn(\"flex w-full flex-col gap-4\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Form }\nexport type { FormProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
