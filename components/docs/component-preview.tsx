@@ -19,10 +19,12 @@ type ComponentPreviewProps = {
   readonly title?: string
   /** Extra controls rendered in the preview frame toolbar (before LTR/RTL). */
   readonly actions?: PreviewContent
+  /** When false, hides the LTR/RTL toolbar control (default true). */
+  readonly showDirectionToggle?: boolean
 }
 
 /**
- * Docs example frame: live preview, LTR/RTL toggle, optional View Code panel.
+ * Docs example frame: live preview, optional LTR/RTL toggle, optional View Code panel.
  */
 const ComponentPreview = ({
   children,
@@ -30,6 +32,7 @@ const ComponentPreview = ({
   className,
   title = "Preview",
   actions,
+  showDirectionToggle = true,
 }: ComponentPreviewProps) => {
   const [direction, setDirection] = useState<PreviewDirection>("ltr")
 
@@ -39,28 +42,33 @@ const ComponentPreview = ({
 
   const content = typeof children === "function" ? children(direction) : children
   const toolbarActions = typeof actions === "function" ? actions(direction) : actions
+  const showToolbar = Boolean(toolbarActions) || showDirectionToggle
 
   return (
     <div className={cn("overflow-hidden rounded-md border border-border", className)}>
       <div className="flex items-center justify-between gap-3 border-b border-border bg-muted/40 px-3 py-2">
         <p className="text-xs font-medium text-muted-foreground">{title}</p>
-        <div className="flex items-center gap-2">
-          {toolbarActions}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={handleToggleDirection}
-            aria-label={
-              direction === "ltr"
-                ? "Preview with Persian RTL copy"
-                : "Preview with English LTR copy"
-            }
-          >
-            <Languages aria-hidden="true" />
-            <span className="uppercase">{direction}</span>
-          </Button>
-        </div>
+        {showToolbar ? (
+          <div className="flex items-center gap-2">
+            {toolbarActions}
+            {showDirectionToggle ? (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handleToggleDirection}
+                aria-label={
+                  direction === "ltr"
+                    ? "Preview with Persian RTL copy"
+                    : "Preview with English LTR copy"
+                }
+              >
+                <Languages aria-hidden="true" />
+                <span className="uppercase">{direction}</span>
+              </Button>
+            ) : null}
+          </div>
+        ) : null}
       </div>
       <div
         data-nk-preview=""

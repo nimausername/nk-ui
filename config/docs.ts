@@ -61,6 +61,11 @@ export const componentItems: readonly DocsNavItem[] = [
     href: "/docs/components/button",
     description: "Accessible actions built on Base UI.",
   },
+  {
+    title: "GlyphFlux",
+    href: "/docs/components/glyph-flux",
+    description: "WebGL gradient field as animated ASCII glyphs — shapes, grain, pointer scramble.",
+  },
 ] as const
 
 /**
