@@ -1,39 +1,13 @@
 "use client"
 
 import { ArrowRight, Download, Plus, Trash2 } from "lucide-react"
-import { useEffect, useState } from "react"
 
 import { ComponentPreview } from "@/components/docs/component-preview"
-import { ProgressButton } from "@/components/extras/progress-button"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 /**
- * Docs-only loop that drives ProgressButton with a demo progress value.
- */
-const ProgressButtonPreview = ({ rtl = false }: { readonly rtl?: boolean }) => {
-  const [progress, setProgress] = useState(12)
-
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      setProgress((value) => (value >= 100 ? 12 : Math.min(100, value + 8)))
-    }, 500)
-    return () => window.clearInterval(id)
-  }, [])
-
-  return (
-    <ProgressButton
-      type="button"
-      progress={progress}
-      uploadingLabel={rtl ? "بارگذاری" : "Uploading"}
-      completeLabel={rtl ? "دانلود آماده" : "Download ready"}
-      percentMark={rtl ? "٪" : "%"}
-    />
-  )
-}
-
-/**
- * Button docs examples — core Button + Button-family extras shown on this page.
+ * Button docs examples — core Button variants, sizes, and composition.
  */
 const ButtonPreviews = () => {
   return (
@@ -50,9 +24,11 @@ const ButtonPreviews = () => {
           </li>
           <li>
             <strong className="font-medium text-foreground">ProgressButton</strong> (
-            <code className="rounded bg-muted px-1 text-xs">components/extras</code>
-            ): upload progress — shown here, publish later as{" "}
             <code className="rounded bg-muted px-1 text-xs">@nk/progress-button</code>
+            ): composed download progress — see{" "}
+            <a href="/docs/composites/progress-button" className="underline underline-offset-4">
+              Composites → Progress Button
+            </a>
           </li>
           <li>
             Icons / full width / pill: compose with children or{" "}
@@ -311,26 +287,6 @@ export function ButtonLoading() {
               </>
             )
           }
-        </ComponentPreview>
-      </section>
-
-      <section className="space-y-4">
-        <h2 className="text-lg font-semibold">ProgressButton (extra)</h2>
-        <p className="text-sm text-muted-foreground">
-          Button-family extra in{" "}
-          <code className="rounded bg-muted px-1 text-xs">components/extras/progress-button.tsx</code>
-          . Shown on this page; not part of{" "}
-          <code className="rounded bg-muted px-1 text-xs">@nk/button</code> until we publish{" "}
-          <code className="rounded bg-muted px-1 text-xs">@nk/progress-button</code>.
-        </p>
-        <ComponentPreview
-          code={`import { ProgressButton } from "@/components/extras/progress-button"
-
-export function ProgressButtonExample() {
-  return <ProgressButton type="button" progress={64} />
-}`}
-        >
-          {(direction) => <ProgressButtonPreview rtl={direction === "rtl"} />}
         </ComponentPreview>
       </section>
 

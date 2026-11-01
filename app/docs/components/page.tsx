@@ -1,6 +1,15 @@
 import Link from "next/link"
 
+import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { componentItems } from "@/config/docs"
+import { siteConfig } from "@/config/site"
+import {
+  componentsDocsDescription,
+  componentsDocsMarkdown,
+  componentsDocsTitle,
+  componentsDocsUpdatedAt,
+} from "@/content/docs/components"
 
 /**
  * Components index — list of all documented nk components.
@@ -8,12 +17,18 @@ import { componentItems } from "@/config/docs"
 export default function ComponentsIndexPage() {
   return (
     <article className="space-y-8">
-      <header className="space-y-3">
-        <h1 className="text-3xl font-semibold tracking-tight">Components</h1>
-        <p className="text-muted-foreground text-pretty">
-          Every installable UI piece lives here. Open a component for API notes, previews, and its
-          specific <code className="rounded bg-muted px-1.5 py-0.5 text-xs">shadcn add</code> command.
-        </p>
+      <header className="space-y-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <h1 className="text-3xl font-semibold tracking-tight">{componentsDocsTitle}</h1>
+          <DocsCopyPage
+            page={componentsDocsMarkdown}
+            url={`${siteConfig.url}/docs/components`}
+            markdownUrl="/docs/components.md"
+            className="shrink-0"
+          />
+        </div>
+        <p className="text-muted-foreground text-pretty">{componentsDocsDescription}</p>
+        <DocsLastUpdated date={componentsDocsUpdatedAt} />
       </header>
 
       <ul className="divide-y divide-border border-y border-border">
@@ -33,7 +48,11 @@ export default function ComponentsIndexPage() {
       </ul>
 
       <p className="text-sm text-muted-foreground">
-        New components are added to this list as they ship. Registry setup stays the same — see{" "}
+        New primitives are added here as they ship. Composed pieces live under{" "}
+        <Link href="/docs/composites" className="underline underline-offset-4">
+          Composites
+        </Link>
+        . Registry setup stays the same — see{" "}
         <Link href="/docs/installation" className="underline underline-offset-4">
           Installation
         </Link>

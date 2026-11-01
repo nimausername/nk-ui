@@ -1,6 +1,16 @@
 import Link from "next/link"
 
 import { BreadcrumbPreviews } from "@/components/docs/breadcrumb-previews"
+import { ComponentInstall } from "@/components/docs/component-install"
+import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
+import { siteConfig } from "@/config/site"
+import {
+  breadcrumbDocsDescription,
+  breadcrumbDocsMarkdown,
+  breadcrumbDocsTitle,
+  breadcrumbDocsUpdatedAt,
+} from "@/content/docs/breadcrumb"
 
 /**
  * Breadcrumb component detail page.
@@ -8,35 +18,28 @@ import { BreadcrumbPreviews } from "@/components/docs/breadcrumb-previews"
 export default function BreadcrumbDocsPage() {
   return (
     <article className="space-y-10">
-      <header className="space-y-3">
+      <header className="space-y-4">
         <p className="text-sm text-muted-foreground">
           <Link href="/docs/components" className="underline-offset-4 hover:underline">
             Components
           </Link>
           <span aria-hidden="true"> / </span>
-          Breadcrumb
+          {breadcrumbDocsTitle}
         </p>
-        <h1 className="text-3xl font-semibold tracking-tight">Breadcrumb</h1>
-        <p className="text-muted-foreground text-pretty">
-          Composable navigation trail — not one mega-component with every variant baked in.
-          Mix icons, separators, ellipsis, and links by composition. No Base UI primitive
-          required (same approach as shadcn).
-        </p>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <h1 className="text-3xl font-semibold tracking-tight">{breadcrumbDocsTitle}</h1>
+          <DocsCopyPage
+            page={breadcrumbDocsMarkdown}
+            url={`${siteConfig.url}/docs/components/breadcrumb`}
+            markdownUrl="/docs/components/breadcrumb.md"
+            className="shrink-0"
+          />
+        </div>
+        <p className="text-muted-foreground text-pretty">{breadcrumbDocsDescription}</p>
+        <DocsLastUpdated date={breadcrumbDocsUpdatedAt} />
       </header>
 
-      <section className="space-y-3">
-        <h2 className="text-lg font-semibold">Install</h2>
-        <p className="text-sm text-muted-foreground">
-          Requires the general{" "}
-          <Link href="/docs/installation" className="underline underline-offset-4">
-            @nk registry setup
-          </Link>{" "}
-          once. Then:
-        </p>
-        <pre className="overflow-x-auto rounded-md border border-border bg-card p-4 text-sm">
-          <code>npx shadcn@latest add @nk/breadcrumb</code>
-        </pre>
-      </section>
+      <ComponentInstall name="breadcrumb" />
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">Composition model</h2>

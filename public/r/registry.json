@@ -84,6 +84,34 @@
           "ring": "#ffffff"
         }
       }
+    },
+    {
+      "name": "progress-button",
+      "type": "registry:ui",
+      "title": "Progress Button",
+      "description": "Download progress button with a stable width while the label updates.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@nk/button"],
+      "files": [
+        {
+          "path": "components/ui/progress-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "rail-sidebar",
+      "type": "registry:ui",
+      "title": "Rail Sidebar",
+      "description": "Animated dashed-rail sidebar with nested items and active route rails.",
+      "dependencies": ["motion", "next"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/rail-sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

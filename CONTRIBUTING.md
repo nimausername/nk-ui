@@ -28,10 +28,10 @@ pnpm build
 Read [ARCHITECTURE.md](./ARCHITECTURE.md) before opening a PR.
 
 - Installable components → `components/ui` + `registry.json`
-- Reusable but unpublished → `components/extras`
+- Site-wide reusable UI (not registry) → `components/shared`
 - Docs demos / docs chrome → `components/docs`
 - Site shell → `components/site`
-- Docs nav catalog → `config/docs.ts`
+- Docs nav catalog → `config/docs.ts` (`componentItems` or `compositeItems`)
 
 `components/ui` and `lib/utils.ts` must not import docs or site code.
 
@@ -39,8 +39,8 @@ Read [ARCHITECTURE.md](./ARCHITECTURE.md) before opening a PR.
 
 1. Build it in `components/ui`.
 2. Register it in `registry.json`.
-3. Add it to `config/docs.ts` → `componentItems`.
-4. Add a docs page under `app/docs/components/<name>/`.
+3. Add it to `config/docs.ts` → `componentItems` (primitives) or `compositeItems` (composed).
+4. Add a docs page under `app/docs/components/<name>/` or `app/docs/composites/<name>/`.
 5. Run `pnpm registry:build`.
 6. Open a PR with lint, typecheck, and build green.
 

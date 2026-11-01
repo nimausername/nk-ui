@@ -2,8 +2,11 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import type { ComponentType, SVGProps } from "react"
 
-import { HookSidebar } from "@/components/extras/hook-sidebar"
+import { NextjsIcon, ReactIcon, ViteIcon } from "@/components/docs/framework-icons"
+import { DocsRailSidebar } from "@/components/docs/docs-rail-sidebar"
+import { NkMark } from "@/components/site/nk-mark"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,8 +14,21 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { componentItems, docsGuideItems } from "@/config/docs"
+import {
+  componentItems,
+  compositeItems,
+  docsGuideItems,
+  installationFrameworkItems,
+} from "@/config/docs"
 import { cn } from "@/lib/utils"
+
+type IconProps = SVGProps<SVGSVGElement>
+
+const frameworkIcons: Record<string, ComponentType<IconProps>> = {
+  "/docs/installation/next": NextjsIcon,
+  "/docs/installation/vite": ViteIcon,
+  "/docs/installation/manual": ReactIcon,
+}
 
 type DocsSidebarProps = {
   readonly className?: string
@@ -22,6 +38,10 @@ type DocsSidebarProps = {
  * Active docs section label for the sidebar breadcrumb.
  */
 const getDocsSection = (pathname: string) => {
+  if (pathname.startsWith("/docs/composites")) {
+    return { label: "Composites", href: "/docs/composites" }
+  }
+
   if (pathname.startsWith("/docs/components")) {
     return { label: "Components", href: "/docs/components" }
   }
@@ -30,20 +50,44 @@ const getDocsSection = (pathname: string) => {
 }
 
 /**
- * Docs-site sidebar. Composes the extras HookSidebar; not part of the @nk registry.
+ * Docs-site sidebar. Uses the internal `DocsRailSidebar` fork — not the
+ * publishable `@nk/rail-sidebar` composite.
  */
 const DocsSidebar = ({ className }: DocsSidebarProps) => {
   const pathname = usePathname()
   const section = getDocsSection(pathname)
 
-  const guideItems = docsGuideItems.map((item) => ({
-    label: item.title,
-    href: item.href,
-  }))
+  const guideItems = docsGuideItems.map((item) => {
+    if (item.href !== "/docs/installation") {
+      return { label: item.title, href: item.href }
+    }
+
+    return {
+      label: item.title,
+      href: item.href,
+      items: installationFrameworkItems.map((framework) => {
+        const Icon = frameworkIcons[framework.href]
+
+        return {
+          label: framework.title,
+          href: framework.href,
+          icon: Icon ? <Icon aria-hidden="true" /> : undefined,
+        }
+      }),
+    }
+  })
 
   const componentNavItems = [
     { label: "All components", href: "/docs/components" },
     ...componentItems.map((item) => ({
+      label: item.title,
+      href: item.href,
+    })),
+  ]
+
+  const compositeNavItems = [
+    { label: "All composites", href: "/docs/composites" },
+    ...compositeItems.map((item) => ({
       label: item.title,
       href: item.href,
     })),
@@ -54,12 +98,9 @@ const DocsSidebar = ({ className }: DocsSidebarProps) => {
       <Breadcrumb>
         <BreadcrumbList className="gap-1.5 sm:gap-1.5">
           <BreadcrumbItem>
-            <BreadcrumbLink
-              asChild
-              className="inline-flex size-5 items-center justify-center rounded-sm bg-foreground text-[10px] font-semibold tracking-tight text-background hover:text-background"
-            >
-              <Link href="/" aria-label="nk home">
-                nk
+            <BreadcrumbLink asChild className="rounded-sm hover:opacity-80">
+              <Link href="/" aria-label="nk home" className="inline-flex">
+                <NkMark size="sm" />
               </Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
@@ -78,8 +119,9 @@ const DocsSidebar = ({ className }: DocsSidebarProps) => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <HookSidebar label="Getting started" items={guideItems} />
-      <HookSidebar label="Components" items={componentNavItems} />
+      <DocsRailSidebar label="Getting started" items={guideItems} />
+      <DocsRailSidebar label="Components" items={componentNavItems} />
+      <DocsRailSidebar label="Composites" items={compositeNavItems} />
     </aside>
   )
 }
