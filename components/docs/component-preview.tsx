@@ -17,6 +17,8 @@ type ComponentPreviewProps = {
   readonly code?: string
   readonly className?: string
   readonly title?: string
+  /** Extra controls rendered in the preview frame toolbar (before LTR/RTL). */
+  readonly actions?: PreviewContent
 }
 
 /**
@@ -27,6 +29,7 @@ const ComponentPreview = ({
   code,
   className,
   title = "Preview",
+  actions,
 }: ComponentPreviewProps) => {
   const [direction, setDirection] = useState<PreviewDirection>("ltr")
 
@@ -35,25 +38,29 @@ const ComponentPreview = ({
   }
 
   const content = typeof children === "function" ? children(direction) : children
+  const toolbarActions = typeof actions === "function" ? actions(direction) : actions
 
   return (
     <div className={cn("overflow-hidden rounded-md border border-border", className)}>
       <div className="flex items-center justify-between gap-3 border-b border-border bg-muted/40 px-3 py-2">
         <p className="text-xs font-medium text-muted-foreground">{title}</p>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={handleToggleDirection}
-          aria-label={
-            direction === "ltr"
-              ? "Preview with Persian RTL copy"
-              : "Preview with English LTR copy"
-          }
-        >
-          <Languages aria-hidden="true" />
-          <span className="uppercase">{direction}</span>
-        </Button>
+        <div className="flex items-center gap-2">
+          {toolbarActions}
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={handleToggleDirection}
+            aria-label={
+              direction === "ltr"
+                ? "Preview with Persian RTL copy"
+                : "Preview with English LTR copy"
+            }
+          >
+            <Languages aria-hidden="true" />
+            <span className="uppercase">{direction}</span>
+          </Button>
+        </div>
       </div>
       <div
         data-nk-preview=""

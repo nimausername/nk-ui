@@ -4,8 +4,8 @@
 
 ## Type of change
 
-- [ ] Component (`components/ui`)
-- [ ] Extra / candidate (`components/extras`)
+- [ ] Component / composite (`components/ui` + registry)
+- [ ] Shared site UI (`components/shared`)
 - [ ] Docs site
 - [ ] Registry / tooling
 - [ ] Chore

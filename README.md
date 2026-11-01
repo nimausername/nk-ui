@@ -7,7 +7,7 @@ Base UI components you own — black/white product styling, light/dark, and real
 
 - **Docs (planned):** [ui.nimakhabbazi.com](https://ui.nimakhabbazi.com)
 - **Install:** shadcn-compatible registry `@nk/...`
-- **Status:** pre-release (`0.x`) — `utils`, `button`, and `breadcrumb` shipped
+- **Status:** pre-release (`0.x`) — `utils`, `button`, `breadcrumb`, `progress-button`, and `rail-sidebar` shipped
 
 ## Stack
 
@@ -21,7 +21,7 @@ Base UI components you own — black/white product styling, light/dark, and real
 | Path | Purpose |
 |------|---------|
 | `components/ui` | Installable design-system components (`@nk/...`) |
-| `components/extras` | Reusable pieces not published yet (e.g. hook sidebar, ProgressButton) |
+| `components/shared` | Site-wide reusable UI (e.g. CodeCommand) — not registry |
 | `components/docs` | Docs-only UI (previews, View Code panel, docs sidebar shell) |
 | `components/site` | Site shell (header, theme providers) |
 | `config` | Docs/site configuration |
