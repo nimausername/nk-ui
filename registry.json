@@ -112,6 +112,19 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "glyph-flux",
+      "type": "registry:ui",
+      "title": "GlyphFlux",
+      "description": "WebGL gradient field rendered as animated ASCII glyphs with pointer scramble.",
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/glyph-flux.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
