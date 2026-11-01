@@ -1,0 +1,48 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "title": "Dialog",
+  "description": "Composable modal dialog on Base UI — trigger, overlay, content, header, footer, and close.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@nk/button"
+  ],
+  "files": [
+    {
+      "path": "components/ui/dialog.tsx",
+      "content": "\"use client\"\n\nimport { Dialog as DialogPrimitive } from \"@base-ui/react/dialog\"\nimport { X } from \"lucide-react\"\nimport type { ComponentProps } from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the dialog root (open state, modal behavior, handlers).\n */\ntype DialogProps = DialogPrimitive.Root.Props\n\n/**\n * Groups all dialog parts. Does not render its own DOM node.\n */\nconst Dialog = ({ ...props }: DialogProps) => {\n  return <DialogPrimitive.Root data-slot=\"dialog\" {...props} />\n}\n\n/**\n * Props for the element that opens the dialog.\n */\ntype DialogTriggerProps = DialogPrimitive.Trigger.Props\n\n/**\n * Opens the dialog. Compose with nk Button via `render={<Button />}` .\n */\nconst DialogTrigger = ({ ...props }: DialogTriggerProps) => {\n  return <DialogPrimitive.Trigger data-slot=\"dialog-trigger\" {...props} />\n}\n\n/**\n * Props for the portal that mounts overlay + content.\n */\ntype DialogPortalProps = DialogPrimitive.Portal.Props\n\n/**\n * Portals dialog layers into `document.body` (or a custom container).\n */\nconst DialogPortal = ({ ...props }: DialogPortalProps) => {\n  return <DialogPrimitive.Portal data-slot=\"dialog-portal\" {...props} />\n}\n\n/**\n * Props for a control that closes the dialog.\n */\ntype DialogCloseProps = DialogPrimitive.Close.Props\n\n/**\n * Closes the dialog. Compose with nk Button via `render={<Button />}` .\n */\nconst DialogClose = ({ ...props }: DialogCloseProps) => {\n  return <DialogPrimitive.Close data-slot=\"dialog-close\" {...props} />\n}\n\n/**\n * Props for the dimmed backdrop behind the popup.\n */\ntype DialogOverlayProps = DialogPrimitive.Backdrop.Props\n\n/**\n * Modal backdrop. Sits under the popup inside the portal.\n */\nconst DialogOverlay = ({ className, ...props }: DialogOverlayProps) => {\n  return (\n    <DialogPrimitive.Backdrop\n      data-slot=\"dialog-overlay\"\n      className={cn(\n        \"fixed inset-0 z-50 bg-black/40 transition-opacity duration-150 supports-backdrop-filter:backdrop-blur-[2px]\",\n        \"data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ntype DialogContentProps = DialogPrimitive.Popup.Props & {\n  /** Renders an icon close control in the logical end corner. Defaults to true. */\n  readonly showCloseButton?: boolean\n}\n\n/**\n * Portaled popup surface with optional corner close control.\n * Compose Header / Title / Description / Footer inside.\n */\nconst DialogContent = ({\n  className,\n  children,\n  showCloseButton = true,\n  ...props\n}: DialogContentProps) => {\n  return (\n    <DialogPortal>\n      <DialogOverlay />\n      <DialogPrimitive.Popup\n        data-slot=\"dialog-content\"\n        className={cn(\n          \"fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-lg border border-border bg-popover p-4 text-sm text-popover-foreground shadow-lg outline-none sm:max-w-md\",\n          \"duration-150 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        {showCloseButton ? (\n          <DialogPrimitive.Close\n            data-slot=\"dialog-close\"\n            render={\n              <Button\n                type=\"button\"\n                variant=\"ghost\"\n                size=\"icon-sm\"\n                className=\"absolute top-2 end-2\"\n                aria-label=\"Close\"\n              />\n            }\n          >\n            <X aria-hidden=\"true\" />\n            <span className=\"sr-only\">Close</span>\n          </DialogPrimitive.Close>\n        ) : null}\n      </DialogPrimitive.Popup>\n    </DialogPortal>\n  )\n}\n\n/**\n * Top stack for title + description (and optional leading media).\n */\nconst DialogHeader = ({ className, ...props }: ComponentProps<\"div\">) => {\n  return (\n    <div\n      data-slot=\"dialog-header\"\n      className={cn(\"flex flex-col gap-1.5 pe-8 text-start\", className)}\n      {...props}\n    />\n  )\n}\n\ntype DialogFooterProps = ComponentProps<\"div\"> & {\n  /** Appends a default Close action using outline Button. Defaults to false. */\n  readonly showCloseButton?: boolean\n}\n\n/**\n * Action row under the body. Stacks on small screens; end-aligned from `sm`.\n */\nconst DialogFooter = ({\n  className,\n  showCloseButton = false,\n  children,\n  ...props\n}: DialogFooterProps) => {\n  return (\n    <div\n      data-slot=\"dialog-footer\"\n      className={cn(\n        \"flex flex-col-reverse gap-2 sm:flex-row sm:justify-end\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n      {showCloseButton ? (\n        <DialogPrimitive.Close\n          render={<Button type=\"button\" variant=\"outline\" />}\n        >\n          Close\n        </DialogPrimitive.Close>\n      ) : null}\n    </div>\n  )\n}\n\n/**\n * Props for the accessible dialog title.\n */\ntype DialogTitleProps = DialogPrimitive.Title.Props\n\n/**\n * Accessible title announced when the dialog opens.\n */\nconst DialogTitle = ({ className, ...props }: DialogTitleProps) => {\n  return (\n    <DialogPrimitive.Title\n      data-slot=\"dialog-title\"\n      className={cn(\"text-base leading-none font-semibold tracking-tight\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the accessible dialog description.\n */\ntype DialogDescriptionProps = DialogPrimitive.Description.Props\n\n/**\n * Supporting copy linked to the dialog for assistive tech.\n */\nconst DialogDescription = ({ className, ...props }: DialogDescriptionProps) => {\n  return (\n    <DialogPrimitive.Description\n      data-slot=\"dialog-description\"\n      className={cn(\"text-sm text-muted-foreground text-pretty\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Dialog,\n  DialogClose,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogOverlay,\n  DialogPortal,\n  DialogTitle,\n  DialogTrigger,\n}\nexport type {\n  DialogCloseProps,\n  DialogContentProps,\n  DialogDescriptionProps,\n  DialogFooterProps,\n  DialogOverlayProps,\n  DialogPortalProps,\n  DialogProps,\n  DialogTitleProps,\n  DialogTriggerProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "popover": "#ffffff",
+      "popover-foreground": "#000000",
+      "muted": "#f4f4f4",
+      "muted-foreground": "#525252",
+      "border": "#e5e5e5",
+      "background": "#ffffff",
+      "foreground": "#000000",
+      "accent": "#f4f4f4",
+      "accent-foreground": "#000000",
+      "ring": "#000000"
+    },
+    "dark": {
+      "popover": "#0a0a0a",
+      "popover-foreground": "#ffffff",
+      "muted": "#171717",
+      "muted-foreground": "#a3a3a3",
+      "border": "#262626",
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "accent": "#171717",
+      "accent-foreground": "#ffffff",
+      "ring": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}

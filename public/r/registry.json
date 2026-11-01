@@ -86,6 +86,47 @@
       }
     },
     {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Composable modal dialog on Base UI — trigger, overlay, content, header, footer, and close.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/button"],
+      "files": [
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "ring": "#000000"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
       "name": "progress-button",
       "type": "registry:ui",
       "title": "Progress Button",
@@ -125,6 +166,41 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "Native scroll container with custom scrollbars on Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-fade",
+      "type": "registry:hook",
+      "title": "Scroll Fade",
+      "description": "CSS edge fades for scroll containers — position-aware by default, optional direction-smart hook.",
+      "files": [
+        {
+          "path": "hooks/use-scroll-fade-direction.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "styles/scroll-fade.css",
+          "type": "registry:file",
+          "target": "styles/scroll-fade.css"
+        }
+      ],
+      "css": {
+        "@import \"../styles/scroll-fade.css\"": {}
+      },
+      "docs": "Add `scroll-fade` to the overflow element (or Scroll Area viewport). For direction-aware exit fades, also add `scroll-fade-smart` and `useScrollFadeDirection`. Idle clears the override so position-aware fades resume."
     }
   ]
 }

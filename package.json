@@ -21,7 +21,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "registry:build": "pnpm dlx shadcn@latest build"
+    "sync:scroll-fade": "node scripts/sync-scroll-fade.mjs",
+    "registry:build": "pnpm sync:scroll-fade && pnpm dlx shadcn@latest build"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
