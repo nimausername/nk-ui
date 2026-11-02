@@ -1,5 +1,16 @@
 "use client"
 
+import { Bell, Mail, MessageSquare, User } from "lucide-react"
+import type { ReactNode } from "react"
+
+import {
+  DiscordBrandIcon,
+  FigmaBrandIcon,
+  GitHubBrandIcon,
+  LinearBrandIcon,
+  NotionBrandIcon,
+  SlackBrandIcon,
+} from "@/components/ui/brand-icons"
 import { ComponentPreview } from "@/components/docs/component-preview"
 import { Button } from "@/components/ui/button"
 import {
@@ -26,8 +37,109 @@ const frameworks = [
   { label: "Vite", value: "vite" },
 ] as const
 
+type SelectOption = {
+  readonly label: ReactNode
+  readonly value: string
+}
+
+const iconOptions: readonly SelectOption[] = [
+  {
+    value: "mail",
+    label: (
+      <>
+        <Mail aria-hidden="true" />
+        Email
+      </>
+    ),
+  },
+  {
+    value: "messages",
+    label: (
+      <>
+        <MessageSquare aria-hidden="true" />
+        Messages
+      </>
+    ),
+  },
+  {
+    value: "notifications",
+    label: (
+      <>
+        <Bell aria-hidden="true" />
+        Notifications
+      </>
+    ),
+  },
+  {
+    value: "profile",
+    label: (
+      <>
+        <User aria-hidden="true" />
+        Profile
+      </>
+    ),
+  },
+]
+
+const brandOptions: readonly SelectOption[] = [
+  {
+    value: "github",
+    label: (
+      <>
+        <GitHubBrandIcon className="size-4" />
+        GitHub
+      </>
+    ),
+  },
+  {
+    value: "slack",
+    label: (
+      <>
+        <SlackBrandIcon className="size-4" />
+        Slack
+      </>
+    ),
+  },
+  {
+    value: "notion",
+    label: (
+      <>
+        <NotionBrandIcon className="size-4" />
+        Notion
+      </>
+    ),
+  },
+  {
+    value: "discord",
+    label: (
+      <>
+        <DiscordBrandIcon className="size-4" />
+        Discord
+      </>
+    ),
+  },
+  {
+    value: "linear",
+    label: (
+      <>
+        <LinearBrandIcon className="size-4" />
+        Linear
+      </>
+    ),
+  },
+  {
+    value: "figma",
+    label: (
+      <>
+        <FigmaBrandIcon className="size-4" />
+        Figma
+      </>
+    ),
+  },
+]
+
 /**
- * Select docs examples — basic, Field, grouped, failed, disabled.
+ * Select docs examples — basic, icons, brands, Field, grouped, failed, disabled.
  */
 const SelectPreviews = () => {
   return (
@@ -75,6 +187,178 @@ export function SelectBasic() {
               </SelectTrigger>
               <SelectContent>
                 {frameworks.map((item) => (
+                  <SelectItem key={item.value} value={item.value}>
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        </ComponentPreview>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-lg font-semibold">With icons</h2>
+        <p className="text-sm text-muted-foreground">
+          Put an icon beside the label inside{" "}
+          <code className="rounded bg-muted px-1 text-xs">SelectItem</code>. Pass matching{" "}
+          <code className="rounded bg-muted px-1 text-xs">items</code> labels so the trigger
+          shows the icon too.
+        </p>
+        <ComponentPreview
+          className="w-full"
+          code={`import { Bell, Mail, MessageSquare, User } from "lucide-react"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+const channels = [
+  {
+    value: "mail",
+    label: (
+      <>
+        <Mail />
+        Email
+      </>
+    ),
+  },
+  {
+    value: "messages",
+    label: (
+      <>
+        <MessageSquare />
+        Messages
+      </>
+    ),
+  },
+  {
+    value: "notifications",
+    label: (
+      <>
+        <Bell />
+        Notifications
+      </>
+    ),
+  },
+  {
+    value: "profile",
+    label: (
+      <>
+        <User />
+        Profile
+      </>
+    ),
+  },
+]
+
+export function SelectWithIcons() {
+  return (
+    <Select items={channels} defaultValue="mail">
+      <SelectTrigger className="max-w-sm">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {channels.map((item) => (
+          <SelectItem key={item.value} value={item.value}>
+            {item.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}`}
+        >
+          {(direction) => (
+            <Select items={[...iconOptions]} defaultValue="mail">
+              <SelectTrigger
+                className="max-w-sm"
+                aria-label={direction === "rtl" ? "کانال" : "Channel"}
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {iconOptions.map((item) => (
+                  <SelectItem key={item.value} value={item.value}>
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        </ComponentPreview>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-lg font-semibold">With brands</h2>
+        <p className="text-sm text-muted-foreground">
+          Same composition with brand marks — keep icons as{" "}
+          <code className="rounded bg-muted px-1 text-xs">currentColor</code> SVGs so they
+          follow theme and highlight states.
+        </p>
+        <ComponentPreview
+          className="w-full"
+          code={`import { GitHubBrandIcon, SlackBrandIcon } from "@/components/ui/brand-icons"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+const apps = [
+  {
+    value: "github",
+    label: (
+      <>
+        <GitHubBrandIcon className="size-4" />
+        GitHub
+      </>
+    ),
+  },
+  {
+    value: "slack",
+    label: (
+      <>
+        <SlackBrandIcon className="size-4" />
+        Slack
+      </>
+    ),
+  },
+  // …Notion, Discord, Linear, Figma
+]
+
+export function SelectWithBrands() {
+  return (
+    <Select items={apps} defaultValue="github">
+      <SelectTrigger className="max-w-sm">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {apps.map((item) => (
+          <SelectItem key={item.value} value={item.value}>
+            {item.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}`}
+        >
+          {(direction) => (
+            <Select items={[...brandOptions]} defaultValue="github">
+              <SelectTrigger
+                className="max-w-sm"
+                aria-label={direction === "rtl" ? "اپلیکیشن" : "App"}
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {brandOptions.map((item) => (
                   <SelectItem key={item.value} value={item.value}>
                     {item.label}
                   </SelectItem>

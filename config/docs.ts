@@ -52,6 +52,12 @@ export const installationFrameworkItems: readonly DocsNavItem[] = [
  */
 export const componentItems: readonly DocsNavItem[] = [
   {
+    title: "Brand Icons",
+    href: "/docs/components/brand-icons",
+    description:
+      "Thousands of currentColor brand marks (Simple Icons + curated overrides) for Select and menus.",
+  },
+  {
     title: "Breadcrumb",
     href: "/docs/components/breadcrumb",
     description: "Composable navigation trail — icons, separators, ellipsis via composition.",
@@ -133,7 +139,7 @@ export const componentItems: readonly DocsNavItem[] = [
   {
     title: "Switch",
     href: "/docs/components/switch",
-    description: "On/off switch for settings toggles — RTL-aware thumb.",
+    description: "On/off switch with morphing thumb — RTL and reduced-motion aware.",
   },
   {
     title: "Textarea",

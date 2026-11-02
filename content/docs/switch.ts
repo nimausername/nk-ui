@@ -5,7 +5,7 @@
 export const switchDocsTitle = "Switch"
 
 export const switchDocsDescription =
-  "Accessible on/off switch on Base UI. Prefer Switch for immediate settings toggles; use Checkbox for form agreements."
+  "Accessible on/off switch on Base UI with a morphing thumb on state change. Prefer Switch for immediate settings toggles; use Checkbox for form agreements."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const switchDocsUpdatedAt = "2026-11-01"
@@ -25,7 +25,7 @@ pnpm dlx shadcn@latest add @nk/switch
 ## Composition model
 
 - \`Switch\` — root (\`checked\` / \`defaultChecked\`, \`name\`, …)
-- \`SwitchThumb\` — sliding thumb (RTL-aware translate)
+- \`SwitchThumb\` — sliding thumb with mid-travel stretch morph (RTL-aware)
 
 ## Usage
 
@@ -47,6 +47,10 @@ export function Example() {
   )
 }
 \`\`\`
+
+## Morph
+
+On the first toggle, the thumb widens mid-travel (stays fully rounded), then settles back to a circle. Install also pulls \`styles/switch.css\` keyframes. Skipped when \`prefers-reduced-motion: reduce\`.
 
 ## Notes
 

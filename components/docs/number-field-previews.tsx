@@ -27,6 +27,9 @@ const NumberFieldPreviews = () => {
     <div className="space-y-10">
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">Quantity</h2>
+        <p className="text-sm text-muted-foreground">
+          Step with the buttons or arrow keys — digits roll on a wheel with soft top/bottom fades.
+        </p>
         <ComponentPreview
           className="w-full"
           code={`import { Field, FieldLabel } from "@/components/ui/field"

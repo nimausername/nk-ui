@@ -452,7 +452,7 @@ const RailSidebar = ({
           if (item.href) {
             return (
               <Link
-                key={`${index}-${item.label}-${item.href}`}
+                key={item.href}
                 ref={setRef}
                 href={item.href}
                 data-slot="rail-sidebar-item"
@@ -472,7 +472,7 @@ const RailSidebar = ({
 
           return (
             <button
-              key={`${index}-${item.label}`}
+              key={`item-${item.depth}-${item.label}`}
               ref={setRef}
               type="button"
               data-slot="rail-sidebar-item"

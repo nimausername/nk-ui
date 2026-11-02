@@ -1,0 +1,116 @@
+/*
+ * Checkbox checkmark morph keyframes for @nk/checkbox.
+ * Stroke draws with a mid-motion overshoot (same spirit as Switch thumb morph).
+ * Imported by the docs site (app/globals.css) and published via the registry.
+ */
+
+@theme inline {
+  --animate-nk-checkbox-check-on: nk-checkbox-check-on 320ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-nk-checkbox-check-off: nk-checkbox-check-off 240ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-nk-checkbox-indeterminate-on: nk-checkbox-indeterminate-on 280ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-nk-checkbox-indeterminate-off: nk-checkbox-indeterminate-off 200ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes nk-checkbox-check-on {
+    0% {
+      stroke-dashoffset: 1;
+      opacity: 0;
+      transform: scale(0.55);
+    }
+    45% {
+      stroke-dashoffset: 0.12;
+      opacity: 1;
+      transform: scale(1.22);
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes nk-checkbox-check-off {
+    0% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+      transform: scale(1);
+    }
+    45% {
+      stroke-dashoffset: 0.2;
+      opacity: 1;
+      transform: scale(1.18);
+    }
+    100% {
+      stroke-dashoffset: 1;
+      opacity: 0;
+      transform: scale(0.55);
+    }
+  }
+
+  @keyframes nk-checkbox-indeterminate-on {
+    0% {
+      opacity: 0;
+      transform: scaleX(0.2);
+    }
+    45% {
+      opacity: 1;
+      transform: scaleX(1.28);
+    }
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes nk-checkbox-indeterminate-off {
+    0% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scaleX(0.2);
+    }
+  }
+}
+
+/* Morph only after the first user toggle (`data-morph` on the checkbox root). */
+@media (prefers-reduced-motion: no-preference) {
+  [data-slot="checkbox"][data-morph] [data-slot="checkbox-check"] {
+    stroke-dasharray: 1;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  [data-slot="checkbox"][data-morph]
+    [data-slot="checkbox-indicator"][data-starting-style]
+    [data-slot="checkbox-check"] {
+    animation: var(--animate-nk-checkbox-check-on);
+  }
+
+  [data-slot="checkbox"][data-morph]
+    [data-slot="checkbox-indicator"][data-ending-style]
+    [data-slot="checkbox-check"] {
+    animation: var(--animate-nk-checkbox-check-off);
+  }
+
+  [data-slot="checkbox"][data-morph] [data-slot="checkbox-indeterminate"] {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  [data-slot="checkbox"][data-morph]
+    [data-slot="checkbox-indicator"][data-starting-style]
+    [data-slot="checkbox-indeterminate"] {
+    animation: var(--animate-nk-checkbox-indeterminate-on);
+  }
+
+  [data-slot="checkbox"][data-morph]
+    [data-slot="checkbox-indicator"][data-ending-style]
+    [data-slot="checkbox-indeterminate"] {
+    animation: var(--animate-nk-checkbox-indeterminate-off);
+  }
+}

@@ -5,10 +5,10 @@
 export const checkboxDocsTitle = "Checkbox"
 
 export const checkboxDocsDescription =
-  "Accessible checkbox on Base UI with checked, indeterminate, and Field validation chrome."
+  "Accessible checkbox on Base UI with checked, indeterminate, Field validation chrome, and a morphing checkmark."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
-export const checkboxDocsUpdatedAt = "2026-11-01"
+export const checkboxDocsUpdatedAt = "2026-11-02"
 
 export const checkboxDocsMarkdown = `# Checkbox
 
@@ -25,7 +25,7 @@ pnpm dlx shadcn@latest add @nk/checkbox
 ## Composition model
 
 - \`Checkbox\` — root (\`checked\` / \`defaultChecked\`, \`indeterminate\`, \`name\`, …)
-- \`CheckboxIndicator\` — check / minus mark (defaults to Lucide icons)
+- \`CheckboxIndicator\` — check / minus mark (stroke morph after the first toggle)
 
 ## Usage
 
@@ -50,5 +50,6 @@ export function Example() {
 - Built on Base UI (\`@base-ui/react/checkbox\`).
 - Pair with [\`Field\`](/docs/components/field) + [\`Form\`](/docs/components/form) for submit validation.
 - Use \`indeterminate\` for “select all” mixed state.
+- After the first toggle, the check draws with a mid-motion overshoot (and undraws on uncheck). Honors \`prefers-reduced-motion\`.
 - Live previews are on the docs page.
 `

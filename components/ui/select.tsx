@@ -61,7 +61,8 @@ const SelectTrigger = ({ className, children, ...props }: SelectTriggerProps) =>
         "aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/30",
         "data-invalid:border-destructive data-invalid:ring-2 data-invalid:ring-destructive/30",
         "data-valid:border-success data-valid:ring-2 data-valid:ring-success/30",
-        "*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5",
+        "*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2",
+        "*:data-[slot=select-value]:[&_svg]:pointer-events-none *:data-[slot=select-value]:[&_svg]:shrink-0 *:data-[slot=select-value]:[&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
@@ -159,6 +160,7 @@ const SelectItem = ({ className, children, ...props }: SelectItemProps) => {
         "relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 ps-2 pe-8 text-sm outline-none select-none",
         "data-highlighted:bg-accent data-highlighted:text-accent-foreground",
         "data-disabled:pointer-events-none data-disabled:opacity-50",
+        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

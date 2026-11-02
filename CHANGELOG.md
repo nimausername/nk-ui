@@ -13,6 +13,8 @@
 - Input OTP slots: `data-invalid` / `data-valid` border rings; Field failed/approved docs preview
 - Input / Number Field / Phone Input / Password Input: Form failed/approved validation demos + invalid/valid rings
 - Publish Checkbox, Switch, Radio Group, Select, and Textarea (`@nk/*`) with Field-aware docs previews
+- Switch thumb morph animation on state change (RTL + reduced-motion aware)
+- Publish Brand Icons (`@nk/brand-icons`); Select installs it for branded options
 - Publish Password Input as `@nk/password-input` (Composites; show / hide toggle on Input + Button)
 - Publish Number Field as `@nk/number-field` (steppers, min/max/step, optional scrub area)
 - Publish Phone Input as `@nk/phone-input` (phonefield + Base UI; country picker, E.164)

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "../styles/switch.css";
+@import "../styles/checkbox.css";
 /*
  * scroll-fade utilities (inlined).
  * Turbopack + @tailwindcss treats each .css as its own entry, so
