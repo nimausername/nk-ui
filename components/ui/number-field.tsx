@@ -1,10 +1,112 @@
 "use client"
 
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field"
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  type ReactNode,
+  type Ref,
+} from "react"
 import { Minus, Plus } from "lucide-react"
-import type { ReactNode } from "react"
 
+import { AnimatedCounter } from "@/components/ui/animated-counter"
 import { cn } from "@/lib/utils"
+
+type NumberFieldMotionContextValue = {
+  readonly value: number | null
+  readonly decimals: number
+  readonly separator: string
+  readonly decimalSeparator: string
+  readonly prefix: string
+  readonly suffix: string
+}
+
+const NumberFieldMotionContext = createContext<NumberFieldMotionContextValue | null>(
+  null
+)
+
+const decimalsFromStep = (step: number | "any" | undefined) => {
+  if (step === undefined || step === "any") return 0
+  const text = String(step)
+  const index = text.indexOf(".")
+  return index === -1 ? 0 : text.length - index - 1
+}
+
+type CounterParts = {
+  decimals: number
+  separator: string
+  decimalSeparator: string
+  prefix: string
+  suffix: string
+}
+
+/**
+ * Maps Number Field `format` / `step` / `locale` onto AnimatedCounter props.
+ */
+const getCounterParts = (
+  sample: number,
+  format: Intl.NumberFormatOptions | undefined,
+  locale: Intl.LocalesArgument | undefined,
+  step: number | "any" | undefined
+): CounterParts => {
+  const stepDecimals = decimalsFromStep(step)
+  if (!format) {
+    return {
+      decimals: stepDecimals,
+      separator: ",",
+      decimalSeparator: ".",
+      prefix: "",
+      suffix: "",
+    }
+  }
+
+  const parts = new Intl.NumberFormat(locale, format).formatToParts(
+    Number.isFinite(sample) ? sample : 0
+  )
+  let separator = ","
+  let decimalSeparator = "."
+  let prefix = ""
+  let suffix = ""
+  let sawNumber = false
+
+  for (const part of parts) {
+    if (part.type === "group") {
+      separator = part.value
+      continue
+    }
+    if (part.type === "decimal") {
+      decimalSeparator = part.value
+      continue
+    }
+    if (
+      part.type === "integer" ||
+      part.type === "fraction" ||
+      part.type === "minusSign"
+    ) {
+      sawNumber = true
+      continue
+    }
+    if (
+      part.type === "currency" ||
+      part.type === "percentSign" ||
+      part.type === "literal" ||
+      part.type === "plusSign"
+    ) {
+      if (sawNumber) suffix += part.value
+      else prefix += part.value
+    }
+  }
+
+  const decimals = Math.max(
+    format.minimumFractionDigits ?? 0,
+    format.maximumFractionDigits ?? 0,
+    stepDecimals
+  )
+
+  return { decimals, separator, decimalSeparator, prefix, suffix }
+}
 
 /**
  * Props for the number field root (`min`, `max`, `step`, `value`, …).
@@ -14,14 +116,59 @@ type NumberFieldProps = NumberFieldPrimitive.Root.Props
 /**
  * Groups all number-field parts and owns the numeric value.
  * Pair with Field for labels and errors.
+ *
+ * Stepped values roll on a digit wheel (AnimatedCounter) inside the input.
+ * Typing uses the native input. Honors `prefers-reduced-motion`.
  */
-const NumberField = ({ className, ...props }: NumberFieldProps) => {
+const NumberField = ({
+  className,
+  onValueChange,
+  value,
+  defaultValue,
+  format,
+  locale,
+  step,
+  ...props
+}: NumberFieldProps) => {
+  const isControlled = value !== undefined
+  const [uncontrolledValue, setUncontrolledValue] = useState<number | null>(
+    defaultValue ?? null
+  )
+  const numericValue = isControlled ? value : uncontrolledValue
+
+  const parts = useMemo(
+    () => getCounterParts(numericValue ?? 0, format, locale, step),
+    [numericValue, format, locale, step]
+  )
+
   return (
-    <NumberFieldPrimitive.Root
-      data-slot="number-field"
-      className={cn("flex w-full flex-col gap-1.5", className)}
-      {...props}
-    />
+    <NumberFieldMotionContext.Provider
+      value={{
+        value: numericValue,
+        decimals: parts.decimals,
+        separator: parts.separator,
+        decimalSeparator: parts.decimalSeparator,
+        prefix: parts.prefix,
+        suffix: parts.suffix,
+      }}
+    >
+      <NumberFieldPrimitive.Root
+        data-slot="number-field"
+        className={cn("flex w-full flex-col gap-1.5", className)}
+        value={value}
+        defaultValue={defaultValue}
+        format={format}
+        locale={locale}
+        step={step}
+        onValueChange={(nextValue, eventDetails) => {
+          if (!isControlled) {
+            setUncontrolledValue(nextValue)
+          }
+          onValueChange?.(nextValue, eventDetails)
+        }}
+        {...props}
+      />
+    </NumberFieldMotionContext.Provider>
   )
 }
 
@@ -58,21 +205,101 @@ const NumberFieldGroup = ({ className, ...props }: NumberFieldGroupProps) => {
  */
 type NumberFieldInputProps = NumberFieldPrimitive.Input.Props
 
+const mergeRefs =
+  <T,>(...refs: Array<Ref<T> | undefined>) =>
+  (node: T) => {
+    for (const ref of refs) {
+      if (!ref) continue
+      if (typeof ref === "function") {
+        ref(node)
+        continue
+      }
+      ;(ref as { current: T }).current = node
+    }
+  }
+
 /**
  * Formatted number input inside the group (no own border / ring).
+ * Shows the digit-wheel counter until the user types; then the native input.
  */
-const NumberFieldInput = ({ className, ...props }: NumberFieldInputProps) => {
+const NumberFieldInput = ({
+  className,
+  ref,
+  onBlur,
+  onKeyDown,
+  onPaste,
+  ...props
+}: NumberFieldInputProps) => {
+  const motion = useContext(NumberFieldMotionContext)
+  const [editing, setEditing] = useState(false)
+  const showCounter = Boolean(motion && motion.value !== null && !editing)
+
   return (
-    <NumberFieldPrimitive.Input
-      data-slot="number-field-input"
-      className={cn(
-        "h-full min-w-0 flex-1 bg-transparent px-2 text-center text-sm text-foreground tabular-nums outline-none",
-        "placeholder:text-muted-foreground",
-        "disabled:cursor-not-allowed",
-        className
-      )}
-      {...props}
-    />
+    <span
+      data-slot="number-field-input-shell"
+      className="relative flex h-full min-w-0 flex-1 items-center justify-center overflow-hidden"
+    >
+      {showCounter && motion?.value !== null && motion ? (
+        <AnimatedCounter
+          value={motion.value}
+          decimals={motion.decimals}
+          separator={motion.separator}
+          decimalSeparator={motion.decimalSeparator}
+          prefix={motion.prefix || undefined}
+          suffix={motion.suffix || undefined}
+          duration={0.45}
+          padStart={1}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 w-full justify-center text-sm text-foreground"
+        />
+      ) : null}
+      <NumberFieldPrimitive.Input
+        data-slot="number-field-input"
+        ref={mergeRefs(ref)}
+        className={cn(
+          "h-full min-w-0 flex-1 bg-transparent px-2 text-center text-sm text-foreground tabular-nums outline-none",
+          "placeholder:text-muted-foreground",
+          "disabled:cursor-not-allowed",
+          showCounter && "text-transparent caret-transparent",
+          className
+        )}
+        onBlur={(event) => {
+          setEditing(false)
+          onBlur?.(event)
+        }}
+        onPaste={(event) => {
+          setEditing(true)
+          onPaste?.(event)
+        }}
+        onKeyDown={(event) => {
+          if (event.metaKey || event.ctrlKey || event.altKey) {
+            onKeyDown?.(event)
+            return
+          }
+
+          // Arrow / Home / End stepping keeps the digit wheel visible.
+          const stepping =
+            event.key === "ArrowUp" ||
+            event.key === "ArrowDown" ||
+            event.key === "ArrowLeft" ||
+            event.key === "ArrowRight" ||
+            event.key === "Home" ||
+            event.key === "End"
+
+          if (
+            !stepping &&
+            (event.key.length === 1 ||
+              event.key === "Backspace" ||
+              event.key === "Delete")
+          ) {
+            setEditing(true)
+          }
+
+          onKeyDown?.(event)
+        }}
+        {...props}
+      />
+    </span>
   )
 }
 

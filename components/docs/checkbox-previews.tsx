@@ -18,6 +18,10 @@ const CheckboxPreviews = () => {
     <div className="space-y-10">
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">Basic</h2>
+        <p className="text-sm text-muted-foreground">
+          Toggle to see the checkmark morph — it draws with a mid-motion overshoot, then undraws
+          on uncheck.
+        </p>
         <ComponentPreview
           className="w-full"
           code={`import { Checkbox, CheckboxIndicator } from "@/components/ui/checkbox"
@@ -25,7 +29,7 @@ const CheckboxPreviews = () => {
 export function CheckboxBasic() {
   return (
     <label className="flex items-center gap-2 text-sm">
-      <Checkbox defaultChecked>
+      <Checkbox>
         <CheckboxIndicator />
       </Checkbox>
       Enable notifications
@@ -35,7 +39,7 @@ export function CheckboxBasic() {
         >
           {(direction) => (
             <label className="flex items-center gap-2 text-sm">
-              <Checkbox defaultChecked>
+              <Checkbox>
                 <CheckboxIndicator />
               </Checkbox>
               {direction === "rtl" ? "فعال‌سازی اعلان‌ها" : "Enable notifications"}

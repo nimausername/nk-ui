@@ -1,0 +1,76 @@
+/*
+ * Switch thumb morph keyframes for @nk/switch.
+ * Width stretches mid-travel while staying fully rounded (no scaleX ellipse).
+ * Imported by the docs site (app/globals.css) and published via the registry.
+ */
+
+@theme inline {
+  --animate-nk-switch-thumb-on: nk-switch-thumb-on 340ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-nk-switch-thumb-off: nk-switch-thumb-off 340ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-nk-switch-thumb-on-rtl: nk-switch-thumb-on-rtl 340ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-nk-switch-thumb-off-rtl: nk-switch-thumb-off-rtl 340ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes nk-switch-thumb-on {
+    0% {
+      transform: translateX(0);
+      width: 1rem;
+    }
+    45% {
+      transform: translateX(0.35rem);
+      width: 1.4rem;
+    }
+    100% {
+      transform: translateX(1rem);
+      width: 1rem;
+    }
+  }
+
+  @keyframes nk-switch-thumb-off {
+    0% {
+      transform: translateX(1rem);
+      width: 1rem;
+    }
+    45% {
+      transform: translateX(0.35rem);
+      width: 1.4rem;
+    }
+    100% {
+      transform: translateX(0);
+      width: 1rem;
+    }
+  }
+
+  @keyframes nk-switch-thumb-on-rtl {
+    0% {
+      transform: translateX(0);
+      width: 1rem;
+    }
+    45% {
+      transform: translateX(-0.35rem);
+      width: 1.4rem;
+    }
+    100% {
+      transform: translateX(-1rem);
+      width: 1rem;
+    }
+  }
+
+  @keyframes nk-switch-thumb-off-rtl {
+    0% {
+      transform: translateX(-1rem);
+      width: 1rem;
+    }
+    45% {
+      transform: translateX(-0.35rem);
+      width: 1.4rem;
+    }
+    100% {
+      transform: translateX(0);
+      width: 1rem;
+    }
+  }
+}

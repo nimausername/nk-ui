@@ -8,7 +8,10 @@
       "type": "registry:lib",
       "title": "Utils",
       "description": "Shared cn() helper for merging Tailwind classes.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "lib/utils.ts",
@@ -21,8 +24,13 @@
       "type": "registry:ui",
       "title": "Breadcrumb",
       "description": "Composable breadcrumb primitives for icons, separators, ellipsis, and custom links.",
-      "dependencies": ["@radix-ui/react-slot", "lucide-react"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/breadcrumb.tsx",
@@ -35,8 +43,13 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Accessible button built on Base UI with nk product variants.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/button.tsx",
@@ -89,15 +102,27 @@
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
-      "description": "Accessible checkbox on Base UI with checked and indeterminate states.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@nk/utils"],
+      "description": "Accessible checkbox on Base UI with checked/indeterminate states and a morphing checkmark.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/checkbox.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "styles/checkbox.css",
+          "type": "registry:file",
+          "target": "styles/checkbox.css"
         }
       ],
+      "css": {
+        "@import \"../styles/checkbox.css\"": {}
+      },
       "cssVars": {
         "light": {
           "primary": "#000000",
@@ -122,8 +147,13 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "Composable modal dialog on Base UI — trigger, overlay, content, header, footer, and close.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@nk/button"],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/button"
+      ],
       "files": [
         {
           "path": "components/ui/dialog.tsx",
@@ -163,8 +193,12 @@
       "type": "registry:ui",
       "title": "Field",
       "description": "Composable form field shell on Base UI — label, description, error, and success with automatic associations.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/field.tsx",
@@ -191,8 +225,12 @@
       "type": "registry:ui",
       "title": "Form",
       "description": "Base UI Form that runs Field validationMode onSubmit and supports form-level errors.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/form.tsx",
@@ -205,8 +243,13 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "Accessible text input on Base UI with nk product styling. Pair with Field for labeled forms.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@nk/utils", "@nk/field"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils",
+        "@nk/field"
+      ],
       "files": [
         {
           "path": "components/ui/input.tsx",
@@ -242,8 +285,13 @@
       "type": "registry:ui",
       "title": "Input OTP",
       "description": "One-time code slots on Base UI OTP Field — paste, mask, and grouped layouts.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/input-otp.tsx",
@@ -273,12 +321,37 @@
       }
     },
     {
+      "name": "animated-counter",
+      "type": "registry:ui",
+      "title": "Animated Counter",
+      "description": "Digit-wheel number display with soft top/bottom mask fades — for live values and Number Field.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/animated-counter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "number-field",
       "type": "registry:ui",
       "title": "Number Field",
-      "description": "Composable numeric input on Base UI — steppers, min/max/step, optional scrub area.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@nk/utils"],
+      "description": "Composable numeric input on Base UI — steppers, min/max/step, optional scrub, and digit-wheel value motion.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "@nk/utils",
+        "@nk/animated-counter"
+      ],
       "files": [
         {
           "path": "components/ui/number-field.tsx",
@@ -296,7 +369,8 @@
           "border": "#e5e5e5",
           "input": "#e5e5e5",
           "ring": "#000000",
-          "destructive": "#dc2626"
+          "destructive": "#dc2626",
+          "success": "#16a34a"
         },
         "dark": {
           "background": "#000000",
@@ -307,7 +381,8 @@
           "border": "#262626",
           "input": "#262626",
           "ring": "#ffffff",
-          "destructive": "#ef4444"
+          "destructive": "#ef4444",
+          "success": "#22c55e"
         }
       }
     },
@@ -316,8 +391,13 @@
       "type": "registry:ui",
       "title": "Phone Input",
       "description": "Composable phone field with country picker and E.164 output — Base UI via phonefield.",
-      "dependencies": ["phonefield", "lucide-react"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "phonefield",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/phone-input.tsx",
@@ -361,8 +441,12 @@
       "type": "registry:ui",
       "title": "Radio Group",
       "description": "Mutually exclusive radio options on Base UI.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/radio-group.tsx",
@@ -391,8 +475,13 @@
       "type": "registry:ui",
       "title": "Password Input",
       "description": "Password field with a show / hide toggle, built on Input and Button.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@nk/input", "@nk/button"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/input",
+        "@nk/button"
+      ],
       "files": [
         {
           "path": "components/ui/password-input.tsx",
@@ -405,8 +494,12 @@
       "type": "registry:ui",
       "title": "Progress Button",
       "description": "Download progress button with a stable width while the label updates.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@nk/button"],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/button"
+      ],
       "files": [
         {
           "path": "components/ui/progress-button.tsx",
@@ -419,8 +512,13 @@
       "type": "registry:ui",
       "title": "Rail Sidebar",
       "description": "Animated dashed-rail sidebar with nested items and active route rails.",
-      "dependencies": ["motion", "next"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "motion",
+        "next"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/rail-sidebar.tsx",
@@ -433,7 +531,9 @@
       "type": "registry:ui",
       "title": "GlyphFlux",
       "description": "WebGL gradient field rendered as animated ASCII glyphs with pointer scramble.",
-      "registryDependencies": ["@nk/utils"],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/glyph-flux.tsx",
@@ -446,8 +546,12 @@
       "type": "registry:ui",
       "title": "Scroll Area",
       "description": "Native scroll container with custom scrollbars on Base UI.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@nk/utils"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/scroll-area.tsx",
@@ -477,12 +581,33 @@
       "docs": "Add `scroll-fade` to the overflow element (or Scroll Area viewport). For direction-aware exit fades, also add `scroll-fade-smart` and `useScrollFadeDirection`. Idle clears the override so position-aware fades resume."
     },
     {
+      "name": "brand-icons",
+      "type": "registry:ui",
+      "title": "Brand Icons",
+      "description": "currentColor brand marks powered by Simple Icons (~3.5k) plus curated overrides (Slack, OpenAI, LinkedIn, AWS, Microsoft, VS Code) for Select and other controls.",
+      "dependencies": [
+        "simple-icons"
+      ],
+      "files": [
+        {
+          "path": "components/ui/brand-icons.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Composable dropdown select on Base UI — trigger, popup, items, and groups.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@nk/utils"],
+      "description": "Composable dropdown select on Base UI — trigger, popup, items, and groups. Pulls brand icons for branded options.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils",
+        "@nk/brand-icons"
+      ],
       "files": [
         {
           "path": "components/ui/select.tsx",
@@ -525,15 +650,27 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "Accessible on/off switch on Base UI with an RTL-aware thumb.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@nk/utils"],
+      "description": "Accessible on/off switch on Base UI with an RTL-aware morphing thumb.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
       "files": [
         {
           "path": "components/ui/switch.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "styles/switch.css",
+          "type": "registry:file",
+          "target": "styles/switch.css"
         }
       ],
+      "css": {
+        "@import \"../styles/switch.css\"": {}
+      },
       "cssVars": {
         "light": {
           "primary": "#000000",
@@ -558,8 +695,13 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "Multi-line text field with Input styling, wired through Field.Control.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@nk/utils", "@nk/field"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils",
+        "@nk/field"
+      ],
       "files": [
         {
           "path": "components/ui/textarea.tsx",

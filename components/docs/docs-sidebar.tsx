@@ -34,6 +34,24 @@ type DocsSidebarProps = {
   readonly className?: string
 }
 
+/** Stable Components rail items (module scope — same on server and client). */
+const componentNavItems = [
+  { label: "All components", href: "/docs/components" },
+  ...componentItems.map((item) => ({
+    label: item.title,
+    href: item.href,
+  })),
+] as const
+
+/** Stable Composites rail items (module scope — same on server and client). */
+const compositeNavItems = [
+  { label: "All composites", href: "/docs/composites" },
+  ...compositeItems.map((item) => ({
+    label: item.title,
+    href: item.href,
+  })),
+] as const
+
 /**
  * Active docs section label for the sidebar breadcrumb.
  */
@@ -76,22 +94,6 @@ const DocsSidebar = ({ className }: DocsSidebarProps) => {
       }),
     }
   })
-
-  const componentNavItems = [
-    { label: "All components", href: "/docs/components" },
-    ...componentItems.map((item) => ({
-      label: item.title,
-      href: item.href,
-    })),
-  ]
-
-  const compositeNavItems = [
-    { label: "All composites", href: "/docs/composites" },
-    ...compositeItems.map((item) => ({
-      label: item.title,
-      href: item.href,
-    })),
-  ]
 
   return (
     <aside className={cn("w-full shrink-0 space-y-8 md:w-56", className)}>

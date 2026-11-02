@@ -22,6 +22,8 @@ Requires the general [@nk registry setup](/docs/installation) once. Then:
 pnpm dlx shadcn@latest add @nk/select
 \`\`\`
 
+This also installs [\`Brand Icons\`](/docs/components/brand-icons) (\`@nk/brand-icons\`) and \`lucide-react\`.
+
 ## Composition model
 
 - \`Select\` — root (\`value\`, \`items\`, \`onValueChange\`, …)
@@ -69,10 +71,63 @@ export function Example() {
 }
 \`\`\`
 
+## Icons and brands
+
+Compose Lucide icons or brand marks from \`@/components/ui/brand-icons\` inside \`SelectItem\`, and pass the same nodes in \`items\` so the trigger mirrors the list:
+
+\`\`\`tsx
+import { GitHubBrandIcon, SlackBrandIcon } from "@/components/ui/brand-icons"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+const apps = [
+  {
+    value: "github",
+    label: (
+      <>
+        <GitHubBrandIcon className="size-4" />
+        GitHub
+      </>
+    ),
+  },
+  {
+    value: "slack",
+    label: (
+      <>
+        <SlackBrandIcon className="size-4" />
+        Slack
+      </>
+    ),
+  },
+]
+
+export function BrandExample() {
+  return (
+    <Select items={apps} defaultValue="github">
+      <SelectTrigger>
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent>
+        {apps.map((item) => (
+          <SelectItem key={item.value} value={item.value}>
+            {item.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}
+\`\`\`
+
 ## Notes
 
 - Built on Base UI (\`@base-ui/react/select\`).
-- Pass \`items\` on \`Select\` so the value label resolves correctly.
+- Pass \`items\` on \`Select\` so the value label resolves correctly (including icon nodes).
 - Pair with [\`Field\`](/docs/components/field) + [\`Form\`](/docs/components/form) for submit validation.
-- Live previews are on the docs page.
+- Live previews (text, icons, brands, grouped, failed, disabled) are on the docs page.
 `

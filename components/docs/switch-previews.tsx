@@ -12,6 +12,9 @@ const SwitchPreviews = () => {
     <div className="space-y-10">
       <section className="space-y-4">
         <h2 className="text-lg font-semibold">Basic</h2>
+        <p className="text-sm text-muted-foreground">
+          Toggle to see the thumb morph — it stretches mid-travel, then settles.
+        </p>
         <ComponentPreview
           className="w-full"
           code={`import { Switch, SwitchThumb } from "@/components/ui/switch"
