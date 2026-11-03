@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "title": "Tabs",
+  "description": "Tabbed panels on Base UI with list, triggers, content, and indicator.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/tabs.tsx",
+      "content": "\"use client\"\n\nimport { Tabs as TabsPrimitive } from \"@base-ui/react/tabs\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the tabs root.\n */\ntype TabsProps = TabsPrimitive.Root.Props\n\n/**\n * Groups list and panels. Compose List / Trigger / Content (and optional Indicator).\n */\nconst Tabs = ({ className, ...props }: TabsProps) => {\n  return (\n    <TabsPrimitive.Root\n      data-slot=\"tabs\"\n      className={cn(\"flex flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the tab list.\n */\ntype TabsListProps = TabsPrimitive.List.Props\n\n/**\n * Horizontal (or vertical) row of tab triggers.\n */\nconst TabsList = ({ className, ...props }: TabsListProps) => {\n  return (\n    <TabsPrimitive.List\n      data-slot=\"tabs-list\"\n      className={cn(\n        \"relative inline-flex h-9 w-fit items-center justify-center rounded-md bg-muted p-1 text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for a tab trigger.\n */\ntype TabsTriggerProps = TabsPrimitive.Tab.Props\n\n/**\n * Activates its paired panel. Use `value` to match TabsContent.\n */\nconst TabsTrigger = ({ className, ...props }: TabsTriggerProps) => {\n  return (\n    <TabsPrimitive.Tab\n      data-slot=\"tabs-trigger\"\n      className={cn(\n        \"relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-sm px-3 py-1 text-sm font-medium whitespace-nowrap transition-colors outline-none\",\n        \"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"disabled:pointer-events-none disabled:opacity-50\",\n        \"data-active:bg-background data-active:text-foreground data-active:shadow-sm\",\n        \"[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the animated active indicator.\n */\ntype TabsIndicatorProps = TabsPrimitive.Indicator.Props\n\n/**\n * Optional underline / pill that tracks the active tab via CSS variables.\n */\nconst TabsIndicator = ({ className, ...props }: TabsIndicatorProps) => {\n  return (\n    <TabsPrimitive.Indicator\n      data-slot=\"tabs-indicator\"\n      className={cn(\n        \"absolute start-[var(--active-tab-left)] top-[var(--active-tab-top)] z-0 h-[var(--active-tab-height)] w-[var(--active-tab-width)] rounded-sm bg-background shadow-sm transition-[inset-inline-start,width,top,height] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for a tab panel.\n */\ntype TabsContentProps = TabsPrimitive.Panel.Props\n\n/**\n * Panel shown when its `value` matches the active tab.\n */\nconst TabsContent = ({ className, ...props }: TabsContentProps) => {\n  return (\n    <TabsPrimitive.Panel\n      data-slot=\"tabs-content\"\n      className={cn(\"outline-none focus-visible:ring-2 focus-visible:ring-ring\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Tabs, TabsList, TabsTrigger, TabsIndicator, TabsContent }\nexport type {\n  TabsProps,\n  TabsListProps,\n  TabsTriggerProps,\n  TabsIndicatorProps,\n  TabsContentProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "muted": "#f4f4f4",
+      "muted-foreground": "#525252",
+      "background": "#ffffff",
+      "foreground": "#000000",
+      "ring": "#000000"
+    },
+    "dark": {
+      "muted": "#171717",
+      "muted-foreground": "#a3a3a3",
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "ring": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}

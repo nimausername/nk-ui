@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "title": "Slider",
+  "description": "Draggable value control on Base UI with track, indicator, and thumb.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/slider.tsx",
+      "content": "\"use client\"\n\nimport { Slider as SliderPrimitive } from \"@base-ui/react/slider\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the slider root (`value`, `defaultValue`, `min`, `max`, …).\n */\ntype SliderProps = SliderPrimitive.Root.Props\n\n/**\n * Groups label / value / control. Compose Thumb inside Control → Track → Indicator.\n */\nconst Slider = ({ className, ...props }: SliderProps) => {\n  return (\n    <SliderPrimitive.Root\n      data-slot=\"slider\"\n      className={cn(\n        \"relative flex w-full touch-none flex-col gap-2 select-none data-disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the slider label.\n */\ntype SliderLabelProps = SliderPrimitive.Label.Props\n\n/**\n * Accessible name for the slider.\n */\nconst SliderLabel = ({ className, ...props }: SliderLabelProps) => {\n  return (\n    <SliderPrimitive.Label\n      data-slot=\"slider-label\"\n      className={cn(\"text-sm font-medium\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the formatted value text.\n */\ntype SliderValueProps = SliderPrimitive.Value.Props\n\n/**\n * Formatted value beside the label.\n */\nconst SliderValue = ({ className, ...props }: SliderValueProps) => {\n  return (\n    <SliderPrimitive.Value\n      data-slot=\"slider-value\"\n      className={cn(\"text-sm text-muted-foreground tabular-nums\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the interactive control region.\n */\ntype SliderControlProps = SliderPrimitive.Control.Props\n\n/**\n * Hit area that contains track, indicator, and thumbs.\n */\nconst SliderControl = ({ className, ...props }: SliderControlProps) => {\n  return (\n    <SliderPrimitive.Control\n      data-slot=\"slider-control\"\n      className={cn(\"flex w-full items-center\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the slider track.\n */\ntype SliderTrackProps = SliderPrimitive.Track.Props\n\n/**\n * Full track behind the indicator.\n */\nconst SliderTrack = ({ className, ...props }: SliderTrackProps) => {\n  return (\n    <SliderPrimitive.Track\n      data-slot=\"slider-track\"\n      className={cn(\n        \"relative h-1.5 w-full grow overflow-hidden rounded-full bg-secondary\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the filled range indicator.\n */\ntype SliderIndicatorProps = SliderPrimitive.Indicator.Props\n\n/**\n * Filled portion of the track between min and the thumb(s).\n */\nconst SliderIndicator = ({ className, ...props }: SliderIndicatorProps) => {\n  return (\n    <SliderPrimitive.Indicator\n      data-slot=\"slider-indicator\"\n      className={cn(\"absolute h-full bg-primary\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for a slider thumb.\n */\ntype SliderThumbProps = SliderPrimitive.Thumb.Props\n\n/**\n * Draggable thumb. Add one for single value, two for a range.\n */\nconst SliderThumb = ({ className, ...props }: SliderThumbProps) => {\n  return (\n    <SliderPrimitive.Thumb\n      data-slot=\"slider-thumb\"\n      className={cn(\n        \"block size-4 shrink-0 rounded-full border border-primary bg-background shadow-sm ring-ring transition-[color,box-shadow] outline-none\",\n        \"focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"disabled:pointer-events-none disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Slider,\n  SliderLabel,\n  SliderValue,\n  SliderControl,\n  SliderTrack,\n  SliderIndicator,\n  SliderThumb,\n}\nexport type {\n  SliderProps,\n  SliderLabelProps,\n  SliderValueProps,\n  SliderControlProps,\n  SliderTrackProps,\n  SliderIndicatorProps,\n  SliderThumbProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "primary": "#000000",
+      "secondary": "#f4f4f4",
+      "background": "#ffffff",
+      "muted-foreground": "#525252",
+      "ring": "#000000"
+    },
+    "dark": {
+      "primary": "#ffffff",
+      "secondary": "#171717",
+      "background": "#000000",
+      "muted-foreground": "#a3a3a3",
+      "ring": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}

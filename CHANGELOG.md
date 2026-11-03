@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish core gaps: Accordion, Alert, Avatar, Badge, Progress, Separator, Skeleton, Slider, Tabs, Toggle, Toggle Group (`@nk/*`)
 - Publish Shader Background as `@nk/shader-background` (small nk atmosphere set — mist/haze/current/signal/… — with scrim and pause; Paper engines; inspired by beUI, not a port of its catalog)
 - Scaffold Next.js docs site with light/dark themes
 - Publish Scroll Area as `@nk/scroll-area` (Base UI custom scrollbars; compose with Scroll Fade on the viewport)

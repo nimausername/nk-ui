@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "title": "Toggle Group",
+  "description": "Shared pressed state for toggles — single or multiple selection.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@nk/utils",
+    "@nk/toggle"
+  ],
+  "files": [
+    {
+      "path": "components/ui/toggle-group.tsx",
+      "content": "\"use client\"\n\nimport { Toggle as TogglePrimitive } from \"@base-ui/react/toggle\"\nimport { ToggleGroup as ToggleGroupPrimitive } from \"@base-ui/react/toggle-group\"\nimport { createContext, use } from \"react\"\n\nimport {\n  toggleVariants,\n  type ToggleVariantProps,\n} from \"@/components/ui/toggle-variants\"\nimport { cn } from \"@/lib/utils\"\n\nconst ToggleGroupContext = createContext<ToggleVariantProps>({\n  size: \"default\",\n  variant: \"default\",\n})\n\n/**\n * Props for the toggle group root.\n */\ntype ToggleGroupProps = ToggleGroupPrimitive.Props & ToggleVariantProps\n\n/**\n * Shared pressed state for a set of toggles. Single-select by default; set `multiple`.\n */\nconst ToggleGroup = ({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  children,\n  ...props\n}: ToggleGroupProps) => {\n  return (\n    <ToggleGroupPrimitive\n      data-slot=\"toggle-group\"\n      data-variant={variant}\n      data-size={size}\n      className={cn(\n        \"group/toggle-group flex w-fit items-center gap-1 rounded-md data-[variant=outline]:gap-0\",\n        className\n      )}\n      {...props}\n    >\n      <ToggleGroupContext value={{ variant, size }}>{children}</ToggleGroupContext>\n    </ToggleGroupPrimitive>\n  )\n}\n\n/**\n * Props for a toggle inside a group.\n */\ntype ToggleGroupItemProps = TogglePrimitive.Props & ToggleVariantProps\n\n/**\n * Item inside Toggle Group. Inherits variant/size from the group when omitted.\n */\nconst ToggleGroupItem = ({\n  className,\n  children,\n  variant,\n  size,\n  ...props\n}: ToggleGroupItemProps) => {\n  const context = use(ToggleGroupContext)\n  const resolvedVariant = variant ?? context.variant\n  const resolvedSize = size ?? context.size\n\n  return (\n    <TogglePrimitive\n      data-slot=\"toggle-group-item\"\n      className={cn(\n        toggleVariants({\n          variant: resolvedVariant,\n          size: resolvedSize,\n        }),\n        \"min-w-0 shrink-0 grow basis-0 focus:z-10 focus-visible:z-10\",\n        \"group-data-[variant=outline]/toggle-group:rounded-none group-data-[variant=outline]/toggle-group:border\",\n        \"group-data-[variant=outline]/toggle-group:first:rounded-s-md group-data-[variant=outline]/toggle-group:last:rounded-e-md\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </TogglePrimitive>\n  )\n}\n\nexport { ToggleGroup, ToggleGroupItem }\nexport type { ToggleGroupProps, ToggleGroupItemProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
