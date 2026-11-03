@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "Pulse placeholder for loading UI — size and shape via className.",
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/skeleton.tsx",
+      "content": "import type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the loading placeholder block.\n */\ntype SkeletonProps = ComponentProps<\"div\">\n\n/**\n * Pulse placeholder for loading UI. Size and shape via `className`.\n */\nconst Skeleton = ({ className, ...props }: SkeletonProps) => {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      className={cn(\"animate-pulse rounded-md bg-muted\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Skeleton }\nexport type { SkeletonProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "muted": "#f4f4f4"
+    },
+    "dark": {
+      "muted": "#171717"
+    }
+  },
+  "type": "registry:ui"
+}

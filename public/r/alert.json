@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Inline callout for status messages with title and description.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/alert.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Visual variants for the nk Alert callout.\n */\nconst alertVariants = cva(\n  \"relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-md border px-4 py-3 text-sm has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current\",\n  {\n    variants: {\n      variant: {\n        default: \"border-border bg-card text-card-foreground\",\n        destructive:\n          \"border-destructive/30 bg-destructive/5 text-destructive *:data-[slot=alert-description]:text-destructive/90 [&>svg]:text-destructive\",\n        soft: \"border-transparent bg-secondary text-secondary-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\ntype AlertVariantProps = VariantProps<typeof alertVariants>\n\n/**\n * Props for the alert root.\n */\ntype AlertProps = ComponentProps<\"div\"> & AlertVariantProps\n\n/**\n * Inline callout for status messages. Compose Title / Description (and optional icon).\n */\nconst Alert = ({ className, variant, ...props }: AlertProps) => {\n  return (\n    <div\n      data-slot=\"alert\"\n      role=\"alert\"\n      className={cn(alertVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the alert title.\n */\ntype AlertTitleProps = ComponentProps<\"div\">\n\n/**\n * Short heading inside an Alert.\n */\nconst AlertTitle = ({ className, ...props }: AlertTitleProps) => {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\"col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the alert description.\n */\ntype AlertDescriptionProps = ComponentProps<\"div\">\n\n/**\n * Supporting body copy inside an Alert.\n */\nconst AlertDescription = ({ className, ...props }: AlertDescriptionProps) => {\n  return (\n    <div\n      data-slot=\"alert-description\"\n      className={cn(\n        \"col-start-2 grid justify-items-start gap-1 text-sm text-muted-foreground [&_p]:leading-relaxed\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Alert, AlertTitle, AlertDescription, alertVariants }\nexport type { AlertProps, AlertTitleProps, AlertDescriptionProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "card": "#ffffff",
+      "card-foreground": "#000000",
+      "border": "#e5e5e5",
+      "muted-foreground": "#525252",
+      "secondary": "#f4f4f4",
+      "secondary-foreground": "#000000",
+      "destructive": "#dc2626"
+    },
+    "dark": {
+      "card": "#0a0a0a",
+      "card-foreground": "#ffffff",
+      "border": "#262626",
+      "muted-foreground": "#a3a3a3",
+      "secondary": "#171717",
+      "secondary-foreground": "#ffffff",
+      "destructive": "#ef4444"
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "Compact status and count labels with nk product variants.",
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/badge.tsx",
+      "content": "import { Slot } from \"@radix-ui/react-slot\"\nimport type { ComponentProps } from \"react\"\n\nimport {\n  badgeVariants,\n  type BadgeVariantProps,\n} from \"@/components/ui/badge-variants\"\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the nk Badge.\n */\ntype BadgeProps = ComponentProps<\"span\"> &\n  BadgeVariantProps & {\n    /** Render as child element (e.g. Link) via Radix Slot. */\n    readonly asChild?: boolean\n  }\n\n/**\n * Compact status / count label. Compose icons as children.\n */\nconst Badge = ({\n  className,\n  variant,\n  asChild = false,\n  ...props\n}: BadgeProps) => {\n  const Comp = asChild ? Slot : \"span\"\n\n  return (\n    <Comp\n      data-slot=\"badge\"\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Badge, badgeVariants }\nexport type { BadgeProps }\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "components/ui/badge-variants.ts",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\n\n/**\n * Visual variants for the nk Badge.\n */\nconst badgeVariants = cva(\n  \"inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-md border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-colors [&_svg]:pointer-events-none [&_svg]:size-3 [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground\",\n        secondary: \"bg-secondary text-secondary-foreground\",\n        soft: \"bg-secondary/70 text-secondary-foreground\",\n        outline: \"border-border bg-background text-foreground\",\n        destructive: \"bg-destructive text-destructive-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\ntype BadgeVariantProps = VariantProps<typeof badgeVariants>\n\nexport { badgeVariants }\nexport type { BadgeVariantProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "primary": "#000000",
+      "primary-foreground": "#ffffff",
+      "secondary": "#f4f4f4",
+      "secondary-foreground": "#000000",
+      "background": "#ffffff",
+      "foreground": "#000000",
+      "border": "#e5e5e5",
+      "destructive": "#dc2626",
+      "destructive-foreground": "#ffffff"
+    },
+    "dark": {
+      "primary": "#ffffff",
+      "primary-foreground": "#000000",
+      "secondary": "#171717",
+      "secondary-foreground": "#ffffff",
+      "background": "#000000",
+      "foreground": "#ffffff",
+      "border": "#262626",
+      "destructive": "#ef4444",
+      "destructive-foreground": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}

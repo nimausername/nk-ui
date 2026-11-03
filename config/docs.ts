@@ -52,6 +52,26 @@ export const installationFrameworkItems: readonly DocsNavItem[] = [
  */
 export const componentItems: readonly DocsNavItem[] = [
   {
+    title: "Accordion",
+    href: "/docs/components/accordion",
+    description: "Collapsible sections on Base UI — single or multiple open panels.",
+  },
+  {
+    title: "Alert",
+    href: "/docs/components/alert",
+    description: "Inline callout for status messages — title, description, and optional icon.",
+  },
+  {
+    title: "Avatar",
+    href: "/docs/components/avatar",
+    description: "Profile image with fallback on Base UI — compose Image and Fallback.",
+  },
+  {
+    title: "Badge",
+    href: "/docs/components/badge",
+    description: "Compact status and count labels — default, secondary, soft, outline, destructive.",
+  },
+  {
     title: "Brand Icons",
     href: "/docs/components/brand-icons",
     description:
@@ -127,6 +147,11 @@ export const componentItems: readonly DocsNavItem[] = [
       "Anchored non-modal surface — sides, align, footer, close, arrow, and controlled open.",
   },
   {
+    title: "Progress",
+    href: "/docs/components/progress",
+    description: "Task completion bar on Base UI — label, value text, track, and indicator.",
+  },
+  {
     title: "Radio Group",
     href: "/docs/components/radio-group",
     description: "Mutually exclusive options — small choice sets with Field validation.",
@@ -149,6 +174,11 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Composable dropdown select on Base UI — trigger, popup, items, groups.",
   },
   {
+    title: "Separator",
+    href: "/docs/components/separator",
+    description: "Accessible divider on Base UI — horizontal or vertical between content.",
+  },
+  {
     title: "Sheet",
     href: "/docs/components/sheet",
     description:
@@ -161,9 +191,24 @@ export const componentItems: readonly DocsNavItem[] = [
       "Small set of product WebGL atmospheres — mist, haze, current, signal, and more.",
   },
   {
+    title: "Skeleton",
+    href: "/docs/components/skeleton",
+    description: "Pulse placeholder for loading UI — size and shape via className.",
+  },
+  {
+    title: "Slider",
+    href: "/docs/components/slider",
+    description: "Draggable value control on Base UI — label, track, indicator, and thumb.",
+  },
+  {
     title: "Switch",
     href: "/docs/components/switch",
     description: "On/off switch with morphing thumb — RTL and reduced-motion aware.",
+  },
+  {
+    title: "Tabs",
+    href: "/docs/components/tabs",
+    description: "Tabbed panels on Base UI — list, triggers, content, and optional indicator.",
   },
   {
     title: "Textarea",
@@ -175,6 +220,16 @@ export const componentItems: readonly DocsNavItem[] = [
     href: "/docs/components/toast",
     description:
       "Transient notifications — types, actions, promise, stacking, viewport placement.",
+  },
+  {
+    title: "Toggle",
+    href: "/docs/components/toggle",
+    description: "Two-state press button on Base UI — default and outline variants.",
+  },
+  {
+    title: "Toggle Group",
+    href: "/docs/components/toggle-group",
+    description: "Shared pressed state for toggles — single or multiple selection on Base UI.",
   },
   {
     title: "Tooltip",

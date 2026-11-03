@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "title": "Avatar",
+  "description": "Profile image with fallback on Base UI.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/avatar.tsx",
+      "content": "\"use client\"\n\nimport { Avatar as AvatarPrimitive } from \"@base-ui/react/avatar\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the avatar root.\n */\ntype AvatarProps = AvatarPrimitive.Root.Props\n\n/**\n * Profile image with fallback. Compose Image / Fallback inside.\n */\nconst Avatar = ({ className, ...props }: AvatarProps) => {\n  return (\n    <AvatarPrimitive.Root\n      data-slot=\"avatar\"\n      className={cn(\n        \"relative flex size-8 shrink-0 overflow-hidden rounded-full bg-muted\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the avatar image.\n */\ntype AvatarImageProps = AvatarPrimitive.Image.Props\n\n/**\n * Loads the profile image. Falls back when loading fails.\n */\nconst AvatarImage = ({ className, ...props }: AvatarImageProps) => {\n  return (\n    <AvatarPrimitive.Image\n      data-slot=\"avatar-image\"\n      className={cn(\"aspect-square size-full object-cover\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the avatar fallback.\n */\ntype AvatarFallbackProps = AvatarPrimitive.Fallback.Props\n\n/**\n * Shown while the image loads or when it fails (initials / icon).\n */\nconst AvatarFallback = ({ className, ...props }: AvatarFallbackProps) => {\n  return (\n    <AvatarPrimitive.Fallback\n      data-slot=\"avatar-fallback\"\n      className={cn(\n        \"flex size-full items-center justify-center rounded-full bg-muted text-xs font-medium text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Avatar, AvatarImage, AvatarFallback }\nexport type { AvatarProps, AvatarImageProps, AvatarFallbackProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "muted": "#f4f4f4",
+      "muted-foreground": "#525252"
+    },
+    "dark": {
+      "muted": "#171717",
+      "muted-foreground": "#a3a3a3"
+    }
+  },
+  "type": "registry:ui"
+}

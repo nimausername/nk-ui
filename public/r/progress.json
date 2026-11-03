@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "title": "Progress",
+  "description": "Task completion bar on Base UI with label, value, track, and indicator.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/progress.tsx",
+      "content": "\"use client\"\n\nimport { Progress as ProgressPrimitive } from \"@base-ui/react/progress\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the progress root (`value`, `max`, …).\n */\ntype ProgressProps = ProgressPrimitive.Root.Props\n\n/**\n * Groups label / track / value. Pass `value={null}` for indeterminate.\n */\nconst Progress = ({ className, ...props }: ProgressProps) => {\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      className={cn(\"flex w-full flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the progress label.\n */\ntype ProgressLabelProps = ProgressPrimitive.Label.Props\n\n/**\n * Accessible name for the progress bar.\n */\nconst ProgressLabel = ({ className, ...props }: ProgressLabelProps) => {\n  return (\n    <ProgressPrimitive.Label\n      data-slot=\"progress-label\"\n      className={cn(\"text-sm font-medium\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the formatted value text.\n */\ntype ProgressValueProps = ProgressPrimitive.Value.Props\n\n/**\n * Formatted percentage / value beside the label.\n */\nconst ProgressValue = ({ className, ...props }: ProgressValueProps) => {\n  return (\n    <ProgressPrimitive.Value\n      data-slot=\"progress-value\"\n      className={cn(\"text-sm text-muted-foreground tabular-nums\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the progress track.\n */\ntype ProgressTrackProps = ProgressPrimitive.Track.Props\n\n/**\n * Track that contains the indicator.\n */\nconst ProgressTrack = ({ className, ...props }: ProgressTrackProps) => {\n  return (\n    <ProgressPrimitive.Track\n      data-slot=\"progress-track\"\n      className={cn(\n        \"relative h-2 w-full overflow-hidden rounded-full bg-secondary\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the filled indicator.\n */\ntype ProgressIndicatorProps = ProgressPrimitive.Indicator.Props\n\n/**\n * Filled portion of the track. Width is set by Base UI from `value`.\n */\nconst ProgressIndicator = ({ className, ...props }: ProgressIndicatorProps) => {\n  return (\n    <ProgressPrimitive.Indicator\n      data-slot=\"progress-indicator\"\n      className={cn(\n        \"h-full bg-primary transition-[width] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none\",\n        \"data-indeterminate:w-1/3 data-indeterminate:animate-pulse\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Progress,\n  ProgressLabel,\n  ProgressValue,\n  ProgressTrack,\n  ProgressIndicator,\n}\nexport type {\n  ProgressProps,\n  ProgressLabelProps,\n  ProgressValueProps,\n  ProgressTrackProps,\n  ProgressIndicatorProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "primary": "#000000",
+      "secondary": "#f4f4f4",
+      "muted-foreground": "#525252"
+    },
+    "dark": {
+      "primary": "#ffffff",
+      "secondary": "#171717",
+      "muted-foreground": "#a3a3a3"
+    }
+  },
+  "type": "registry:ui"
+}

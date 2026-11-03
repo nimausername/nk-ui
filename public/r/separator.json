@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "description": "Accessible divider on Base UI — horizontal or vertical.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/separator.tsx",
+      "content": "\"use client\"\n\nimport { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the nk Separator (orientation, decorative, className).\n */\ntype SeparatorProps = SeparatorPrimitive.Props\n\n/**\n * Accessible divider. Use `orientation=\"vertical\"` inside flex rows.\n */\nconst Separator = ({ className, orientation = \"horizontal\", ...props }: SeparatorProps) => {\n  return (\n    <SeparatorPrimitive\n      data-slot=\"separator\"\n      orientation={orientation}\n      className={cn(\n        \"shrink-0 bg-border\",\n        \"data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full\",\n        \"data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Separator }\nexport type { SeparatorProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "border": "#e5e5e5"
+    },
+    "dark": {
+      "border": "#262626"
+    }
+  },
+  "type": "registry:ui"
+}

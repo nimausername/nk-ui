@@ -916,6 +916,366 @@
           "success": "#22c55e"
         }
       }
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Inline callout for status messages with title and description.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "card": "#ffffff",
+          "card-foreground": "#000000",
+          "border": "#e5e5e5",
+          "muted-foreground": "#525252",
+          "secondary": "#f4f4f4",
+          "secondary-foreground": "#000000",
+          "destructive": "#dc2626"
+        },
+        "dark": {
+          "card": "#0a0a0a",
+          "card-foreground": "#ffffff",
+          "border": "#262626",
+          "muted-foreground": "#a3a3a3",
+          "secondary": "#171717",
+          "secondary-foreground": "#ffffff",
+          "destructive": "#ef4444"
+        }
+      }
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Compact status and count labels with nk product variants.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/badge-variants.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "primary": "#000000",
+          "primary-foreground": "#ffffff",
+          "secondary": "#f4f4f4",
+          "secondary-foreground": "#000000",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "border": "#e5e5e5",
+          "destructive": "#dc2626",
+          "destructive-foreground": "#ffffff"
+        },
+        "dark": {
+          "primary": "#ffffff",
+          "primary-foreground": "#000000",
+          "secondary": "#171717",
+          "secondary-foreground": "#ffffff",
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "border": "#262626",
+          "destructive": "#ef4444",
+          "destructive-foreground": "#ffffff"
+        }
+      }
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Accessible divider on Base UI — horizontal or vertical.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "border": "#e5e5e5"
+        },
+        "dark": {
+          "border": "#262626"
+        }
+      }
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Pulse placeholder for loading UI — size and shape via className.",
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "muted": "#f4f4f4"
+        },
+        "dark": {
+          "muted": "#171717"
+        }
+      }
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Profile image with fallback on Base UI.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252"
+        },
+        "dark": {
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3"
+        }
+      }
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Task completion bar on Base UI with label, value, track, and indicator.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "primary": "#000000",
+          "secondary": "#f4f4f4",
+          "muted-foreground": "#525252"
+        },
+        "dark": {
+          "primary": "#ffffff",
+          "secondary": "#171717",
+          "muted-foreground": "#a3a3a3"
+        }
+      }
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "Two-state press button on Base UI with nk variants.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/toggle-variants.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "background": "#ffffff",
+          "border": "#e5e5e5",
+          "ring": "#000000"
+        },
+        "dark": {
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "background": "#000000",
+          "border": "#262626",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Shared pressed state for toggles — single or multiple selection.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@nk/utils",
+        "@nk/toggle"
+      ],
+      "files": [
+        {
+          "path": "components/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Collapsible sections on Base UI — single or multiple open panels.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "border": "#e5e5e5",
+          "muted-foreground": "#525252",
+          "ring": "#000000"
+        },
+        "dark": {
+          "border": "#262626",
+          "muted-foreground": "#a3a3a3",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Draggable value control on Base UI with track, indicator, and thumb.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "primary": "#000000",
+          "secondary": "#f4f4f4",
+          "background": "#ffffff",
+          "muted-foreground": "#525252",
+          "ring": "#000000"
+        },
+        "dark": {
+          "primary": "#ffffff",
+          "secondary": "#171717",
+          "background": "#000000",
+          "muted-foreground": "#a3a3a3",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tabbed panels on Base UI with list, triggers, content, and indicator.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "ring": "#000000"
+        },
+        "dark": {
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3",
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "ring": "#ffffff"
+        }
+      }
     }
   ]
 }
