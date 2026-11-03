@@ -10,7 +10,7 @@ export const compositesDocsDescription =
   "Composed pieces built from several primitives — still installable via @nk, listed separately from the core Components catalog."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
-export const compositesDocsUpdatedAt = "2026-11-01"
+export const compositesDocsUpdatedAt = "2026-11-02"
 
 const compositeListMarkdown = compositeItems
   .map((item) => {

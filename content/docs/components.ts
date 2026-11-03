@@ -10,7 +10,7 @@ export const componentsDocsDescription =
   "Core installable primitives. Open a component for API notes, previews, and its shadcn add command. Composed multi-part pieces live under Composites."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
-export const componentsDocsUpdatedAt = "2026-11-01"
+export const componentsDocsUpdatedAt = "2026-11-02"
 
 const componentListMarkdown = componentItems
   .map((item) => {
