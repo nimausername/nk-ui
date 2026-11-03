@@ -155,6 +155,12 @@ export const componentItems: readonly DocsNavItem[] = [
       "Edge panels on Base UI Dialog — sides, size, form body, close control, and controlled open.",
   },
   {
+    title: "Shader Background",
+    href: "/docs/components/shader-background",
+    description:
+      "Small set of product WebGL atmospheres — mist, haze, current, signal, and more.",
+  },
+  {
     title: "Switch",
     href: "/docs/components/switch",
     description: "On/off switch with morphing thumb — RTL and reduced-motion aware.",

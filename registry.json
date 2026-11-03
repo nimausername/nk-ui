@@ -598,6 +598,25 @@
       }
     },
     {
+      "name": "shader-background",
+      "type": "registry:ui",
+      "title": "Shader Background",
+      "description": "Small nk atmosphere catalog (mist, haze, current, signal, …) with scrim and pause. Inspired by beUI; engines from Paper Shaders — not a port of beUI’s effect list.",
+      "dependencies": [
+        "@paper-design/shaders-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/shader-background.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "docs": "Pin @paper-design/shaders-react (0.0.x may break between minors). Parent needs a definite size. Use effect (default mist), optional scrim/paused. Auto-pauses off-screen, hidden tab, and prefers-reduced-motion."
+    },
+    {
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
