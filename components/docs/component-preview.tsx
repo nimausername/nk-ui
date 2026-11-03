@@ -3,6 +3,7 @@
 import { Languages } from "lucide-react"
 import { useState, useSyncExternalStore, type ReactNode } from "react"
 
+import { ComponentPreviewLoading } from "@/components/docs/component-preview-loading"
 import { PreviewCodePanel } from "@/components/docs/preview-code-panel"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -91,11 +92,7 @@ const ComponentPreview = ({
         lang={direction === "rtl" ? "fa" : "en"}
         className="flex min-h-28 flex-wrap items-center justify-center gap-3 overflow-visible bg-background p-6"
       >
-        {isClient ? (
-          content
-        ) : (
-          <div className="h-9 w-full max-w-sm rounded-md border border-dashed border-border/80" />
-        )}
+        {isClient ? content : <ComponentPreviewLoading />}
       </div>
       {code ? (
         <div className="overflow-hidden rounded-b-[inherit]">
