@@ -55,8 +55,8 @@ const ComponentPreview = ({
   const showToolbar = Boolean(toolbarActions) || showDirectionToggle
 
   return (
-    <div className={cn("overflow-hidden rounded-md border border-border", className)}>
-      <div className="flex items-center justify-between gap-3 border-b border-border bg-muted/40 px-3 py-2">
+    <div className={cn("rounded-md border border-border", className)}>
+      <div className="flex items-center justify-between gap-3 overflow-hidden rounded-t-[inherit] border-b border-border bg-muted/40 px-3 py-2">
         <p className="text-xs font-medium text-muted-foreground">{title}</p>
         {showToolbar ? (
           <div className="flex items-center gap-2">
@@ -80,11 +80,16 @@ const ComponentPreview = ({
           </div>
         ) : null}
       </div>
+      {/*
+        Keep the live stage free of overflow clipping. Portaled menus/popovers
+        use the trigger's clipping ancestors for collision; overflow-hidden here
+        shoved nested menus into the wrong side.
+      */}
       <div
         data-nk-preview=""
         dir={direction}
         lang={direction === "rtl" ? "fa" : "en"}
-        className="flex min-h-28 flex-wrap items-center justify-center gap-3 bg-background p-6"
+        className="flex min-h-28 flex-wrap items-center justify-center gap-3 overflow-visible bg-background p-6"
       >
         {isClient ? (
           content
@@ -92,7 +97,11 @@ const ComponentPreview = ({
           <div className="h-9 w-full max-w-sm rounded-md border border-dashed border-border/80" />
         )}
       </div>
-      {code ? <PreviewCodePanel code={code} /> : null}
+      {code ? (
+        <div className="overflow-hidden rounded-b-[inherit]">
+          <PreviewCodePanel code={code} />
+        </div>
+      ) : null}
     </div>
   )
 }

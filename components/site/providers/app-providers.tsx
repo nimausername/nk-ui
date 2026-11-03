@@ -3,6 +3,8 @@
 import { ThemeProvider } from "@teispace/next-themes"
 import type { ReactNode } from "react"
 
+import { Toaster } from "@/components/ui/toast"
+import { TooltipProvider } from "@/components/ui/tooltip"
 import { themeConfig } from "@/lib/theme"
 
 type AppProvidersProps = {
@@ -10,7 +12,7 @@ type AppProvidersProps = {
 }
 
 /**
- * Root client providers for color theme.
+ * Root client providers for color theme, tooltips, and toasts.
  *
  * `noScript` is required: the blocking script is in `app/layout.tsx`. Without
  * it, ThemeProvider injects a `<script>` on the client during Fast Refresh and
@@ -19,7 +21,9 @@ type AppProvidersProps = {
 const AppProviders = ({ children }: AppProvidersProps) => {
   return (
     <ThemeProvider {...themeConfig} noScript>
-      {children}
+      <TooltipProvider>
+        <Toaster>{children}</Toaster>
+      </TooltipProvider>
     </ThemeProvider>
   )
 }

@@ -189,6 +189,40 @@
       }
     },
     {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Composable action menu on Base UI Menu — items, groups, checkboxes, radios, and submenus.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "destructive": "#dc2626"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "destructive": "#ef4444"
+        }
+      }
+    },
+    {
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
@@ -471,6 +505,48 @@
       }
     },
     {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Anchored non-modal surface on Base UI — trigger, content, header, footer, close, and optional arrow.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626"
+        }
+      }
+    },
+    {
+      "name": "copy-field",
+      "type": "registry:ui",
+      "title": "Copy Field",
+      "description": "Input with a copy affordance — toast feedback, silent mode, and onCopied, built on Input, Button, and Toast.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@nk/input", "@nk/button", "@nk/toast"],
+      "files": [
+        {
+          "path": "components/ui/copy-field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "password-input",
       "type": "registry:ui",
       "title": "Password Input",
@@ -488,6 +564,96 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Edge panel on Base UI Dialog — sides, size, header, body, footer, and close.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/button"],
+      "files": [
+        {
+          "path": "components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "foreground": "#000000",
+          "background": "#ffffff"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "foreground": "#ffffff",
+          "background": "#000000"
+        }
+      }
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Transient notifications on Base UI — mount Toaster once, call toast.add anywhere.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/button"],
+      "files": [
+        {
+          "path": "components/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "destructive": "#dc2626",
+          "success": "#16a34a",
+          "ring": "#000000"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "destructive": "#ef4444",
+          "success": "#22c55e",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Short hover and focus hints on Base UI — wrap with TooltipProvider.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "foreground": "#000000",
+          "background": "#ffffff"
+        },
+        "dark": {
+          "foreground": "#ffffff",
+          "background": "#000000"
+        }
+      }
     },
     {
       "name": "progress-button",

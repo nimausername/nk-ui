@@ -78,6 +78,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Modal dialogs on Base UI — confirmations, forms, and focused tasks.",
   },
   {
+    title: "Dropdown Menu",
+    href: "/docs/components/dropdown-menu",
+    description:
+      "Action menus on Base UI Menu — items, links, icons, checkboxes, radios, shortcuts, submenus.",
+  },
+  {
     title: "Field",
     href: "/docs/components/field",
     description:
@@ -115,6 +121,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Country picker + national number with E.164 output (phonefield / Base UI).",
   },
   {
+    title: "Popover",
+    href: "/docs/components/popover",
+    description:
+      "Anchored non-modal surface — sides, align, footer, close, arrow, and controlled open.",
+  },
+  {
     title: "Radio Group",
     href: "/docs/components/radio-group",
     description: "Mutually exclusive options — small choice sets with Field validation.",
@@ -137,6 +149,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Composable dropdown select on Base UI — trigger, popup, items, groups.",
   },
   {
+    title: "Sheet",
+    href: "/docs/components/sheet",
+    description:
+      "Edge panels on Base UI Dialog — sides, size, form body, close control, and controlled open.",
+  },
+  {
     title: "Switch",
     href: "/docs/components/switch",
     description: "On/off switch with morphing thumb — RTL and reduced-motion aware.",
@@ -146,6 +164,18 @@ export const componentItems: readonly DocsNavItem[] = [
     href: "/docs/components/textarea",
     description: "Multi-line text field with Input styling and Field validation wiring.",
   },
+  {
+    title: "Toast",
+    href: "/docs/components/toast",
+    description:
+      "Transient notifications — types, actions, promise, stacking, viewport placement.",
+  },
+  {
+    title: "Tooltip",
+    href: "/docs/components/tooltip",
+    description:
+      "Hover/focus hints — invert/outline surfaces, sides, shortcuts, optional arrow.",
+  },
 ] as const
 
 /**
@@ -153,6 +183,12 @@ export const componentItems: readonly DocsNavItem[] = [
  * Listed under Composites in the docs sidebar.
  */
 export const compositeItems: readonly DocsNavItem[] = [
+  {
+    title: "Copy Field",
+    href: "/docs/composites/copy-field",
+    description:
+      "Input with copy affordance — toast, silent, editable, token, and onCopied patterns.",
+  },
   {
     title: "Password Input",
     href: "/docs/composites/password-input",
