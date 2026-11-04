@@ -27,4 +27,38 @@ describe("Slider", () => {
     expect(screen.getByRole("slider")).toHaveAttribute("aria-valuenow", "30")
     expect(screen.getByText("Volume")).toBeInTheDocument()
   })
+
+  it("supports a range with two thumbs", () => {
+    render(
+      <Slider defaultValue={[20, 80]}>
+        <SliderControl>
+          <SliderTrack>
+            <SliderIndicator />
+          </SliderTrack>
+          <SliderThumb />
+          <SliderThumb />
+        </SliderControl>
+      </Slider>
+    )
+
+    const thumbs = screen.getAllByRole("slider")
+    expect(thumbs).toHaveLength(2)
+    expect(thumbs[0]).toHaveAttribute("aria-valuenow", "20")
+    expect(thumbs[1]).toHaveAttribute("aria-valuenow", "80")
+  })
+
+  it("can be disabled", () => {
+    render(
+      <Slider disabled defaultValue={10}>
+        <SliderControl>
+          <SliderTrack>
+            <SliderIndicator />
+          </SliderTrack>
+          <SliderThumb />
+        </SliderControl>
+      </Slider>
+    )
+
+    expect(screen.getByRole("slider")).toBeDisabled()
+  })
 })

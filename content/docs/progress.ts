@@ -5,7 +5,7 @@
 export const progressDocsTitle = "Progress"
 
 export const progressDocsDescription =
-  "Task completion bar on Base UI — label, value text, track, and indicator."
+  "Task completion bar on Base UI — label, value text, track sizes, custom max, and indeterminate."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const progressDocsUpdatedAt = "2026-11-04"
@@ -51,6 +51,9 @@ export function Example() {
 ## Notes
 
 - Built on Base UI (\`@base-ui/react\`).
-- Pass \`value={null}\` for an indeterminate state.
+- Parts: \`Progress\` / \`ProgressLabel\` / \`ProgressValue\` / \`ProgressTrack\` / \`ProgressIndicator\`.
+- Pass \`value={null}\` for indeterminate; \`value={100}\` marks complete.
+- Customize scale with \`min\` / \`max\`. Track thickness via \`className\` on \`ProgressTrack\`.
 - For button download progress, see [\`Progress Button\`](/docs/composites/progress-button).
+- Live previews are on the docs page.
 `

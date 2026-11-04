@@ -25,4 +25,25 @@ describe("ToggleGroup", () => {
     expect(right).toHaveAttribute("aria-pressed", "true")
     expect(left).toHaveAttribute("aria-pressed", "false")
   })
+
+  it("allows multiple pressed items when multiple is set", async () => {
+    const { user } = render(
+      <ToggleGroup multiple aria-label="Style" defaultValue={[]}>
+        <ToggleGroupItem value="bold" aria-label="Bold">
+          B
+        </ToggleGroupItem>
+        <ToggleGroupItem value="italic" aria-label="Italic">
+          I
+        </ToggleGroupItem>
+      </ToggleGroup>
+    )
+
+    const bold = screen.getByRole("button", { name: "Bold" })
+    const italic = screen.getByRole("button", { name: "Italic" })
+
+    await user.click(bold)
+    await user.click(italic)
+    expect(bold).toHaveAttribute("aria-pressed", "true")
+    expect(italic).toHaveAttribute("aria-pressed", "true")
+  })
 })

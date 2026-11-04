@@ -12,4 +12,16 @@ describe("Toggle", () => {
     await user.click(button)
     expect(button).toHaveAttribute("aria-pressed", "true")
   })
+
+  it("can start pressed and be disabled", () => {
+    render(
+      <Toggle aria-label="Italic" defaultPressed disabled>
+        I
+      </Toggle>
+    )
+
+    const button = screen.getByRole("button", { name: "Italic" })
+    expect(button).toHaveAttribute("aria-pressed", "true")
+    expect(button).toBeDisabled()
+  })
 })

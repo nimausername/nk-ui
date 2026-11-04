@@ -5,7 +5,7 @@
 export const skeletonDocsTitle = "Skeleton"
 
 export const skeletonDocsDescription =
-  "Pulse placeholder for loading UI — size and shape via className."
+  "Pulse placeholder for loading UI — lines, cards, forms, tables, and media."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const skeletonDocsUpdatedAt = "2026-11-04"
@@ -35,6 +35,7 @@ export function Example() {
 ## Notes
 
 - Themes with nk muted tokens (light/dark).
-- Compose multiple Skeletons for card / list placeholders.
+- Size and shape via \`className\` (\`rounded-full\`, \`aspect-video\`, widths).
+- Compose multiple Skeletons for card / form / list placeholders.
 - Live previews are on the docs page.
 `

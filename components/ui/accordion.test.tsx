@@ -28,4 +28,36 @@ describe("Accordion", () => {
     expect(trigger).toHaveAttribute("aria-expanded", "true")
     expect(screen.getByText("Content A")).toBeVisible()
   })
+
+  it("disables an individual item", () => {
+    render(
+      <Accordion>
+        <AccordionItem value="a" disabled>
+          <AccordionHeader>
+            <AccordionTrigger>Locked</AccordionTrigger>
+          </AccordionHeader>
+          <AccordionPanel>Hidden</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    )
+
+    expect(screen.getByRole("button", { name: "Locked" })).toBeDisabled()
+  })
+
+  it("hides the default chevron when showChevron is false", () => {
+    const { container } = render(
+      <Accordion>
+        <AccordionItem value="a">
+          <AccordionHeader>
+            <AccordionTrigger showChevron={false}>Custom</AccordionTrigger>
+          </AccordionHeader>
+          <AccordionPanel>Body</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    )
+
+    expect(
+      container.querySelector('[data-slot="accordion-trigger-chevron"]')
+    ).not.toBeInTheDocument()
+  })
 })

@@ -5,7 +5,7 @@
 export const toggleDocsTitle = "Toggle"
 
 export const toggleDocsDescription =
-  "Two-state press button on Base UI — default and outline variants."
+  "Two-state press button on Base UI — variants, sizes, icons, text, and disabled."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const toggleDocsUpdatedAt = "2026-11-04"
@@ -35,6 +35,8 @@ export function Example() {
 ## Notes
 
 - Built on Base UI (\`@base-ui/react\`).
+- Variants: \`default\`, \`outline\`. Sizes: \`sm\`, \`default\`, \`lg\`.
+- Controlled with \`pressed\` / \`onPressedChange\`, or \`defaultPressed\`.
 - For grouped toggles, see [\`Toggle Group\`](/docs/components/toggle-group).
 - Live previews are on the docs page.
 `

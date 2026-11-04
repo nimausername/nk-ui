@@ -5,7 +5,7 @@
 export const sliderDocsTitle = "Slider"
 
 export const sliderDocsDescription =
-  "Draggable value control on Base UI — label, track, indicator, and thumb."
+  "Draggable value control on Base UI — single, range, step, disabled, vertical, and Field pairing."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const sliderDocsUpdatedAt = "2026-11-04"
@@ -56,6 +56,8 @@ export function Example() {
 ## Notes
 
 - Built on Base UI (\`@base-ui/react\`).
-- Add a second \`SliderThumb\` for a range (pass an array value).
-- Live previews are on the docs page.
+- Parts: \`Slider\` / \`SliderLabel\` / \`SliderValue\` / \`SliderControl\` / \`SliderTrack\` / \`SliderIndicator\` / \`SliderThumb\`.
+- Range: pass an array \`defaultValue\` / \`value\` and two thumbs.
+- \`step\`, \`min\`, \`max\`, \`disabled\`, and \`orientation="vertical"\` are supported.
+- Live previews (Field, RTL) are on the docs page.
 `

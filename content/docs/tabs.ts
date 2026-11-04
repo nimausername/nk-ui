@@ -5,7 +5,7 @@
 export const tabsDocsTitle = "Tabs"
 
 export const tabsDocsDescription =
-  "Tabbed panels on Base UI — list, triggers, content, and optional indicator."
+  "Tabbed panels on Base UI — icons, disabled tabs, controlled state, vertical layout, and indicator."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const tabsDocsUpdatedAt = "2026-11-04"
@@ -44,6 +44,8 @@ export function Example() {
 ## Notes
 
 - Built on Base UI (\`@base-ui/react\`).
-- Optional \`TabsIndicator\` tracks the active tab with CSS variables.
-- Live previews are on the docs page.
+- Parts: \`Tabs\` / \`TabsList\` / \`TabsTrigger\` / \`TabsContent\` / optional \`TabsIndicator\`.
+- Controlled via \`value\` + \`onValueChange\`. Disable a tab with \`disabled\` on \`TabsTrigger\`.
+- Vertical: \`orientation="vertical"\` and flex column list styles.
+- Live previews (icons, indicator, RTL) are on the docs page.
 `

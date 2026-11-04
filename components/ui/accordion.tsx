@@ -62,12 +62,20 @@ const AccordionHeader = ({ className, ...props }: AccordionHeaderProps) => {
 /**
  * Props for the accordion trigger.
  */
-type AccordionTriggerProps = AccordionPrimitive.Trigger.Props
+type AccordionTriggerProps = AccordionPrimitive.Trigger.Props & {
+  /** Renders the default trailing chevron. Defaults to true. */
+  readonly showChevron?: boolean
+}
 
 /**
  * Expands / collapses the panel. Renders a chevron by default.
  */
-const AccordionTrigger = ({ className, children, ...props }: AccordionTriggerProps) => {
+const AccordionTrigger = ({
+  className,
+  children,
+  showChevron = true,
+  ...props
+}: AccordionTriggerProps) => {
   return (
     <AccordionPrimitive.Trigger
       data-slot="accordion-trigger"
@@ -80,10 +88,13 @@ const AccordionTrigger = ({ className, children, ...props }: AccordionTriggerPro
       {...props}
     >
       {children}
-      <ChevronDown
-        aria-hidden="true"
-        className="pointer-events-none size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-panel-open/accordion-trigger:rotate-180 motion-reduce:transition-none"
-      />
+      {showChevron ? (
+        <ChevronDown
+          data-slot="accordion-trigger-chevron"
+          aria-hidden="true"
+          className="pointer-events-none size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-panel-open/accordion-trigger:rotate-180 motion-reduce:transition-none"
+        />
+      ) : null}
     </AccordionPrimitive.Trigger>
   )
 }

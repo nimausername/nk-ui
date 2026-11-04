@@ -5,7 +5,7 @@
 export const accordionDocsTitle = "Accordion"
 
 export const accordionDocsDescription =
-  "Collapsible sections on Base UI — single or multiple open panels."
+  "Collapsible sections on Base UI — single or multiple open panels, controlled state, disabled items, and searchable closed content."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const accordionDocsUpdatedAt = "2026-11-04"
@@ -50,6 +50,12 @@ export function Example() {
 ## Notes
 
 - Built on Base UI (\`@base-ui/react\`).
-- Set \`multiple\` to keep several panels open.
-- Live previews are on the docs page.
+- Parts: \`Accordion\` / \`AccordionItem\` / \`AccordionHeader\` / \`AccordionTrigger\` / \`AccordionPanel\`.
+- Single-open by default; set \`multiple\` to keep several panels open.
+- Controlled via \`value\` + \`onValueChange\` (array of open item values).
+- Disable one item with \`AccordionItem disabled\`, or the whole tree with root \`disabled\`.
+- \`AccordionTrigger\` renders a chevron by default; pass \`showChevron={false}\` to compose a custom trailing icon.
+- \`hiddenUntilFound\` keeps closed panels findable via browser find-in-page.
+- \`keepMounted\` keeps closed panels in the DOM (ignored when \`hiddenUntilFound\` is set).
+- Live previews (controlled, disabled, rich triggers, long content, RTL) are on the docs page.
 `
