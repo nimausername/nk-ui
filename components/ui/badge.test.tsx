@@ -15,4 +15,10 @@ describe("Badge", () => {
 
     expect(screen.getByText("Draft")).toHaveClass("border-border")
   })
+
+  it("applies size classes", () => {
+    render(<Badge size="lg">Large</Badge>)
+
+    expect(screen.getByText("Large")).toHaveClass("text-sm")
+  })
 })

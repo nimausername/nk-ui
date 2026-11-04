@@ -22,6 +22,7 @@ type BadgeProps = ComponentProps<"span"> &
 const Badge = ({
   className,
   variant,
+  size,
   asChild = false,
   ...props
 }: BadgeProps) => {
@@ -30,7 +31,7 @@ const Badge = ({
   return (
     <Comp
       data-slot="badge"
-      className={cn(badgeVariants({ variant }), className)}
+      className={cn(badgeVariants({ variant, size }), className)}
       {...props}
     />
   )

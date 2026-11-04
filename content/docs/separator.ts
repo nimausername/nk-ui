@@ -5,7 +5,7 @@
 export const separatorDocsTitle = "Separator"
 
 export const separatorDocsDescription =
-  "Accessible divider on Base UI — horizontal or vertical between content."
+  "Accessible divider on Base UI — horizontal, vertical, labeled, and toolbar compositions."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const separatorDocsUpdatedAt = "2026-11-04"
@@ -36,5 +36,6 @@ export function Example() {
 
 - Built on Base UI (\`@base-ui/react\`).
 - Use \`orientation="vertical"\` inside flex rows (give the parent a height).
-- Live previews are on the docs page.
+- Labeled dividers: compose text between two Separators with \`flex-1\`.
+- Live previews (toolbar, menu list, RTL) are on the docs page.
 `

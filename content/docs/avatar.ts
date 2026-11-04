@@ -5,7 +5,7 @@
 export const avatarDocsTitle = "Avatar"
 
 export const avatarDocsDescription =
-  "Profile image with fallback on Base UI — compose Image and Fallback."
+  "Profile image with fallback on Base UI — sizes, groups, initials, and icons."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const avatarDocsUpdatedAt = "2026-11-04"
@@ -40,6 +40,8 @@ export function Example() {
 ## Notes
 
 - Built on Base UI (\`@base-ui/react\`).
-- Size via \`className\` (default \`size-8\`).
-- Live previews are on the docs page.
+- Parts: \`Avatar\` / \`AvatarImage\` / \`AvatarFallback\` / \`AvatarGroup\`.
+- Sizes: \`sm\`, \`default\`, \`lg\` (or override with \`className\`).
+- Stack with \`AvatarGroup\` and ring classes on each avatar for overlap.
+- Live previews (image, fallback, icon, group, RTL) are on the docs page.
 `

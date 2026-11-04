@@ -20,4 +20,23 @@ describe("Tabs", () => {
     await user.click(screen.getByRole("tab", { name: "Two" }))
     expect(screen.getByText("Panel two")).toBeVisible()
   })
+
+  it("supports a disabled tab", () => {
+    render(
+      <Tabs defaultValue="one">
+        <TabsList>
+          <TabsTrigger value="one">One</TabsTrigger>
+          <TabsTrigger value="two" disabled>
+            Two
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="one">Panel one</TabsContent>
+        <TabsContent value="two">Panel two</TabsContent>
+      </Tabs>
+    )
+
+    const tab = screen.getByRole("tab", { name: "Two" })
+    expect(tab).toHaveAttribute("aria-disabled", "true")
+    expect(tab).toHaveAttribute("data-disabled")
+  })
 })

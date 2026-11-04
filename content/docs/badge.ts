@@ -5,7 +5,7 @@
 export const badgeDocsTitle = "Badge"
 
 export const badgeDocsDescription =
-  "Compact status and count labels — default, secondary, soft, outline, and destructive."
+  "Compact status and count labels — variants, sizes, icons, and asChild links."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const badgeDocsUpdatedAt = "2026-11-04"
@@ -34,7 +34,9 @@ export function Example() {
 
 ## Notes
 
-- Variants: \`default\`, \`secondary\`, \`soft\`, \`outline\`, \`destructive\`.
+- Variants: \`default\`, \`secondary\`, \`soft\`, \`outline\`, \`destructive\`, \`success\`.
+- Sizes: \`sm\`, \`default\`, \`lg\`.
 - Use \`asChild\` to render as a link.
-- Live previews (variants, icons, RTL) are on the docs page.
+- Pill shape via \`className="rounded-full"\`.
+- Live previews (variants, sizes, icons, counts, RTL) are on the docs page.
 `

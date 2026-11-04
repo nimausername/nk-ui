@@ -5,7 +5,7 @@
 export const toggleGroupDocsTitle = "Toggle Group"
 
 export const toggleGroupDocsDescription =
-  "Shared pressed state for toggles — single or multiple selection on Base UI."
+  "Shared pressed state for toggles — single or multiple, sizes, disabled, and controlled."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const toggleGroupDocsUpdatedAt = "2026-11-04"
@@ -45,5 +45,7 @@ export function Example() {
 
 - Built on Base UI (\`@base-ui/react\`).
 - Installs \`@nk/toggle\` for shared variants.
-- Set \`multiple\` for multi-select. Live previews are on the docs page.
+- Single-select by default; set \`multiple\` for multi-select.
+- Group \`variant\` / \`size\` cascade to items. Disable the group or individual items.
+- Live previews (controlled, text items, RTL) are on the docs page.
 `
