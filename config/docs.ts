@@ -88,6 +88,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Accessible actions built on Base UI.",
   },
   {
+    title: "Card",
+    href: "/docs/components/card",
+    description:
+      "Composable bordered surface — header, action, content, and footer.",
+  },
+  {
     title: "Checkbox",
     href: "/docs/components/checkbox",
     description: "Accessible checkbox with indeterminate support — pair with Field.",

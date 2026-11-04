@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "description": "Composable bordered surface — header, action, content, and footer.",
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/card.tsx",
+      "content": "import type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the card root.\n */\ntype CardProps = ComponentProps<\"div\">\n\n/**\n * Bordered surface for grouping related content. Compose Header / Content / Footer.\n */\nconst Card = ({ className, ...props }: CardProps) => {\n  return (\n    <div\n      data-slot=\"card\"\n      className={cn(\n        \"flex flex-col gap-6 rounded-xl border border-border bg-card py-6 text-card-foreground shadow-sm\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the card header.\n */\ntype CardHeaderProps = ComponentProps<\"div\">\n\n/**\n * Top region for title, description, and optional action.\n * Uses a grid so CardAction can sit in the end column.\n */\nconst CardHeader = ({ className, ...props }: CardHeaderProps) => {\n  return (\n    <div\n      data-slot=\"card-header\"\n      className={cn(\n        \"grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the card title.\n */\ntype CardTitleProps = ComponentProps<\"div\">\n\n/**\n * Primary heading inside CardHeader.\n */\nconst CardTitle = ({ className, ...props }: CardTitleProps) => {\n  return (\n    <div\n      data-slot=\"card-title\"\n      className={cn(\"leading-none font-semibold\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the card description.\n */\ntype CardDescriptionProps = ComponentProps<\"div\">\n\n/**\n * Supporting copy under the title.\n */\nconst CardDescription = ({ className, ...props }: CardDescriptionProps) => {\n  return (\n    <div\n      data-slot=\"card-description\"\n      className={cn(\"text-sm text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for an optional header action (button / menu).\n */\ntype CardActionProps = ComponentProps<\"div\">\n\n/**\n * End-aligned control in CardHeader (e.g. menu or secondary button).\n */\nconst CardAction = ({ className, ...props }: CardActionProps) => {\n  return (\n    <div\n      data-slot=\"card-action\"\n      className={cn(\n        \"col-start-2 row-span-2 row-start-1 self-start justify-self-end\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the card body.\n */\ntype CardContentProps = ComponentProps<\"div\">\n\n/**\n * Main content area below the header.\n */\nconst CardContent = ({ className, ...props }: CardContentProps) => {\n  return (\n    <div\n      data-slot=\"card-content\"\n      className={cn(\"px-6\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the card footer.\n */\ntype CardFooterProps = ComponentProps<\"div\">\n\n/**\n * Bottom actions / meta row. Add a top border via className when needed.\n */\nconst CardFooter = ({ className, ...props }: CardFooterProps) => {\n  return (\n    <div\n      data-slot=\"card-footer\"\n      className={cn(\"flex items-center px-6 [.border-t]:pt-6\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardAction,\n  CardContent,\n  CardFooter,\n}\nexport type {\n  CardProps,\n  CardHeaderProps,\n  CardTitleProps,\n  CardDescriptionProps,\n  CardActionProps,\n  CardContentProps,\n  CardFooterProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "card": "#ffffff",
+      "card-foreground": "#000000",
+      "border": "#e5e5e5",
+      "muted-foreground": "#525252"
+    },
+    "dark": {
+      "card": "#0a0a0a",
+      "card-foreground": "#ffffff",
+      "border": "#262626",
+      "muted-foreground": "#a3a3a3"
+    }
+  },
+  "type": "registry:ui"
+}
