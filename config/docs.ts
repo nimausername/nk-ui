@@ -154,6 +154,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Numeric input with steppers and optional scrub — not type=number alone.",
   },
   {
+    title: "Pagination",
+    href: "/docs/components/pagination",
+    description:
+      "Composable page navigation — previous / next, numbered links, and ellipsis.",
+  },
+  {
     title: "Phone Input",
     href: "/docs/components/phone-input",
     description: "Country picker + national number with E.164 output (phonefield / Base UI).",

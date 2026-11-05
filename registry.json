@@ -534,6 +534,26 @@
       }
     },
     {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Composable page navigation — previous / next, numbered links, and ellipsis.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils",
+        "@nk/button"
+      ],
+      "files": [
+        {
+          "path": "components/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
