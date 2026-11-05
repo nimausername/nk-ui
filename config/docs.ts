@@ -99,6 +99,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Accessible checkbox with indeterminate support — pair with Field.",
   },
   {
+    title: "Collapsible",
+    href: "/docs/components/collapsible",
+    description:
+      "Single expand / collapse region on Base UI — trigger and animated panel.",
+  },
+  {
     title: "Dialog",
     href: "/docs/components/dialog",
     description: "Modal dialogs on Base UI — confirmations, forms, and focused tasks.",

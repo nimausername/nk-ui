@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish Collapsible as `@nk/collapsible` (Trigger / Panel — Base UI, animated height)
 - Publish Card as `@nk/card` (Header / Title / Description / Action / Content / Footer)
 - Enhance core-gap docs/API: Accordion, Alert, Avatar, Badge, Progress, Separator, Skeleton, Slider, Tabs, Toggle, Toggle Group (full previews + compositions)
 - Publish core gaps: Accordion, Alert, Avatar, Badge, Progress, Separator, Skeleton, Slider, Tabs, Toggle, Toggle Group (`@nk/*`)
