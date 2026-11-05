@@ -111,6 +111,12 @@ export const componentItems: readonly DocsNavItem[] = [
       "Single expand / collapse region on Base UI — trigger and animated panel.",
   },
   {
+    title: "Combobox",
+    href: "/docs/components/combobox",
+    description:
+      "Searchable select on Base UI — filterable input, list, clear, groups, chips.",
+  },
+  {
     title: "Dialog",
     href: "/docs/components/dialog",
     description: "Modal dialogs on Base UI — confirmations, forms, and focused tasks.",

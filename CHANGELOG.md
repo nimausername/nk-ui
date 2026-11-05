@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish Combobox as `@nk/combobox` (filterable select — clear, groups, multi chips)
 - Publish Table as `@nk/table` (header / body / footer / caption — selected rows)
 - Publish Pagination as `@nk/pagination` (composable prev / next, links, ellipsis)
 - Publish Aspect Ratio as `@nk/aspect-ratio` (native CSS ratio frames for media)
