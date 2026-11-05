@@ -230,6 +230,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "On/off switch with morphing thumb — RTL and reduced-motion aware.",
   },
   {
+    title: "Table",
+    href: "/docs/components/table",
+    description:
+      "Composable data table — header, body, footer, caption, and selected rows.",
+  },
+  {
     title: "Tabs",
     href: "/docs/components/tabs",
     description: "Tabbed panels on Base UI — list, triggers, content, and optional indicator.",
