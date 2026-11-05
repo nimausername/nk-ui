@@ -143,6 +143,35 @@
       }
     },
     {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Single expand / collapse region on Base UI — trigger and animated panel.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "muted-foreground": "#525252",
+          "ring": "#000000"
+        },
+        "dark": {
+          "muted-foreground": "#a3a3a3",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",

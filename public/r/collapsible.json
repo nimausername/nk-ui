@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "Single expand / collapse region on Base UI — trigger and animated panel.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/collapsible.tsx",
+      "content": "\"use client\"\n\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\"\nimport { ChevronDown } from \"lucide-react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the collapsible root.\n */\ntype CollapsibleProps = CollapsiblePrimitive.Root.Props\n\n/**\n * Single expand / collapse region. Use `defaultOpen` or controlled `open`.\n */\nconst Collapsible = ({ className, ...props }: CollapsibleProps) => {\n  return (\n    <CollapsiblePrimitive.Root\n      data-slot=\"collapsible\"\n      className={cn(\"flex w-full flex-col gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the collapsible trigger.\n */\ntype CollapsibleTriggerProps = CollapsiblePrimitive.Trigger.Props & {\n  /** Renders the default trailing chevron. Defaults to true. */\n  readonly showChevron?: boolean\n}\n\n/**\n * Toggles the panel. Renders a chevron by default.\n */\nconst CollapsibleTrigger = ({\n  className,\n  children,\n  showChevron = true,\n  ...props\n}: CollapsibleTriggerProps) => {\n  return (\n    <CollapsiblePrimitive.Trigger\n      data-slot=\"collapsible-trigger\"\n      className={cn(\n        \"group/collapsible-trigger inline-flex w-fit items-center gap-2 rounded-md text-sm font-medium transition-colors outline-none\",\n        \"focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"disabled:pointer-events-none disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n      {showChevron ? (\n        <ChevronDown\n          data-slot=\"collapsible-trigger-chevron\"\n          aria-hidden=\"true\"\n          className=\"pointer-events-none size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-panel-open/collapsible-trigger:rotate-180 motion-reduce:transition-none\"\n        />\n      ) : null}\n    </CollapsiblePrimitive.Trigger>\n  )\n}\n\n/**\n * Props for the collapsible panel.\n */\ntype CollapsiblePanelProps = CollapsiblePrimitive.Panel.Props\n\n/**\n * Collapsible body. Height animates via `--collapsible-panel-height`.\n */\nconst CollapsiblePanel = ({ className, children, ...props }: CollapsiblePanelProps) => {\n  return (\n    <CollapsiblePrimitive.Panel\n      data-slot=\"collapsible-panel\"\n      className={cn(\n        \"overflow-hidden text-sm text-muted-foreground\",\n        \"h-[var(--collapsible-panel-height)] transition-[height] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none\",\n        \"data-ending-style:h-0 data-starting-style:h-0\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"pt-1 pb-0\">{children}</div>\n    </CollapsiblePrimitive.Panel>\n  )\n}\n\nexport { Collapsible, CollapsibleTrigger, CollapsiblePanel }\nexport type { CollapsibleProps, CollapsibleTriggerProps, CollapsiblePanelProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "muted-foreground": "#525252",
+      "ring": "#000000"
+    },
+    "dark": {
+      "muted-foreground": "#a3a3a3",
+      "ring": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}
