@@ -94,6 +94,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Accessible actions built on Base UI.",
   },
   {
+    title: "Calendar",
+    href: "/docs/components/calendar",
+    description:
+      "Month calendar on react-day-picker — single, multiple, and range selection.",
+  },
+  {
     title: "Card",
     href: "/docs/components/card",
     description:
