@@ -117,17 +117,12 @@ const findActiveIndex = (flat: readonly FlatSidebarItem[], pathname: string) => 
 const subscribeNoop = () => () => {}
 
 /**
- * Pathname used for active styles. Server + hydration first paint use `""`
- * so `data-active` / `aria-current` match; the real path applies immediately after.
+ * Docs nav lists change often during local work (new component pages). SSR HTML
+ * can lag the client module under Turbopack HMR — defer the item tree until
+ * after hydration so Table vs Tabs (etc.) never mismatch.
  */
-const useHydrationSafePathname = () => {
-  const pathname = usePathname()
-  return useSyncExternalStore(
-    subscribeNoop,
-    () => pathname,
-    () => ""
-  )
-}
+const useDocsRailListReady = () =>
+  useSyncExternalStore(subscribeNoop, () => true, () => false)
 
 type RailProps = {
   readonly from?: number
@@ -222,7 +217,8 @@ const DocsRailSidebar = ({
   className,
   ...props
 }: DocsRailSidebarProps) => {
-  const pathname = useHydrationSafePathname()
+  const pathname = usePathname()
+  const listReady = useDocsRailListReady()
   const rootRef = useRef<HTMLElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLElement | null)[]>([])
@@ -359,6 +355,7 @@ const DocsRailSidebar = ({
       ref={rootRef}
       data-slot="docs-rail-sidebar"
       aria-label={label}
+      aria-busy={listReady ? undefined : true}
       dir={dir}
       className={cn("flex w-full flex-col", className)}
       {...props}
@@ -377,130 +374,134 @@ const DocsRailSidebar = ({
         onMouseLeave={() => setPointerInside(false)}
         className="relative flex flex-col gap-0.5"
       >
-        <Rail
-          from={previewRootFrom}
-          y={previewRootY}
-          visible={
-            previewVisible &&
-            !(
-              nestedActiveVisible &&
-              previewParentIndex === activeParentIndex &&
-              previewItem?.depth &&
-              previewItem.depth > 0
-            )
-          }
-          dashed={dashed}
-          rtl={isRtl}
-          className="text-foreground/30"
-        />
-        <Rail
-          y={activeRootY}
-          visible={activeRootY !== null}
-          color={color}
-          dashed={dashed}
-          rtl={isRtl}
-          className="text-foreground"
-        />
-        <Rail
-          from={nestedPreviewFrom}
-          y={previewLeafY}
-          visible={Boolean(nestedPreviewVisible)}
-          dashed={dashed}
-          insetStart={14}
-          rtl={isRtl}
-          className="text-foreground/30"
-        />
-        <Rail
-          from={activeParentY ?? 0}
-          y={activeLeafY}
-          visible={Boolean(nestedActiveVisible)}
-          color={color}
-          dashed={dashed}
-          insetStart={14}
-          rtl={isRtl}
-          className="text-foreground"
-        />
+        {listReady ? (
+          <>
+            <Rail
+              from={previewRootFrom}
+              y={previewRootY}
+              visible={
+                previewVisible &&
+                !(
+                  nestedActiveVisible &&
+                  previewParentIndex === activeParentIndex &&
+                  previewItem?.depth &&
+                  previewItem.depth > 0
+                )
+              }
+              dashed={dashed}
+              rtl={isRtl}
+              className="text-foreground/30"
+            />
+            <Rail
+              y={activeRootY}
+              visible={activeRootY !== null}
+              color={color}
+              dashed={dashed}
+              rtl={isRtl}
+              className="text-foreground"
+            />
+            <Rail
+              from={nestedPreviewFrom}
+              y={previewLeafY}
+              visible={Boolean(nestedPreviewVisible)}
+              dashed={dashed}
+              insetStart={14}
+              rtl={isRtl}
+              className="text-foreground/30"
+            />
+            <Rail
+              from={activeParentY ?? 0}
+              y={activeLeafY}
+              visible={Boolean(nestedActiveVisible)}
+              color={color}
+              dashed={dashed}
+              insetStart={14}
+              rtl={isRtl}
+              className="text-foreground"
+            />
 
-        {flatItems.map((item, index) => {
-          const isActive = index === activeIndex
-          const isActiveAncestor =
-            activeParentIndex !== null && index === activeParentIndex
-          const setRef = (el: HTMLElement | null) => {
-            itemRefs.current[index] = el
-          }
-          const handlePointerEnter = () => {
-            setHoverIndex(index)
-            setPointerInside(true)
-          }
-          const handleFocus = () => {
-            setFocusIndex(index)
-          }
-          const handleBlur = () => {
-            setFocusIndex((current) => (current === index ? null : current))
-          }
-          const rowClassName = cn(
-            "flex w-full items-center gap-2 rounded-md py-1.5 pe-2 text-start text-sm transition-colors duration-200 motion-reduce:transition-none",
-            item.depth > 0 ? "ps-9" : "ps-5",
-            isActive || isActiveAncestor
-              ? "font-medium text-foreground"
-              : "text-muted-foreground hover:text-foreground"
-          )
-          const content = (
-            <>
-              {item.icon ? (
-                <span
-                  data-slot="docs-rail-sidebar-icon"
-                  className="inline-flex size-3.5 shrink-0 items-center justify-center [unicode-bidi:isolate] [&_svg]:size-3.5"
+            {flatItems.map((item, index) => {
+              const isActive = index === activeIndex
+              const isActiveAncestor =
+                activeParentIndex !== null && index === activeParentIndex
+              const setRef = (el: HTMLElement | null) => {
+                itemRefs.current[index] = el
+              }
+              const handlePointerEnter = () => {
+                setHoverIndex(index)
+                setPointerInside(true)
+              }
+              const handleFocus = () => {
+                setFocusIndex(index)
+              }
+              const handleBlur = () => {
+                setFocusIndex((current) => (current === index ? null : current))
+              }
+              const rowClassName = cn(
+                "flex w-full items-center gap-2 rounded-md py-1.5 pe-2 text-start text-sm transition-colors duration-200 motion-reduce:transition-none",
+                item.depth > 0 ? "ps-9" : "ps-5",
+                isActive || isActiveAncestor
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              )
+              const content = (
+                <>
+                  {item.icon ? (
+                    <span
+                      data-slot="docs-rail-sidebar-icon"
+                      className="inline-flex size-3.5 shrink-0 items-center justify-center [unicode-bidi:isolate] [&_svg]:size-3.5"
+                    >
+                      {item.icon}
+                    </span>
+                  ) : null}
+                  <span className="min-w-0 truncate [unicode-bidi:plaintext]">
+                    {item.label}
+                  </span>
+                </>
+              )
+
+              if (item.href) {
+                return (
+                  <Link
+                    key={item.href}
+                    ref={setRef}
+                    href={item.href}
+                    data-slot="docs-rail-sidebar-item"
+                    data-active={isActive ? "" : undefined}
+                    data-depth={item.depth}
+                    aria-current={isActive ? "page" : undefined}
+                    onMouseEnter={handlePointerEnter}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    onClick={() => handleSelect(index)}
+                    className={rowClassName}
+                  >
+                    {content}
+                  </Link>
+                )
+              }
+
+              return (
+                <button
+                  key={`item-${item.depth}-${item.label}`}
+                  ref={setRef}
+                  type="button"
+                  data-slot="docs-rail-sidebar-item"
+                  data-active={isActive ? "" : undefined}
+                  data-depth={item.depth}
+                  aria-current={isActive ? "true" : undefined}
+                  onMouseEnter={handlePointerEnter}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  onClick={() => handleSelect(index)}
+                  className={rowClassName}
                 >
-                  {item.icon}
-                </span>
-              ) : null}
-              <span className="min-w-0 truncate [unicode-bidi:plaintext]">
-                {item.label}
-              </span>
-            </>
-          )
-
-          if (item.href) {
-            return (
-              <Link
-                key={item.href}
-                ref={setRef}
-                href={item.href}
-                data-slot="docs-rail-sidebar-item"
-                data-active={isActive ? "" : undefined}
-                data-depth={item.depth}
-                aria-current={isActive ? "page" : undefined}
-                onMouseEnter={handlePointerEnter}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onClick={() => handleSelect(index)}
-                className={rowClassName}
-              >
-                {content}
-              </Link>
-            )
-          }
-
-          return (
-            <button
-              key={`item-${item.depth}-${item.label}`}
-              ref={setRef}
-              type="button"
-              data-slot="docs-rail-sidebar-item"
-              data-active={isActive ? "" : undefined}
-              data-depth={item.depth}
-              aria-current={isActive ? "true" : undefined}
-              onMouseEnter={handlePointerEnter}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              onClick={() => handleSelect(index)}
-              className={rowClassName}
-            >
-              {content}
-            </button>
-          )
-        })}
+                  {content}
+                </button>
+              )
+            })}
+          </>
+        ) : null}
       </div>
     </nav>
   )

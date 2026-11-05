@@ -122,8 +122,16 @@ const DocsSidebar = ({ className }: DocsSidebarProps) => {
       </Breadcrumb>
 
       <DocsRailSidebar label="Getting started" items={guideItems} />
-      <DocsRailSidebar label="Components" items={componentNavItems} />
-      <DocsRailSidebar label="Composites" items={compositeNavItems} />
+      <DocsRailSidebar
+        key={componentNavItems.map((item) => item.href).join("|")}
+        label="Components"
+        items={componentNavItems}
+      />
+      <DocsRailSidebar
+        key={compositeNavItems.map((item) => item.href).join("|")}
+        label="Composites"
+        items={compositeNavItems}
+      />
     </aside>
   )
 }

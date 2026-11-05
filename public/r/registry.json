@@ -1350,6 +1350,21 @@
       }
     },
     {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Composable data table — header, body, footer, caption, and selected rows.",
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
