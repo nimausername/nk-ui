@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish Pagination as `@nk/pagination` (composable prev / next, links, ellipsis)
 - Publish Aspect Ratio as `@nk/aspect-ratio` (native CSS ratio frames for media)
 - Publish Collapsible as `@nk/collapsible` (Trigger / Panel — Base UI, animated height)
 - Publish Card as `@nk/card` (Header / Title / Description / Action / Content / Footer)

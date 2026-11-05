@@ -9,6 +9,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
   type ComponentProps,
   type ReactNode,
 } from "react"
@@ -113,6 +114,21 @@ const findActiveIndex = (flat: readonly FlatSidebarItem[], pathname: string) => 
   return bestIndex
 }
 
+const subscribeNoop = () => () => {}
+
+/**
+ * Pathname used for active styles. Server + hydration first paint use `""`
+ * so `data-active` / `aria-current` match; the real path applies immediately after.
+ */
+const useHydrationSafePathname = () => {
+  const pathname = usePathname()
+  return useSyncExternalStore(
+    subscribeNoop,
+    () => pathname,
+    () => ""
+  )
+}
+
 type RailProps = {
   readonly from?: number
   readonly y: number | null
@@ -206,7 +222,7 @@ const DocsRailSidebar = ({
   className,
   ...props
 }: DocsRailSidebarProps) => {
-  const pathname = usePathname()
+  const pathname = useHydrationSafePathname()
   const rootRef = useRef<HTMLElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLElement | null)[]>([])
@@ -452,7 +468,7 @@ const DocsRailSidebar = ({
                 ref={setRef}
                 href={item.href}
                 data-slot="docs-rail-sidebar-item"
-                data-active={isActive}
+                data-active={isActive ? "" : undefined}
                 data-depth={item.depth}
                 aria-current={isActive ? "page" : undefined}
                 onMouseEnter={handlePointerEnter}
@@ -472,7 +488,7 @@ const DocsRailSidebar = ({
               ref={setRef}
               type="button"
               data-slot="docs-rail-sidebar-item"
-              data-active={isActive}
+              data-active={isActive ? "" : undefined}
               data-depth={item.depth}
               aria-current={isActive ? "true" : undefined}
               onMouseEnter={handlePointerEnter}
