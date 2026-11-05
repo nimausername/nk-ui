@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "title": "Aspect Ratio",
+  "description": "Fixed width / height frames with native CSS — media, embeds, and cards.",
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/aspect-ratio.tsx",
+      "content": "import type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for AspectRatio — native CSS `aspect-ratio` with optional ratio.\n */\ntype AspectRatioProps = ComponentProps<\"div\"> & {\n  /**\n   * Width divided by height. Defaults to `1` (square).\n   * Common values: `16 / 9`, `4 / 3`, `1`, `9 / 16`.\n   */\n  readonly ratio?: number\n}\n\n/**\n * Locks a box to a fixed aspect ratio. Put media as an absolute child that fills.\n */\nconst AspectRatio = ({\n  ratio = 1,\n  className,\n  style,\n  ...props\n}: AspectRatioProps) => {\n  return (\n    <div\n      data-slot=\"aspect-ratio\"\n      style={{ aspectRatio: ratio, ...style }}\n      className={cn(\"relative w-full\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { AspectRatio }\nexport type { AspectRatioProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -62,6 +62,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Inline callout for status messages — title, description, and optional icon.",
   },
   {
+    title: "Aspect Ratio",
+    href: "/docs/components/aspect-ratio",
+    description:
+      "Fixed width / height frames with native CSS — media, embeds, and cards.",
+  },
+  {
     title: "Avatar",
     href: "/docs/components/avatar",
     description: "Profile image with fallback on Base UI — compose Image and Fallback.",
