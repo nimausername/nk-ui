@@ -99,6 +99,56 @@
       }
     },
     {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Month calendar on react-day-picker — single, multiple, and range selection with nk Button chrome.",
+      "dependencies": [
+        "react-day-picker",
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/button",
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "primary": "#000000",
+          "primary-foreground": "#ffffff",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "popover": "#ffffff",
+          "border": "#e5e5e5",
+          "ring": "#000000"
+        },
+        "dark": {
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "primary": "#ffffff",
+          "primary-foreground": "#000000",
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "popover": "#0a0a0a",
+          "border": "#262626",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
