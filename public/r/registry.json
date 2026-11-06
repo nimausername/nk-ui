@@ -1131,6 +1131,53 @@
       }
     },
     {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Modal confirmation on Base UI — requires an explicit cancel or continue response.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/button"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "ring": "#000000",
+          "destructive": "#dc2626"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "ring": "#ffffff",
+          "destructive": "#ef4444"
+        }
+      }
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "Aspect Ratio",

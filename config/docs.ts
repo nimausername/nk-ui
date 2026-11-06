@@ -62,6 +62,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Inline callout for status messages — title, description, and optional icon.",
   },
   {
+    title: "Alert Dialog",
+    href: "/docs/components/alert-dialog",
+    description:
+      "Modal confirmation on Base UI — requires an explicit cancel or continue response.",
+  },
+  {
     title: "Aspect Ratio",
     href: "/docs/components/aspect-ratio",
     description:

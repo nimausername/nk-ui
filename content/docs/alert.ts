@@ -43,6 +43,6 @@ export function Example() {
 - Variants: \`default\`, \`soft\`, \`destructive\`, \`success\`.
 - Place a Lucide (or other) icon as the first child for the leading icon column.
 - Compose buttons inside \`AlertAction\`.
-- This is an inline callout — not a modal Alert Dialog.
+- This is an inline callout — not a modal [Alert Dialog](/docs/components/alert-dialog).
 - Live previews (variants, actions, long copy, RTL) are on the docs page.
 `
