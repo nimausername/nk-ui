@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contributing guide
+    url: https://github.com/nimausername/nk-ui/blob/main/CONTRIBUTING.md
+    about: Setup, architecture boundaries, and how to open a PR.
+  - name: Architecture
+    url: https://github.com/nimausername/nk-ui/blob/main/ARCHITECTURE.md
+    about: Where installable components vs docs/site code belong.
