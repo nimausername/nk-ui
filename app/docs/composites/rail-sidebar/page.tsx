@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { RailSidebarPreviews } from "@/components/docs/rail-sidebar-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,15 +27,17 @@ export default function RailSidebarDocsPage() {
           <span aria-hidden="true"> / </span>
           {railSidebarDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{railSidebarDocsTitle}</h1>
-          <DocsCopyPage
-            page={railSidebarDocsMarkdown}
-            url={`${siteConfig.url}/docs/composites/rail-sidebar`}
-            markdownUrl="/docs/composites/rail-sidebar.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={railSidebarDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={railSidebarDocsMarkdown}
+              url={`${siteConfig.url}/docs/composites/rail-sidebar`}
+              markdownUrl="/docs/composites/rail-sidebar.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{railSidebarDocsDescription}</p>
         <DocsLastUpdated date={railSidebarDocsUpdatedAt} />
       </header>

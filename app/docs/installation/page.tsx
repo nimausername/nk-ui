@@ -2,6 +2,7 @@ import Link from "next/link"
 import type { ComponentType, SVGProps } from "react"
 
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { NextjsIcon, ReactIcon, ViteIcon } from "@/components/docs/framework-icons"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { installationFrameworkItems } from "@/config/docs"
@@ -29,15 +30,17 @@ export default function InstallationPage() {
   return (
     <article className="space-y-12">
       <header className="space-y-4">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{installationTitle}</h1>
-          <DocsCopyPage
-            page={installationMarkdown}
-            url={`${siteConfig.url}/docs/installation`}
-            markdownUrl="/docs/installation.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={installationTitle}
+          actions={
+            <DocsCopyPage
+              page={installationMarkdown}
+              url={`${siteConfig.url}/docs/installation`}
+              markdownUrl="/docs/installation.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{installationDescription}</p>
         <DocsLastUpdated date={installationUpdatedAt} />
       </header>

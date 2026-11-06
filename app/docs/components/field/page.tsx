@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { FieldPreviews } from "@/components/docs/field-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,15 +27,17 @@ export default function FieldDocsPage() {
           <span aria-hidden="true"> / </span>
           {fieldDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{fieldDocsTitle}</h1>
-          <DocsCopyPage
-            page={fieldDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/field`}
-            markdownUrl="/docs/components/field.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={fieldDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={fieldDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/field`}
+              markdownUrl="/docs/components/field.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{fieldDocsDescription}</p>
         <DocsLastUpdated date={fieldDocsUpdatedAt} />
       </header>

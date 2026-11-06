@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { ScrollFadePreviews } from "@/components/docs/scroll-fade-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,17 +27,17 @@ export default function ScrollFadeDocsPage() {
           <span aria-hidden="true"> / </span>
           {scrollFadeDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {scrollFadeDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={scrollFadeDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/scroll-fade`}
-            markdownUrl="/docs/components/scroll-fade.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={scrollFadeDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={scrollFadeDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/scroll-fade`}
+              markdownUrl="/docs/components/scroll-fade.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">
           {scrollFadeDocsDescription}
         </p>

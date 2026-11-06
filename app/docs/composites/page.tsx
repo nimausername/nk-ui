@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { compositeItems } from "@/config/docs"
 import { siteConfig } from "@/config/site"
@@ -18,17 +19,17 @@ export default function CompositesIndexPage() {
   return (
     <article className="space-y-8">
       <header className="space-y-4">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {compositesDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={compositesDocsMarkdown}
-            url={`${siteConfig.url}/docs/composites`}
-            markdownUrl="/docs/composites.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={compositesDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={compositesDocsMarkdown}
+              url={`${siteConfig.url}/docs/composites`}
+              markdownUrl="/docs/composites.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{compositesDocsDescription}</p>
         <DocsLastUpdated date={compositesDocsUpdatedAt} />
       </header>

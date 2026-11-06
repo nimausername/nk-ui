@@ -3,6 +3,7 @@ import Link from "next/link"
 import { CalendarPreviews } from "@/components/docs/calendar-previews"
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
 import {
@@ -26,17 +27,17 @@ export default function CalendarDocsPage() {
           <span aria-hidden="true"> / </span>
           {calendarDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {calendarDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={calendarDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/calendar`}
-            markdownUrl="/docs/components/calendar.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={calendarDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={calendarDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/calendar`}
+              markdownUrl="/docs/components/calendar.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">
           {calendarDocsDescription}
         </p>

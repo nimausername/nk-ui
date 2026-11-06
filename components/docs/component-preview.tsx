@@ -57,10 +57,12 @@ const ComponentPreview = ({
 
   return (
     <div className={cn("rounded-md border border-border", className)}>
-      <div className="flex items-center justify-between gap-3 overflow-hidden rounded-t-[inherit] border-b border-border bg-muted/40 px-3 py-2">
-        <p className="text-xs font-medium text-muted-foreground">{title}</p>
+      <div className="flex flex-wrap items-center justify-between gap-2 overflow-hidden rounded-t-[inherit] border-b border-border bg-muted/40 px-3 py-2 sm:gap-3">
+        <p className="min-w-0 truncate text-xs font-medium text-muted-foreground">
+          {title}
+        </p>
         {showToolbar ? (
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
             {toolbarActions}
             {showDirectionToggle ? (
               <Button
@@ -90,7 +92,7 @@ const ComponentPreview = ({
         data-nk-preview=""
         dir={direction}
         lang={direction === "rtl" ? "fa" : "en"}
-        className="flex min-h-28 flex-wrap items-center justify-center gap-3 overflow-visible bg-background p-6"
+        className="flex min-h-28 min-w-0 flex-wrap items-center justify-center gap-3 overflow-visible bg-background p-4 sm:p-6"
       >
         {isClient ? content : <ComponentPreviewLoading />}
       </div>

@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { FormPreviews } from "@/components/docs/form-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,15 +27,17 @@ export default function FormDocsPage() {
           <span aria-hidden="true"> / </span>
           {formDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{formDocsTitle}</h1>
-          <DocsCopyPage
-            page={formDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/form`}
-            markdownUrl="/docs/components/form.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={formDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={formDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/form`}
+              markdownUrl="/docs/components/form.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{formDocsDescription}</p>
         <DocsLastUpdated date={formDocsUpdatedAt} />
       </header>

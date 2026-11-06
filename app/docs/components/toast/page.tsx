@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { DocsStep, DocsSteps } from "@/components/docs/docs-steps"
 import { ToastPreviews } from "@/components/docs/toast-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
@@ -27,15 +28,17 @@ export default function ToastDocsPage() {
           <span aria-hidden="true"> / </span>
           {toastDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{toastDocsTitle}</h1>
-          <DocsCopyPage
-            page={toastDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/toast`}
-            markdownUrl="/docs/components/toast.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={toastDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={toastDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/toast`}
+              markdownUrl="/docs/components/toast.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{toastDocsDescription}</p>
         <DocsLastUpdated date={toastDocsUpdatedAt} />
       </header>

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ComponentInstall } from "@/components/docs/component-install"
 import { CopyFieldPreviews } from "@/components/docs/copy-field-previews"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
 import {
@@ -26,17 +27,17 @@ export default function CopyFieldDocsPage() {
           <span aria-hidden="true"> / </span>
           {copyFieldDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {copyFieldDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={copyFieldDocsMarkdown}
-            url={`${siteConfig.url}/docs/composites/copy-field`}
-            markdownUrl="/docs/composites/copy-field.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={copyFieldDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={copyFieldDocsMarkdown}
+              url={`${siteConfig.url}/docs/composites/copy-field`}
+              markdownUrl="/docs/composites/copy-field.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">
           {copyFieldDocsDescription}
         </p>

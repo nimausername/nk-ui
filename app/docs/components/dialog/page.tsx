@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DialogPreviews } from "@/components/docs/dialog-previews"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
 import {
@@ -26,15 +27,17 @@ export default function DialogDocsPage() {
           <span aria-hidden="true"> / </span>
           {dialogDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{dialogDocsTitle}</h1>
-          <DocsCopyPage
-            page={dialogDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/dialog`}
-            markdownUrl="/docs/components/dialog.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={dialogDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={dialogDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/dialog`}
+              markdownUrl="/docs/components/dialog.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{dialogDocsDescription}</p>
         <DocsLastUpdated date={dialogDocsUpdatedAt} />
       </header>

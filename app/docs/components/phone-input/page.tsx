@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { PhoneInputPreviews } from "@/components/docs/phone-input-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,17 +27,17 @@ export default function PhoneInputDocsPage() {
           <span aria-hidden="true"> / </span>
           {phoneInputDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {phoneInputDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={phoneInputDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/phone-input`}
-            markdownUrl="/docs/components/phone-input.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={phoneInputDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={phoneInputDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/phone-input`}
+              markdownUrl="/docs/components/phone-input.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">
           {phoneInputDocsDescription}
         </p>

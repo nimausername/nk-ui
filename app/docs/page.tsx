@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { IntroductionBody } from "@/components/docs/introduction-body"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { buttonVariants } from "@/components/ui/button-variants"
@@ -21,15 +22,17 @@ export default function DocsPage() {
   return (
     <article className="space-y-12">
       <header className="space-y-4">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{introductionTitle}</h1>
-          <DocsCopyPage
-            page={introductionMarkdown}
-            url={`${siteConfig.url}/docs`}
-            markdownUrl="/docs.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={introductionTitle}
+          actions={
+            <DocsCopyPage
+              page={introductionMarkdown}
+              url={`${siteConfig.url}/docs`}
+              markdownUrl="/docs.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{introductionDescription}</p>
         <DocsLastUpdated date={introductionUpdatedAt} />
       </header>
