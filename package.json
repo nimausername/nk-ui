@@ -2,7 +2,7 @@
   "name": "nk",
   "version": "0.1.0",
   "private": true,
-  "description": "Base UI components you own — black/white, light/dark, real LTR/RTL. shadcn-compatible @nk registry.",
+  "description": "UI you own — with real RTL. Source via the shadcn CLI. Logical CSS so Persian and Arabic layouts work without fighting the kit.",
   "homepage": "https://ui.nimakhabbazi.com",
   "repository": {
     "type": "git",

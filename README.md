@@ -3,7 +3,7 @@
 [![CI](https://github.com/nimausername/nk-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/nimausername/nk-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](./LICENSE)
 
-Base UI components you own — black/white product styling, light/dark, and real LTR/RTL.
+UI you own — with real RTL. Source via the shadcn CLI. Logical CSS so Persian and Arabic layouts work without fighting the kit.
 
 - **Docs (planned):** [ui.nimakhabbazi.com](https://ui.nimakhabbazi.com)
 - **Install:** shadcn-compatible registry `@nk/...`
