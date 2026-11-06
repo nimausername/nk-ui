@@ -98,6 +98,7 @@ export function Example() {
 ## Notes
 
 - Built on Base UI (\`@base-ui/react/menu\`).
+- For right click / long press menus, use [Context Menu](/docs/components/context-menu).
 - \`DropdownMenuLabel\` requires a parent \`DropdownMenuGroup\`.
 - Submenus open on \`inline-end\` with an 8px gap and never fall back above/below the trigger.
 - Chevrons use \`rtl:rotate-180\`; indicators and shortcuts use logical \`end\` / \`ms-auto\`.

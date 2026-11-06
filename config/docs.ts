@@ -129,6 +129,12 @@ export const componentItems: readonly DocsNavItem[] = [
       "Searchable select on Base UI — filterable input, list, clear, groups, chips.",
   },
   {
+    title: "Context Menu",
+    href: "/docs/components/context-menu",
+    description:
+      "Pointer menus on Base UI — right click or long press, items, checkboxes, radios, submenus.",
+  },
+  {
     title: "Dialog",
     href: "/docs/components/dialog",
     description: "Modal dialogs on Base UI — confirmations, forms, and focused tasks.",
