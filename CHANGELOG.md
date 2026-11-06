@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish Menubar as `@nk/menubar` (Base UI Menubar + Dropdown Menu — shadcn-aligned shell, workspace / registry-studio demos, checkboxes, radios, nested flyouts)
 - Publish Hover Card as `@nk/hover-card` (Base UI Preview Card — links, media, profiles, placement, timestamps, release notes, multi-trigger, in Dialog)
 - Publish Context Menu as `@nk/context-menu` (Base UI — right click / long press, items, checkboxes, radios, submenus)
 - Publish Alert Dialog as `@nk/alert-dialog` (Base UI — confirm / destructive / nested in Dialog)

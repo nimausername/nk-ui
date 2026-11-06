@@ -179,6 +179,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "One-time verification code slots — paste, mask, grouped 3+3 layouts.",
   },
   {
+    title: "Menubar",
+    href: "/docs/components/menubar",
+    description:
+      "Application menu bar on Base UI — workspace actions, toggles, radios, nested flyouts, registry patterns.",
+  },
+  {
     title: "Number Field",
     href: "/docs/components/number-field",
     description: "Numeric input with steppers and optional scrub — not type=number alone.",
