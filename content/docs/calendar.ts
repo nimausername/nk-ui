@@ -49,6 +49,6 @@ export function Example() {
 - \`captionLayout="dropdown"\` adds month / year selects; \`showWeekNumber\` adds a week column.
 - \`buttonVariant\` styles previous / next controls (defaults to \`ghost\`).
 - RTL: pass \`dir="rtl"\`, \`locale={faIR}\`, \`numerals="arabext"\`, and a \`formatWeekdayName\` using abbreviated Persian names (\`یکشنبه\` — DayPicker’s default short form is \`1ش\`). \`dir\` alone only flips chrome.
-- Compose with [Popover](/docs/components/popover) for a date field — Date Picker is next.
+- For a field trigger, use [Date Picker](/docs/composites/date-picker) (Popover + Calendar composite).
 - Live previews (single, range, multiple, dropdown, week numbers, disabled) are on the docs page.
 `

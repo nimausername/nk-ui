@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish Date Picker as `@nk/date-picker` (Popover + Calendar — single / range / input / time / presets / natural language)
 - Publish Calendar as `@nk/calendar` (react-day-picker — single / multiple / range)
 - Publish Combobox as `@nk/combobox` (filterable select — clear, groups, multi chips)
 - Publish Table as `@nk/table` (header / body / footer / caption — selected rows)

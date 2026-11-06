@@ -696,6 +696,29 @@
       ]
     },
     {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Date fields on Popover + Calendar — single, range, input, time, presets, and natural language.",
+      "dependencies": [
+        "chrono-node",
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/button",
+        "@nk/calendar",
+        "@nk/input",
+        "@nk/popover"
+      ],
+      "files": [
+        {
+          "path": "components/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "password-input",
       "type": "registry:ui",
       "title": "Password Input",
