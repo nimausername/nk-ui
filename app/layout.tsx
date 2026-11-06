@@ -5,6 +5,7 @@ import { Geist, Geist_Mono, Vazirmatn } from "next/font/google"
 import { GitHubLink } from "@/components/site/github-link"
 import { AppProviders } from "@/components/site/providers/app-providers"
 import { SiteHeader } from "@/components/site/site-header"
+import { siteConfig } from "@/config/site"
 import { themeConfig } from "@/lib/theme"
 
 import "./globals.css"
@@ -26,33 +27,31 @@ const vazirmatn = Vazirmatn({
 
 export const metadata: Metadata = {
   title: {
-    default: "nk — UI you own",
-    template: "%s · nk",
+    default: siteConfig.title,
+    template: `%s · ${siteConfig.name}`,
   },
-  description:
-    "Base UI components with clean product styling, light/dark, and real LTR/RTL support. Install with the shadcn CLI.",
-  metadataBase: new URL("https://ui.nimakhabbazi.com"),
+  description: siteConfig.description,
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
-    title: "nk — UI you own",
-    description:
-      "Base UI components with clean product styling, light/dark, and real LTR/RTL support. Install with the shadcn CLI.",
-    url: "https://ui.nimakhabbazi.com",
-    siteName: "nk",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: "en_US",
+    type: "website",
     images: [
       {
         url: "/brand/og-1.png",
         width: 1200,
         height: 630,
-        alt: "nk — UI you own",
+        alt: siteConfig.title,
       },
     ],
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "nk — UI you own",
-    description:
-      "Base UI components with clean product styling, light/dark, and real LTR/RTL support. Install with the shadcn CLI.",
+    title: siteConfig.title,
+    description: siteConfig.description,
     images: ["/brand/og-1.png"],
   },
 }
@@ -67,6 +66,8 @@ type RootLayoutProps = Readonly<{
  * Anti-FOUC script lives only here (Server Component). ThemeProvider uses
  * `noScript` so Fast Refresh never remounts a client `<script>` (that loop
  * caused continuous full reloads under React 19 / Next 16).
+ *
+ * Social preview image: `public/brand/og-1.png`.
  */
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
