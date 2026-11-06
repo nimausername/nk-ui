@@ -77,5 +77,6 @@ export function Example() {
 - Built on Base UI (\`@base-ui/react/dialog\`).
 - Themes with nk black/white CSS variables (light/dark), including \`popover\`.
 - Close affordances use logical \`end\` positioning for LTR/RTL.
+- For confirmations that must not dismiss on outside click, prefer [Alert Dialog](/docs/components/alert-dialog).
 - Live previews (basic, destructive confirm, no corner close, RTL) are on the docs page.
 `

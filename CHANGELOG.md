@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish Alert Dialog as `@nk/alert-dialog` (Base UI — confirm / destructive / nested in Dialog)
 - Publish Date Picker as `@nk/date-picker` (Popover + Calendar — single / range / input / time / presets / natural language)
 - Publish Calendar as `@nk/calendar` (react-day-picker — single / multiple / range)
 - Publish Combobox as `@nk/combobox` (filterable select — clear, groups, multi chips)
