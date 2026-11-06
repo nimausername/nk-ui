@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { componentItems } from "@/config/docs"
 import { siteConfig } from "@/config/site"
@@ -18,15 +19,17 @@ export default function ComponentsIndexPage() {
   return (
     <article className="space-y-8">
       <header className="space-y-4">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{componentsDocsTitle}</h1>
-          <DocsCopyPage
-            page={componentsDocsMarkdown}
-            url={`${siteConfig.url}/docs/components`}
-            markdownUrl="/docs/components.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={componentsDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={componentsDocsMarkdown}
+              url={`${siteConfig.url}/docs/components`}
+              markdownUrl="/docs/components.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{componentsDocsDescription}</p>
         <DocsLastUpdated date={componentsDocsUpdatedAt} />
       </header>

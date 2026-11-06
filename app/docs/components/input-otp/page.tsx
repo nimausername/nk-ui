@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { InputOtpPreviews } from "@/components/docs/input-otp-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,17 +27,17 @@ export default function InputOtpDocsPage() {
           <span aria-hidden="true"> / </span>
           {inputOtpDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {inputOtpDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={inputOtpDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/input-otp`}
-            markdownUrl="/docs/components/input-otp.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={inputOtpDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={inputOtpDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/input-otp`}
+              markdownUrl="/docs/components/input-otp.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">
           {inputOtpDocsDescription}
         </p>

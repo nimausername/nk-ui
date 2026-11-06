@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { ToggleGroupPreviews } from "@/components/docs/toggle-group-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,15 +27,17 @@ export default function ToggleGroupDocsPage() {
           <span aria-hidden="true"> / </span>
           {toggleGroupDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{toggleGroupDocsTitle}</h1>
-          <DocsCopyPage
-            page={toggleGroupDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/toggle-group`}
-            markdownUrl="/docs/components/toggle-group.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={toggleGroupDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={toggleGroupDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/toggle-group`}
+              markdownUrl="/docs/components/toggle-group.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{toggleGroupDocsDescription}</p>
         <DocsLastUpdated date={toggleGroupDocsUpdatedAt} />
       </header>

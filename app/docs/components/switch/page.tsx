@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { SwitchPreviews } from "@/components/docs/switch-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,15 +27,17 @@ export default function SwitchDocsPage() {
           <span aria-hidden="true"> / </span>
           {switchDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{switchDocsTitle}</h1>
-          <DocsCopyPage
-            page={switchDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/switch`}
-            markdownUrl="/docs/components/switch.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={switchDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={switchDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/switch`}
+              markdownUrl="/docs/components/switch.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{switchDocsDescription}</p>
         <DocsLastUpdated date={switchDocsUpdatedAt} />
       </header>

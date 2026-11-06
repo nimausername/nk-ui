@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { ShaderBackgroundPreviews } from "@/components/docs/shader-background-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -28,17 +29,17 @@ export default function ShaderBackgroundDocsPage() {
           <span aria-hidden="true"> / </span>
           {shaderBackgroundDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {shaderBackgroundDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={shaderBackgroundDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/shader-background`}
-            markdownUrl="/docs/components/shader-background.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={shaderBackgroundDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={shaderBackgroundDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/shader-background`}
+              markdownUrl="/docs/components/shader-background.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">
           {shaderBackgroundDocsDescription}
         </p>

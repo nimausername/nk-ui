@@ -20,20 +20,32 @@ const HomeComponentsBadge = ({ className }: HomeComponentsBadgeProps) => {
       size="lg"
       asChild
       className={cn(
-        "gap-1.5 bg-background/75 pe-2.5 ps-1 shadow-sm backdrop-blur-md",
+        "max-w-full gap-1.5 bg-background/75 pe-2.5 ps-1 shadow-sm backdrop-blur-md",
         "hover:border-foreground/25 hover:bg-background/90",
         className
       )}
     >
-      <Link href="/docs/components" className="inline-flex items-center gap-1.5">
+      <Link
+        href="/docs/components"
+        className="inline-flex min-w-0 max-w-full items-center gap-1.5"
+      >
         <NkMark size="sm" />
-        <span className="text-muted-foreground">
+        <span className="min-w-0 truncate text-muted-foreground">
           <span className="tabular-nums text-foreground">{componentItems.length}</span>
-          {` ${siteConfig.badgeLabel} · `}
-          <span className="tabular-nums text-foreground">
-            +{siteConfig.newlyAddedCount}
+          <span className="sm:hidden">
+            {" · "}
+            <span className="tabular-nums text-foreground">
+              +{siteConfig.newlyAddedCount}
+            </span>
+            {" new"}
           </span>
-          {" new"}
+          <span className="hidden sm:inline">
+            {` ${siteConfig.badgeLabel} · `}
+            <span className="tabular-nums text-foreground">
+              +{siteConfig.newlyAddedCount}
+            </span>
+            {" new"}
+          </span>
         </span>
       </Link>
     </Badge>

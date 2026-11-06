@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { SelectPreviews } from "@/components/docs/select-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,15 +27,17 @@ export default function SelectDocsPage() {
           <span aria-hidden="true"> / </span>
           {selectDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{selectDocsTitle}</h1>
-          <DocsCopyPage
-            page={selectDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/select`}
-            markdownUrl="/docs/components/select.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={selectDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={selectDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/select`}
+              markdownUrl="/docs/components/select.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{selectDocsDescription}</p>
         <DocsLastUpdated date={selectDocsUpdatedAt} />
       </header>

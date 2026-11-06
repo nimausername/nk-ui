@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { SliderPreviews } from "@/components/docs/slider-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,15 +27,17 @@ export default function SliderDocsPage() {
           <span aria-hidden="true"> / </span>
           {sliderDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">{sliderDocsTitle}</h1>
-          <DocsCopyPage
-            page={sliderDocsMarkdown}
-            url={`${siteConfig.url}/docs/components/slider`}
-            markdownUrl="/docs/components/slider.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={sliderDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={sliderDocsMarkdown}
+              url={`${siteConfig.url}/docs/components/slider`}
+              markdownUrl="/docs/components/slider.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">{sliderDocsDescription}</p>
         <DocsLastUpdated date={sliderDocsUpdatedAt} />
       </header>

@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { PasswordInputPreviews } from "@/components/docs/password-input-previews"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
@@ -26,17 +27,17 @@ export default function PasswordInputDocsPage() {
           <span aria-hidden="true"> / </span>
           {passwordInputDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {passwordInputDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={passwordInputDocsMarkdown}
-            url={`${siteConfig.url}/docs/composites/password-input`}
-            markdownUrl="/docs/composites/password-input.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={passwordInputDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={passwordInputDocsMarkdown}
+              url={`${siteConfig.url}/docs/composites/password-input`}
+              markdownUrl="/docs/composites/password-input.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">
           {passwordInputDocsDescription}
         </p>

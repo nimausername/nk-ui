@@ -8,6 +8,7 @@ type DocsLayoutProps = {
 
 /**
  * Shared docs chrome with sidebar navigation.
+ * Desktop: DocsSidebar. Mobile: same catalog lives in SiteMobileMenu.
  */
 export default function DocsLayout({ children }: DocsLayoutProps) {
   return (

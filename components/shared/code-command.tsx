@@ -82,8 +82,8 @@ const CodeCommand = ({
           </Button>
         </div>
       </Tabs.Root>
-      <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
-        <code>{command}</code>
+      <pre className="min-w-0 overflow-x-auto p-3 text-xs leading-relaxed sm:p-4 sm:text-sm">
+        <code className="whitespace-pre">{command}</code>
       </pre>
     </div>
   )

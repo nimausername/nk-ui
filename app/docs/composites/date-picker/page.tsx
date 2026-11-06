@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ComponentInstall } from "@/components/docs/component-install"
 import { DatePickerPreviews } from "@/components/docs/date-picker-previews"
 import { DocsCopyPage } from "@/components/docs/docs-copy-page"
+import { DocsPageHeader } from "@/components/docs/docs-page-header"
 import { DocsLastUpdated } from "@/components/shared/docs-last-updated"
 import { siteConfig } from "@/config/site"
 import {
@@ -26,17 +27,17 @@ export default function DatePickerDocsPage() {
           <span aria-hidden="true"> / </span>
           {datePickerDocsTitle}
         </p>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            {datePickerDocsTitle}
-          </h1>
-          <DocsCopyPage
-            page={datePickerDocsMarkdown}
-            url={`${siteConfig.url}/docs/composites/date-picker`}
-            markdownUrl="/docs/composites/date-picker.md"
-            className="shrink-0"
-          />
-        </div>
+        <DocsPageHeader
+          title={datePickerDocsTitle}
+          actions={
+            <DocsCopyPage
+              page={datePickerDocsMarkdown}
+              url={`${siteConfig.url}/docs/composites/date-picker`}
+              markdownUrl="/docs/composites/date-picker.md"
+              className="shrink-0"
+            />
+          }
+        />
         <p className="text-muted-foreground text-pretty">
           {datePickerDocsDescription}
         </p>
