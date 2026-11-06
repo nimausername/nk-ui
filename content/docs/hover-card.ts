@@ -5,7 +5,7 @@
 export const hoverCardDocsTitle = "Hover Card"
 
 export const hoverCardDocsDescription =
-  "Rich hover / focus previews on Base UI Preview Card — links, profiles, placement, multi-trigger payloads, and dialog nesting."
+  "Rich hover / focus previews on Base UI Preview Card — links, media, profiles, placement, timestamps, release notes, multi-trigger payloads, and dialog nesting."
 
 /** Editorial last-updated date for the docs header (`YYYY-MM-DD`). */
 export const hoverCardDocsUpdatedAt = "2026-11-06"
@@ -75,5 +75,5 @@ export function Example() {
 - Richer than [Tooltip](/docs/components/tooltip); lighter than a click [Popover](/docs/components/popover).
 - Default trigger delays: open \`600ms\`, close \`300ms\` — override per trigger.
 - Themes with nk black/white CSS variables (light/dark), including \`popover\`.
-- Live previews (Preview / Profile / Placement / Advanced tabs, RTL) are on the docs page.
+- Live previews (Preview / Profile / Placement / Advanced tabs, RTL) are on the docs page — including image captions, live timestamps, and paginated release notes.
 `

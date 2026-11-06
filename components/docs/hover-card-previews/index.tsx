@@ -3,10 +3,13 @@
 import { HoverCardBasicPreview } from "@/components/docs/hover-card-previews/basic"
 import { HoverCardControlledPreview } from "@/components/docs/hover-card-previews/controlled"
 import { HoverCardIconPreview } from "@/components/docs/hover-card-previews/icon"
+import { HoverCardImageTextPreview } from "@/components/docs/hover-card-previews/image-text"
 import { HoverCardInDialogPreview } from "@/components/docs/hover-card-previews/in-dialog"
 import { HoverCardMultiTriggerPreview } from "@/components/docs/hover-card-previews/multi-trigger"
 import { HoverCardPositionsPreview } from "@/components/docs/hover-card-previews/positions"
 import { HoverCardProfilePreview } from "@/components/docs/hover-card-previews/profile"
+import { HoverCardReleaseNotesPreview } from "@/components/docs/hover-card-previews/release-notes"
+import { HoverCardTimestampPreview } from "@/components/docs/hover-card-previews/timestamp"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 /**
@@ -27,9 +30,11 @@ const HoverCardPreviews = () => {
 
       <TabsContent value="preview" className="space-y-10">
         <p className="text-sm text-muted-foreground">
-          Destination previews — link cards and compact icon help.
+          Destination previews — link cards, media captions, and compact icon
+          help.
         </p>
         <HoverCardBasicPreview />
+        <HoverCardImageTextPreview />
         <HoverCardIconPreview />
       </TabsContent>
 
@@ -49,9 +54,12 @@ const HoverCardPreviews = () => {
 
       <TabsContent value="advanced" className="space-y-10">
         <p className="text-sm text-muted-foreground">
-          Controlled open, multi-trigger payloads, and nesting in Dialog.
+          Controlled open, live timestamps, release notes, multi-trigger
+          payloads, and nesting in Dialog.
         </p>
         <HoverCardControlledPreview />
+        <HoverCardTimestampPreview />
+        <HoverCardReleaseNotesPreview />
         <HoverCardMultiTriggerPreview />
         <HoverCardInDialogPreview />
       </TabsContent>

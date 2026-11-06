@@ -936,7 +936,7 @@
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
-      "description": "Rich hover / focus previews on Base UI Preview Card — links, profiles, placement, and multi-trigger payloads.",
+      "description": "Rich hover / focus previews on Base UI Preview Card — links, media, profiles, placement, timestamps, release notes, and multi-trigger payloads.",
       "dependencies": [
         "@base-ui/react"
       ],
