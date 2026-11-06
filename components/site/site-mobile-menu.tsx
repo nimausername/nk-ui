@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "@teispace/next-themes"
-import { useEffect, useState, type ComponentType, type ReactNode, type SVGProps } from "react"
+import { useState, type ComponentType, type ReactNode, type SVGProps } from "react"
 
 import {
   NextjsIcon,
@@ -218,13 +218,16 @@ const SiteMobileMenu = () => {
   const pathname = usePathname()
   const { resolvedTheme, setTheme } = useTheme()
   const [open, setOpen] = useState(false)
+  const [menuPathname, setMenuPathname] = useState(pathname)
+
+  // Close the sheet when the route changes (adjust state during render — no effect).
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname)
+    setOpen(false)
+  }
 
   const isDark = resolvedTheme === "dark"
   const isDocs = pathname.startsWith("/docs")
-
-  useEffect(() => {
-    setOpen(false)
-  }, [pathname])
 
   const handleDarkModeChange = (checked: boolean) => {
     setTheme(checked ? "dark" : "light")
