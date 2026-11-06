@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish Context Menu as `@nk/context-menu` (Base UI — right click / long press, items, checkboxes, radios, submenus)
 - Publish Alert Dialog as `@nk/alert-dialog` (Base UI — confirm / destructive / nested in Dialog)
 - Publish Date Picker as `@nk/date-picker` (Popover + Calendar — single / range / input / time / presets / natural language)
 - Publish Calendar as `@nk/calendar` (react-day-picker — single / multiple / range)

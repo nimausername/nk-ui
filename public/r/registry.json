@@ -318,6 +318,40 @@
       }
     },
     {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Pointer menu on Base UI — right click or long press, items, groups, checkboxes, radios, and submenus.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@nk/utils"],
+      "files": [
+        {
+          "path": "components/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "accent": "#f4f4f4",
+          "accent-foreground": "#000000",
+          "destructive": "#dc2626"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "accent": "#171717",
+          "accent-foreground": "#ffffff",
+          "destructive": "#ef4444"
+        }
+      }
+    },
+    {
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "Dropdown Menu",
