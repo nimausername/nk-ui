@@ -83,14 +83,14 @@ const CalendarPreviews = () => {
             <code className="rounded bg-muted px-1 text-xs">1ش</code>)
           </li>
           <li>
-            Date field chrome → compose with{" "}
+            Date field chrome →{" "}
             <a
-              href="/docs/components/popover"
+              href="/docs/composites/date-picker"
               className="underline-offset-4 hover:underline"
             >
-              Popover
+              Date Picker
             </a>{" "}
-            (Date Picker next)
+            (Popover + Calendar)
           </li>
         </ul>
       </section>

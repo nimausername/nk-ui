@@ -293,6 +293,12 @@ export const compositeItems: readonly DocsNavItem[] = [
       "Input with copy affordance — toast, silent, editable, token, and onCopied patterns.",
   },
   {
+    title: "Date Picker",
+    href: "/docs/composites/date-picker",
+    description:
+      "Date fields on Popover + Calendar — single, range, input, time, presets, natural language.",
+  },
+  {
     title: "Password Input",
     href: "/docs/composites/password-input",
     description: "Password field with show / hide toggle on top of Input and Button.",
