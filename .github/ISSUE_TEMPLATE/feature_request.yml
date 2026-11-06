@@ -1,0 +1,65 @@
+name: Feature request
+description: Propose a new component, API change, or docs/registry improvement.
+title: "[feat]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Prefer composition over new variants when possible — see [ARCHITECTURE.md](../ARCHITECTURE.md).
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: What kind of change is this?
+      options:
+        - New component / composite
+        - Existing component API or behavior
+        - Docs site
+        - Registry / tooling
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: component
+    attributes:
+      label: Related component or package
+      description: Optional. e.g. `@nk/dialog`, docs nav, registry build
+      placeholder: "@nk/…"
+    validations:
+      required: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do that is hard or impossible today?
+      placeholder: I'm always frustrated when…
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What would you like added or changed? Sketch API or UX if you can.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds, other libraries, or composition approaches you already tried.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Mockups, prior art, RTL/a11y notes, or links.
+    validations:
+      required: false
