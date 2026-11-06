@@ -2,6 +2,7 @@
 
 ## 0.1.0 — unreleased
 
+- Publish Navigation Menu as `@nk/navigation-menu` (Base UI — mega panels, featured / image / CTA layouts, nested inline + portal, delays, align, arrow, controlled value)
 - Publish Menubar as `@nk/menubar` (Base UI Menubar + Dropdown Menu — shadcn-aligned shell, workspace / registry-studio demos, checkboxes, radios, nested flyouts)
 - Publish Hover Card as `@nk/hover-card` (Base UI Preview Card — links, media, profiles, placement, timestamps, release notes, multi-trigger, in Dialog)
 - Publish Context Menu as `@nk/context-menu` (Base UI — right click / long press, items, checkboxes, radios, submenus)
