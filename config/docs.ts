@@ -185,6 +185,12 @@ export const componentItems: readonly DocsNavItem[] = [
       "Application menu bar on Base UI — workspace actions, toggles, radios, nested flyouts, registry patterns.",
   },
   {
+    title: "Navigation Menu",
+    href: "/docs/components/navigation-menu",
+    description:
+      "Site navigation on Base UI — triggered panels, link grids, icons, and controlled open value.",
+  },
+  {
     title: "Number Field",
     href: "/docs/components/number-field",
     description: "Numeric input with steppers and optional scrub — not type=number alone.",

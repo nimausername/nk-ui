@@ -1014,6 +1014,48 @@
       }
     },
     {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "Site navigation on Base UI — triggered panels, link grids, icons, and controlled open value.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "background": "#ffffff",
+          "foreground": "#000000",
+          "ring": "#000000"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "background": "#000000",
+          "foreground": "#ffffff",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll Area",
