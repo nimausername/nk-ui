@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "title": "Hover Card",
+  "description": "Rich hover / focus previews on Base UI Preview Card — links, profiles, placement, and multi-trigger payloads.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/hover-card.tsx",
+      "content": "\"use client\"\n\nimport { PreviewCard as PreviewCardPrimitive } from \"@base-ui/react/preview-card\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the hover card root (open state / handlers / handle).\n */\ntype HoverCardProps<Payload = unknown> = PreviewCardPrimitive.Root.Props<Payload>\n\n/**\n * Groups trigger + content. Does not render its own DOM node.\n * Built on Base UI Preview Card — opens on hover / focus without stealing navigation.\n */\nconst HoverCard = <Payload,>(props: HoverCardProps<Payload>) => {\n  return <PreviewCardPrimitive.Root data-slot=\"hover-card\" {...props} />\n}\n\n/**\n * Creates a handle that links detached triggers to a hover card root.\n */\nconst createHoverCardHandle = PreviewCardPrimitive.createHandle\n\n/**\n * Props for the element that opens the hover card.\n */\ntype HoverCardTriggerProps = PreviewCardPrimitive.Trigger.Props\n\n/**\n * Opens the hover card on hover / focus. Often an `<a>` via `href`, or compose with Button via `render`.\n */\nconst HoverCardTrigger = ({ ...props }: HoverCardTriggerProps) => {\n  return (\n    <PreviewCardPrimitive.Trigger data-slot=\"hover-card-trigger\" {...props} />\n  )\n}\n\n/**\n * Props for the portal that mounts the card.\n */\ntype HoverCardPortalProps = PreviewCardPrimitive.Portal.Props\n\n/**\n * Portals hover card layers into `document.body` (or a custom container).\n */\nconst HoverCardPortal = ({ ...props }: HoverCardPortalProps) => {\n  return (\n    <PreviewCardPrimitive.Portal data-slot=\"hover-card-portal\" {...props} />\n  )\n}\n\ntype HoverCardContentProps = PreviewCardPrimitive.Popup.Props &\n  Pick<\n    PreviewCardPrimitive.Positioner.Props,\n    \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\"\n  > & {\n    /** Renders a caret arrow toward the trigger. Defaults to true. */\n    readonly showArrow?: boolean\n  }\n\n/**\n * Portaled hover card surface. Pass `side` / `align` for placement.\n */\nconst HoverCardContent = ({\n  className,\n  align = \"center\",\n  alignOffset = 0,\n  side = \"bottom\",\n  sideOffset,\n  showArrow = true,\n  children,\n  ...props\n}: HoverCardContentProps) => {\n  const resolvedSideOffset = sideOffset ?? (showArrow ? 8 : 4)\n\n  return (\n    <PreviewCardPrimitive.Portal>\n      <PreviewCardPrimitive.Positioner\n        align={align}\n        alignOffset={alignOffset}\n        side={side}\n        sideOffset={resolvedSideOffset}\n        className=\"isolate z-50\"\n      >\n        <PreviewCardPrimitive.Popup\n          data-slot=\"hover-card-content\"\n          className={cn(\n            \"relative z-50 w-72 origin-(--transform-origin) rounded-lg border border-border bg-popover p-3 text-sm text-popover-foreground shadow-md outline-hidden duration-100\",\n            \"data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n            \"data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95\",\n            className\n          )}\n          {...props}\n        >\n          {showArrow ? (\n            <PreviewCardPrimitive.Arrow\n              data-slot=\"hover-card-arrow\"\n              className={cn(\n                \"z-50 flex\",\n                \"relative block h-1.5 w-3 overflow-clip\",\n                \"data-[side=bottom]:top-[-6px]\",\n                \"data-[side=top]:bottom-[-6px] data-[side=top]:rotate-180\",\n                \"data-[side=left]:right-[-9px] data-[side=left]:rotate-90\",\n                \"data-[side=right]:left-[-9px] data-[side=right]:-rotate-90\",\n                \"data-[side=inline-start]:right-[-9px] data-[side=inline-start]:rotate-90\",\n                \"data-[side=inline-end]:left-[-9px] data-[side=inline-end]:-rotate-90\",\n                \"before:absolute before:bottom-0 before:left-1/2 before:box-border before:content-['']\",\n                \"before:h-[calc(6px*sqrt(2))] before:w-[calc(6px*sqrt(2))]\",\n                \"before:border before:border-border before:bg-popover\",\n                \"before:[transform:translate(-50%,50%)_rotate(45deg)]\"\n              )}\n            />\n          ) : null}\n          {children}\n        </PreviewCardPrimitive.Popup>\n      </PreviewCardPrimitive.Positioner>\n    </PreviewCardPrimitive.Portal>\n  )\n}\n\n/**\n * Props for the positioning / scroll viewport used with animated payload swaps.\n */\ntype HoverCardViewportProps = PreviewCardPrimitive.Viewport.Props\n\n/**\n * Viewport for animated content swaps when using multiple triggers / payloads.\n */\nconst HoverCardViewport = ({\n  className,\n  ...props\n}: HoverCardViewportProps) => {\n  return (\n    <PreviewCardPrimitive.Viewport\n      data-slot=\"hover-card-viewport\"\n      className={cn(\"relative h-(--popup-height,auto) w-full overflow-hidden\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Top stack for title + description (and optional leading media).\n */\nconst HoverCardHeader = ({ className, ...props }: ComponentProps<\"div\">) => {\n  return (\n    <div\n      data-slot=\"hover-card-header\"\n      className={cn(\"flex flex-col gap-1\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Title line inside the hover card body.\n */\nconst HoverCardTitle = ({ className, ...props }: ComponentProps<\"div\">) => {\n  return (\n    <div\n      data-slot=\"hover-card-title\"\n      className={cn(\"text-sm font-semibold tracking-tight\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Supporting copy under the title.\n */\nconst HoverCardDescription = ({\n  className,\n  ...props\n}: ComponentProps<\"p\">) => {\n  return (\n    <p\n      data-slot=\"hover-card-description\"\n      className={cn(\"text-sm text-muted-foreground text-pretty\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardDescription,\n  HoverCardHeader,\n  HoverCardPortal,\n  HoverCardTitle,\n  HoverCardTrigger,\n  HoverCardViewport,\n  createHoverCardHandle,\n}\nexport type {\n  HoverCardContentProps,\n  HoverCardPortalProps,\n  HoverCardProps,\n  HoverCardTriggerProps,\n  HoverCardViewportProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "popover": "#ffffff",
+      "popover-foreground": "#000000",
+      "muted-foreground": "#525252",
+      "border": "#e5e5e5",
+      "background": "#ffffff",
+      "foreground": "#000000"
+    },
+    "dark": {
+      "popover": "#0a0a0a",
+      "popover-foreground": "#ffffff",
+      "muted-foreground": "#a3a3a3",
+      "border": "#262626",
+      "background": "#000000",
+      "foreground": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}

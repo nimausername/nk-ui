@@ -933,6 +933,43 @@
       ]
     },
     {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "Rich hover / focus previews on Base UI Preview Card — links, profiles, placement, and multi-trigger payloads.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "background": "#ffffff",
+          "foreground": "#000000"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "background": "#000000",
+          "foreground": "#ffffff"
+        }
+      }
+    },
+    {
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll Area",

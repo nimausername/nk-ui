@@ -163,6 +163,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "WebGL gradient field as animated ASCII glyphs — shapes, grain, pointer scramble.",
   },
   {
+    title: "Hover Card",
+    href: "/docs/components/hover-card",
+    description:
+      "Rich hover / focus previews on Base UI — links, profiles, placement, and multi-trigger payloads.",
+  },
+  {
     title: "Input",
     href: "/docs/components/input",
     description: "Accessible text input on Base UI. Pair with Field for labeled forms.",
