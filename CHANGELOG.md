@@ -1,12 +1,20 @@
 # Changelog
 
-## 0.1.0 — unreleased
+## 0.1.0
 
 - Publish Navigation Menu as `@nk/navigation-menu` (Base UI — mega panels, featured / image / CTA layouts, nested inline + portal, delays, align, arrow, controlled value)
 - Publish Menubar as `@nk/menubar` (Base UI Menubar + Dropdown Menu — shadcn-aligned shell, workspace / registry-studio demos, checkboxes, radios, nested flyouts)
 - Publish Hover Card as `@nk/hover-card` (Base UI Preview Card — links, media, profiles, placement, timestamps, release notes, multi-trigger, in Dialog)
 - Publish Context Menu as `@nk/context-menu` (Base UI — right click / long press, items, checkboxes, radios, submenus)
+- Publish Dropdown Menu as `@nk/dropdown-menu` (Base UI Menu — items, groups, checkboxes, radios, shortcuts, submenus)
 - Publish Alert Dialog as `@nk/alert-dialog` (Base UI — confirm / destructive / nested in Dialog)
+- Publish Sheet as `@nk/sheet` (Base UI Dialog edge panels — sides, size, header, body, footer, close)
+- Publish Toast as `@nk/toast` (Base UI — mount Toaster once, `toast.add` anywhere; types, actions, promise, stacking)
+- Publish Tooltip as `@nk/tooltip` (Base UI — hover/focus hints; provider, sides, invert/outline, optional arrow)
+- Publish Popover as `@nk/popover` (Base UI — anchored non-modal surface; trigger, content, header, footer, close, arrow)
+- Publish Copy Field as `@nk/copy-field` (Composites — Input + copy affordance; toast, silent, editable, onCopied)
+- Publish GlyphFlux as `@nk/glyph-flux` (WebGL gradient field as animated ASCII glyphs — shapes, grain, pointer scramble)
+- Publish Animated Counter as `@nk/animated-counter` (digit-wheel display with mask fades; docs page pending)
 - Publish Date Picker as `@nk/date-picker` (Popover + Calendar — single / range / input / time / presets / natural language)
 - Publish Calendar as `@nk/calendar` (react-day-picker — single / multiple / range)
 - Publish Combobox as `@nk/combobox` (filterable select — clear, groups, multi chips)
