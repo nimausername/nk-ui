@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
 type DocsLastUpdatedProps = {
@@ -24,16 +25,26 @@ const formatDocsDate = (date: string) => {
 }
 
 /**
- * Muted “Last updated” line for docs headers. Shared site UI — not registry.
+ * Muted kit version + “Last updated” line for docs headers.
+ * Shared site UI — not registry.
  */
 const DocsLastUpdated = ({ date, className }: DocsLastUpdatedProps) => {
   const label = formatDocsDate(date)
+  const versionLabel = `v${siteConfig.version}`
 
   return (
     <p
       className={cn("text-sm text-muted-foreground", className)}
       data-slot="docs-last-updated"
     >
+      <a
+        href={siteConfig.links.release}
+        className="underline-offset-4 hover:underline"
+        aria-label={`nk ${versionLabel} release notes`}
+      >
+        {versionLabel}
+      </a>
+      <span aria-hidden="true"> · </span>
       Last updated{" "}
       <time dateTime={date} className="text-muted-foreground">
         {label}

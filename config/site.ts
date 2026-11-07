@@ -1,10 +1,18 @@
+import packageJson from "../package.json"
+
 /**
  * Public site identity for docs links, metadata, GitHub, and AI prompts.
  */
 
+const githubUrl = "https://github.com/nimausername/nk-ui"
+
 export const siteConfig = {
   name: "nk",
   url: "https://ui.nimakhabbazi.com",
+  /**
+   * Kit semver — keep in sync with `package.json` / git tags / GitHub Releases.
+   */
+  version: packageJson.version,
   /** Document / social title (browser tab, OG, Twitter). */
   title: "nk — UI you own",
   /**
@@ -25,6 +33,8 @@ export const siteConfig = {
     repo: "nk-ui",
   },
   links: {
-    github: "https://github.com/nimausername/nk-ui",
+    github: githubUrl,
+    /** Current kit release notes on GitHub. */
+    release: `${githubUrl}/releases/tag/v${packageJson.version}`,
   },
 } as const
