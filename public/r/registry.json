@@ -272,6 +272,45 @@
       }
     },
     {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Filterable command menu on cmdk — inline lists or a Dialog palette with groups, shortcuts, and empty state.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/dialog",
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "popover": "#ffffff",
+          "popover-foreground": "#000000",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "foreground": "#000000"
+        },
+        "dark": {
+          "popover": "#0a0a0a",
+          "popover-foreground": "#ffffff",
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "foreground": "#ffffff"
+        }
+      }
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",

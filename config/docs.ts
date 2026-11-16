@@ -68,6 +68,12 @@ export const componentItems: readonly DocsNavItem[] = [
       "Modal confirmation on Base UI — requires an explicit cancel or continue response.",
   },
   {
+    title: "Animated Counter",
+    href: "/docs/components/animated-counter",
+    description:
+      "Digit-wheel number display with soft mask fades — live values, stats, and KPIs.",
+  },
+  {
     title: "Aspect Ratio",
     href: "/docs/components/aspect-ratio",
     description:
@@ -127,6 +133,12 @@ export const componentItems: readonly DocsNavItem[] = [
     href: "/docs/components/combobox",
     description:
       "Searchable select on Base UI — filterable input, list, clear, groups, chips.",
+  },
+  {
+    title: "Command",
+    href: "/docs/components/command",
+    description:
+      "Filterable command menu on cmdk — palettes, Popover pickers, groups, shortcuts, keywords, loading, empty.",
   },
   {
     title: "Context Menu",
