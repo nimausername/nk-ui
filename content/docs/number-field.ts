@@ -66,7 +66,7 @@ Use \`Form\` + Field \`validate\` for failed / approved chrome (demo accepts \`1
 - Built on Base UI (\`@base-ui/react/number-field\`).
 - Themes with nk Input tokens (\`input\`, \`ring\`, \`accent\`, \`destructive\`, \`success\`).
 - Pair with [\`Field\`](/docs/components/field) for labels and errors.
-- Stepped changes roll each digit on a wheel (\`AnimatedCounter\`) with soft top/bottom fades. Typing uses the native input. Honors \`prefers-reduced-motion\`.
+- Stepped changes roll each digit on a wheel ([\`AnimatedCounter\`](/docs/components/animated-counter)) with soft top/bottom fades. Typing uses the native input. Honors \`prefers-reduced-motion\`.
 - For plain text / email / file, use [\`Input\`](/docs/components/input).
 - Live previews (quantity, currency, failed & approved, scrub, disabled, RTL) are on the docs page.
 `

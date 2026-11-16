@@ -2,6 +2,7 @@
 
 ## 0.1.0
 
+- Publish Command as `@nk/command` (cmdk — Dialog palette, inline, Popover picker, groups, shortcuts, keywords, disabled, scrollable, loading, empty, controlled; RTL-safe shortcut alignment)
 - Publish Navigation Menu as `@nk/navigation-menu` (Base UI — mega panels, featured / image / CTA layouts, nested inline + portal, delays, align, arrow, controlled value)
 - Publish Menubar as `@nk/menubar` (Base UI Menubar + Dropdown Menu — shadcn-aligned shell, workspace / registry-studio demos, checkboxes, radios, nested flyouts)
 - Publish Hover Card as `@nk/hover-card` (Base UI Preview Card — links, media, profiles, placement, timestamps, release notes, multi-trigger, in Dialog)
@@ -14,7 +15,7 @@
 - Publish Popover as `@nk/popover` (Base UI — anchored non-modal surface; trigger, content, header, footer, close, arrow)
 - Publish Copy Field as `@nk/copy-field` (Composites — Input + copy affordance; toast, silent, editable, onCopied)
 - Publish GlyphFlux as `@nk/glyph-flux` (WebGL gradient field as animated ASCII glyphs — shapes, grain, pointer scramble)
-- Publish Animated Counter as `@nk/animated-counter` (digit-wheel display with mask fades; docs page pending)
+- Publish Animated Counter as `@nk/animated-counter` (digit-wheel display with mask fades; docs page)
 - Publish Date Picker as `@nk/date-picker` (Popover + Calendar — single / range / input / time / presets / natural language)
 - Publish Calendar as `@nk/calendar` (react-day-picker — single / multiple / range)
 - Publish Combobox as `@nk/combobox` (filterable select — clear, groups, multi chips)
