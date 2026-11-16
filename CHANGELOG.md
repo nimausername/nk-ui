@@ -2,6 +2,7 @@
 
 ## 0.1.0
 
+- Publish Empty as `@nk/empty` (composable empty state — media, title, description, actions; unDraw illustrations + free Lottie demo)
 - Publish Command as `@nk/command` (cmdk — Dialog palette, inline, Popover picker, groups, shortcuts, keywords, disabled, scrollable, loading, empty, controlled; RTL-safe shortcut alignment)
 - Publish Navigation Menu as `@nk/navigation-menu` (Base UI — mega panels, featured / image / CTA layouts, nested inline + portal, delays, align, arrow, controlled value)
 - Publish Menubar as `@nk/menubar` (Base UI Menubar + Dropdown Menu — shadcn-aligned shell, workspace / registry-studio demos, checkboxes, radios, nested flyouts)

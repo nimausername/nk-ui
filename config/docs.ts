@@ -158,6 +158,12 @@ export const componentItems: readonly DocsNavItem[] = [
       "Action menus on Base UI Menu — items, links, icons, checkboxes, radios, shortcuts, submenus.",
   },
   {
+    title: "Empty",
+    href: "/docs/components/empty",
+    description:
+      "Composable empty state — media, title, description, and actions for zero-data screens.",
+  },
+  {
     title: "Field",
     href: "/docs/components/field",
     description:
