@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "title": "Empty",
+  "description": "Composable empty state — media, title, description, and actions for zero-data screens.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/empty.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the empty-state root.\n */\ntype EmptyProps = ComponentProps<\"div\">\n\n/**\n * Centered empty-state shell — compose Media / Header / Title / Description / Content.\n * Add `border` for a dashed outline (default border style is dashed).\n */\nconst Empty = ({ className, ...props }: EmptyProps) => {\n  return (\n    <div\n      data-slot=\"empty\"\n      className={cn(\n        \"flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-xl border-dashed p-6 text-center text-balance\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the empty header cluster.\n */\ntype EmptyHeaderProps = ComponentProps<\"div\">\n\n/**\n * Groups media + title + description above actions.\n */\nconst EmptyHeader = ({ className, ...props }: EmptyHeaderProps) => {\n  return (\n    <div\n      data-slot=\"empty-header\"\n      className={cn(\"flex max-w-sm flex-col items-center gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Visual variants for empty media (icon tile vs raw illustration).\n */\nconst emptyMediaVariants = cva(\n  \"mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-transparent\",\n        icon: \"flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-4\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\ntype EmptyMediaVariantProps = VariantProps<typeof emptyMediaVariants>\n\n/**\n * Props for empty media (icon tile or illustration).\n */\ntype EmptyMediaProps = ComponentProps<\"div\"> & EmptyMediaVariantProps\n\n/**\n * Leading visual — `variant=\"icon\"` wraps a glyph in a muted tile; default is bare.\n */\nconst EmptyMedia = ({\n  className,\n  variant = \"default\",\n  ...props\n}: EmptyMediaProps) => {\n  return (\n    <div\n      data-slot=\"empty-media\"\n      data-variant={variant}\n      className={cn(emptyMediaVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the empty title.\n */\ntype EmptyTitleProps = ComponentProps<\"div\">\n\n/**\n * Short heading for the empty state.\n */\nconst EmptyTitle = ({ className, ...props }: EmptyTitleProps) => {\n  return (\n    <div\n      data-slot=\"empty-title\"\n      className={cn(\"text-sm font-medium tracking-tight\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the empty description.\n */\ntype EmptyDescriptionProps = ComponentProps<\"div\">\n\n/**\n * Supporting copy under the title. Links inherit underline styles.\n */\nconst EmptyDescription = ({ className, ...props }: EmptyDescriptionProps) => {\n  return (\n    <div\n      data-slot=\"empty-description\"\n      className={cn(\n        \"text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the empty content / actions row.\n */\ntype EmptyContentProps = ComponentProps<\"div\">\n\n/**\n * Actions and extra controls under the header (buttons, search, links).\n */\nconst EmptyContent = ({ className, ...props }: EmptyContentProps) => {\n  return (\n    <div\n      data-slot=\"empty-content\"\n      className={cn(\n        \"flex w-full max-w-sm min-w-0 flex-col items-center gap-2.5 text-sm text-balance\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n  emptyMediaVariants,\n}\nexport type {\n  EmptyContentProps,\n  EmptyDescriptionProps,\n  EmptyHeaderProps,\n  EmptyMediaProps,\n  EmptyProps,\n  EmptyTitleProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "muted": "#f4f4f4",
+      "muted-foreground": "#525252",
+      "border": "#e5e5e5",
+      "foreground": "#000000",
+      "primary": "#000000"
+    },
+    "dark": {
+      "muted": "#171717",
+      "muted-foreground": "#a3a3a3",
+      "border": "#262626",
+      "foreground": "#ffffff",
+      "primary": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}

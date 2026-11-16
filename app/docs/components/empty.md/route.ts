@@ -1,0 +1,13 @@
+import { emptyDocsMarkdown } from "@/content/docs/empty"
+
+/**
+ * Raw Empty docs markdown for AI tools and “View as Markdown”.
+ */
+export const GET = () => {
+  return new Response(emptyDocsMarkdown, {
+    headers: {
+      "Content-Type": "text/markdown; charset=utf-8",
+      "Cache-Control": "public, max-age=3600",
+    },
+  })
+}
