@@ -2,6 +2,7 @@
 
 ## 0.1.0
 
+- Publish Button Group as `@nk/button-group` (joined buttons and fields — rows, stacks, labels, separators; logical corners for RTL)
 - Publish Kbd as `@nk/kbd` (keycaps and chords — buttons, tooltips, command shortcuts)
 - Publish Spinner as `@nk/spinner` (loader glyphs, sizes, colors, buttons, badges, input, empty, overlays)
 - Publish Empty as `@nk/empty` (composable empty state — media, title, description, actions; unDraw illustrations + free Lottie demo)
