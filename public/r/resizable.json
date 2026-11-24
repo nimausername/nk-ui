@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable",
+  "title": "Resizable",
+  "description": "Drag to resize panels — horizontal, vertical, and nested. The first panel stays at the start in RTL.",
+  "dependencies": [
+    "lucide-react",
+    "react-resizable-panels"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/resizable.tsx",
+      "content": "\"use client\"\n\nimport { GripVertical } from \"lucide-react\"\nimport type { ComponentProps } from \"react\"\nimport { Group, Panel, Separator } from \"react-resizable-panels\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for a set of panels that share one axis.\n */\ntype ResizablePanelGroupProps = ComponentProps<typeof Group>\n\n/**\n * A row or column of panels divided by drag handles.\n *\n * Horizontal groups follow the writing direction, so the first panel stays at the start in RTL.\n */\nconst ResizablePanelGroup = ({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: ResizablePanelGroupProps) => {\n  return (\n    <Group\n      orientation={orientation}\n      data-slot=\"resizable-panel-group\"\n      data-orientation={orientation}\n      className={cn(\"h-full w-full\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for one pane inside a group.\n */\ntype ResizablePanelProps = ComponentProps<typeof Panel>\n\n/**\n * One pane. Size props accept percentages as strings, such as `\"50%\"`.\n */\nconst ResizablePanel = ({ className, ...props }: ResizablePanelProps) => {\n  return (\n    <Panel\n      data-slot=\"resizable-panel\"\n      className={cn(\"min-h-0 min-w-0\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the drag handle between panes.\n */\ntype ResizableHandleProps = ComponentProps<typeof Separator> & {\n  /** Show a grip so the divider is easier to find. */\n  readonly withHandle?: boolean\n}\n\n/**\n * The divider between panes. Keyboard focus uses the same ring as other nk controls.\n */\nconst ResizableHandle = ({\n  className,\n  withHandle = false,\n  ...props\n}: ResizableHandleProps) => {\n  return (\n    <Separator\n      data-slot=\"resizable-handle\"\n      className={cn(\n        \"relative flex items-center justify-center bg-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\",\n        \"aria-[orientation=vertical]:w-px aria-[orientation=vertical]:after:absolute aria-[orientation=vertical]:after:inset-y-0 aria-[orientation=vertical]:after:start-1/2 aria-[orientation=vertical]:after:w-1 aria-[orientation=vertical]:after:-translate-x-1/2\",\n        \"aria-[orientation=horizontal]:h-px aria-[orientation=horizontal]:w-full aria-[orientation=horizontal]:after:absolute aria-[orientation=horizontal]:after:inset-x-0 aria-[orientation=horizontal]:after:top-1/2 aria-[orientation=horizontal]:after:h-1 aria-[orientation=horizontal]:after:-translate-y-1/2\",\n        \"aria-[orientation=horizontal]:[&>div]:rotate-90\",\n        className\n      )}\n      {...props}\n    >\n      {withHandle ? (\n        <div className=\"z-10 flex h-4 w-3 items-center justify-center rounded-sm border border-border bg-background\">\n          <GripVertical className=\"size-2.5\" aria-hidden=\"true\" />\n        </div>\n      ) : null}\n    </Separator>\n  )\n}\n\nexport { ResizableHandle, ResizablePanel, ResizablePanelGroup }\nexport type { ResizableHandleProps, ResizablePanelGroupProps, ResizablePanelProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "background": "#ffffff",
+      "border": "#e5e5e5",
+      "ring": "#000000"
+    },
+    "dark": {
+      "background": "#000000",
+      "border": "#262626",
+      "ring": "#ffffff"
+    }
+  },
+  "type": "registry:ui"
+}
