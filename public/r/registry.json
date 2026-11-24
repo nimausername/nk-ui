@@ -845,6 +845,38 @@
       }
     },
     {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Drag to resize panels — horizontal, vertical, and nested. The first panel stays at the start in RTL.",
+      "dependencies": [
+        "lucide-react",
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "background": "#ffffff",
+          "border": "#e5e5e5",
+          "ring": "#000000"
+        },
+        "dark": {
+          "background": "#000000",
+          "border": "#262626",
+          "ring": "#ffffff"
+        }
+      }
+    },
+    {
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",

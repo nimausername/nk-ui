@@ -259,6 +259,11 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Mutually exclusive options — small choice sets with Field validation.",
   },
   {
+    title: "Resizable",
+    href: "/docs/components/resizable",
+    description: "Drag to resize panels — side by side, stacked, and nested.",
+  },
+  {
     title: "Scroll Area",
     href: "/docs/components/scroll-area",
     description:
