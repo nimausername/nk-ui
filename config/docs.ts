@@ -106,6 +106,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Accessible actions built on Base UI.",
   },
   {
+    title: "Button Group",
+    href: "/docs/components/button-group",
+    description:
+      "Joined buttons and fields — rows, stacks, labels, separators, and split actions.",
+  },
+  {
     title: "Calendar",
     href: "/docs/components/calendar",
     description:

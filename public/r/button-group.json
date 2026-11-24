@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "title": "Button Group",
+  "description": "Joined buttons and fields — rows, stacks, labels, and separators. Logical corners for RTL.",
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@nk/utils",
+    "@nk/separator"
+  ],
+  "files": [
+    {
+      "path": "components/ui/button-group.tsx",
+      "content": "\"use client\"\n\nimport { Slot } from \"@radix-ui/react-slot\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport type { ComponentProps } from \"react\"\n\nimport { Separator } from \"@/components/ui/separator\"\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Joined edges for a row or stack of controls.\n *\n * Horizontal joins use logical start/end so RTL layouts share the same markup.\n */\nconst buttonGroupVariants = cva(\n  \"flex w-fit items-stretch has-[>[data-slot=button-group]]:gap-2 [&>*]:relative [&>*]:focus-visible:z-10 [&>input:not([type=hidden])]:min-w-0 [&>input:not([type=hidden])]:w-auto [&>input:not([type=hidden])]:flex-1 [&>[data-slot=select-trigger]]:w-fit\",\n  {\n    variants: {\n      orientation: {\n        horizontal:\n          \"[&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child)]:border-s-0 [&>*:not(:last-child)]:rounded-e-none\",\n        vertical:\n          \"flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none\",\n      },\n    },\n    defaultVariants: {\n      orientation: \"horizontal\",\n    },\n  }\n)\n\n/**\n * Props for a group of joined controls.\n */\ntype ButtonGroupProps = ComponentProps<\"div\"> &\n  VariantProps<typeof buttonGroupVariants>\n\n/**\n * Joins buttons, inputs, and labels into one control.\n *\n * Direct children share a border. Nest another `ButtonGroup` to leave a gap between clusters.\n */\nconst ButtonGroup = ({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: ButtonGroupProps) => {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"button-group\"\n      data-orientation={orientation}\n      className={cn(buttonGroupVariants({ orientation }), className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for a non-interactive label inside a group.\n */\ntype ButtonGroupTextProps = ComponentProps<\"div\"> & {\n  /** Render the single child instead of a div. */\n  readonly asChild?: boolean\n}\n\n/**\n * Static label or prefix inside a group. Use `asChild` for a custom element.\n */\nconst ButtonGroupText = ({\n  className,\n  asChild = false,\n  ...props\n}: ButtonGroupTextProps) => {\n  const Comp = asChild ? Slot : \"div\"\n\n  return (\n    <Comp\n      data-slot=\"button-group-text\"\n      className={cn(\n        \"flex items-center gap-2 rounded-md border border-border bg-muted px-3 text-sm font-medium text-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the divider between controls in a group.\n */\ntype ButtonGroupSeparatorProps = ComponentProps<typeof Separator>\n\n/**\n * Divider between joined controls. Vertical when the group is a row.\n */\nconst ButtonGroupSeparator = ({\n  className,\n  orientation = \"vertical\",\n  ...props\n}: ButtonGroupSeparatorProps) => {\n  return (\n    <Separator\n      data-slot=\"button-group-separator\"\n      orientation={orientation}\n      className={cn(\n        \"relative m-0 self-stretch bg-input data-[orientation=vertical]:h-auto\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  ButtonGroup,\n  ButtonGroupSeparator,\n  ButtonGroupText,\n  buttonGroupVariants,\n}\nexport type { ButtonGroupProps, ButtonGroupSeparatorProps, ButtonGroupTextProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "muted": "#f4f4f4",
+      "foreground": "#000000",
+      "border": "#e5e5e5",
+      "input": "#e5e5e5"
+    },
+    "dark": {
+      "muted": "#171717",
+      "foreground": "#ffffff",
+      "border": "#262626",
+      "input": "#262626"
+    }
+  },
+  "type": "registry:ui"
+}

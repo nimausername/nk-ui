@@ -99,6 +99,41 @@
       }
     },
     {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "description": "Joined buttons and fields — rows, stacks, labels, and separators. Logical corners for RTL.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@nk/utils",
+        "@nk/separator"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "muted": "#f4f4f4",
+          "foreground": "#000000",
+          "border": "#e5e5e5",
+          "input": "#e5e5e5"
+        },
+        "dark": {
+          "muted": "#171717",
+          "foreground": "#ffffff",
+          "border": "#262626",
+          "input": "#262626"
+        }
+      }
+    },
+    {
       "name": "calendar",
       "type": "registry:ui",
       "title": "Calendar",
