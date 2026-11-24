@@ -592,6 +592,32 @@
       }
     },
     {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keyboard keycap for shortcuts — single keys and chords.",
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "muted": "#f4f4f4",
+          "muted-foreground": "#525252"
+        },
+        "dark": {
+          "muted": "#171717",
+          "muted-foreground": "#a3a3a3"
+        }
+      }
+    },
+    {
       "name": "animated-counter",
       "type": "registry:ui",
       "title": "Animated Counter",
