@@ -587,6 +587,48 @@
       }
     },
     {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "A field with a prefix, suffix, icon, or button inside the border. Logical padding for RTL.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@nk/utils",
+        "@nk/button",
+        "@nk/input",
+        "@nk/textarea"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "radius": "0.5rem",
+          "foreground": "#000000",
+          "muted-foreground": "#525252",
+          "border": "#e5e5e5",
+          "input": "#e5e5e5",
+          "ring": "#000000",
+          "destructive": "#dc2626",
+          "success": "#16a34a"
+        },
+        "dark": {
+          "foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3",
+          "border": "#262626",
+          "input": "#262626",
+          "ring": "#ffffff",
+          "destructive": "#ef4444",
+          "success": "#22c55e"
+        }
+      }
+    },
+    {
       "name": "input-otp",
       "type": "registry:ui",
       "title": "Input OTP",

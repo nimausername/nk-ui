@@ -1,0 +1,44 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "title": "Input Group",
+  "description": "A field with a prefix, suffix, icon, or button inside the border. Logical padding for RTL.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@nk/utils",
+    "@nk/button",
+    "@nk/input",
+    "@nk/textarea"
+  ],
+  "files": [
+    {
+      "path": "components/ui/input-group.tsx",
+      "content": "\"use client\"\n\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport type { ComponentProps, MouseEvent } from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { Input } from \"@/components/ui/input\"\nimport { Textarea } from \"@/components/ui/textarea\"\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Props for the field that wraps an input and its addons.\n */\ntype InputGroupProps = ComponentProps<\"div\">\n\n/**\n * One field with a prefix, suffix, icon, or button inside the border.\n *\n * Padding uses logical start and end, so the same markup works in RTL.\n */\nconst InputGroup = ({ className, ...props }: InputGroupProps) => {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"input-group\"\n      className={cn(\n        \"group/input-group relative flex h-9 w-full min-w-0 items-center rounded-md border border-input bg-transparent text-sm transition-colors outline-none\",\n        \"has-[textarea]:h-auto has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col\",\n        \"has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-2 has-[[data-slot=input-group-control]:focus-visible]:ring-ring has-[[data-slot=input-group-control]:focus-visible]:ring-offset-2 has-[[data-slot=input-group-control]:focus-visible]:ring-offset-background\",\n        \"has-[[data-slot=input-group-control][aria-invalid=true]]:border-destructive has-[[data-slot=input-group-control][aria-invalid=true]]:ring-2 has-[[data-slot=input-group-control][aria-invalid=true]]:ring-destructive/30\",\n        \"has-[[data-slot=input-group-control][data-invalid]]:border-destructive has-[[data-slot=input-group-control][data-invalid]]:ring-2 has-[[data-slot=input-group-control][data-invalid]]:ring-destructive/30\",\n        \"has-[[data-slot=input-group-control][data-valid]]:border-success has-[[data-slot=input-group-control][data-valid]]:ring-2 has-[[data-slot=input-group-control][data-valid]]:ring-success/30\",\n        \"has-[[data-slot=input-group-control]:disabled]:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nconst inputGroupAddonVariants = cva(\n  \"flex cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium text-muted-foreground select-none group-has-[[data-slot=input-group-control]:disabled]/input-group:opacity-50 [&_svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      align: {\n        \"inline-start\":\n          \"order-first ps-3 has-[>button]:-ms-1 has-[>kbd]:-ms-1\",\n        \"inline-end\": \"order-last pe-3 has-[>button]:-me-1 has-[>kbd]:-me-1\",\n        \"block-start\":\n          \"order-first w-full justify-start px-3 pt-2 [.border-b]:pb-2\",\n        \"block-end\": \"order-last w-full justify-start px-3 pb-2 [.border-t]:pt-2\",\n      },\n    },\n    defaultVariants: {\n      align: \"inline-start\",\n    },\n  }\n)\n\n/**\n * Props for a prefix or suffix inside the field.\n */\ntype InputGroupAddonProps = ComponentProps<\"div\"> &\n  VariantProps<typeof inputGroupAddonVariants>\n\n/**\n * Prefix, suffix, or a row above or below the text.\n *\n * Clicking the addon focuses the field unless the click landed on a button or link.\n */\nconst InputGroupAddon = ({\n  className,\n  align = \"inline-start\",\n  onClick,\n  ...props\n}: InputGroupAddonProps) => {\n  const handleClick = (event: MouseEvent<HTMLDivElement>) => {\n    onClick?.(event)\n    if (event.defaultPrevented) {\n      return\n    }\n    if (!(event.target instanceof Element)) {\n      return\n    }\n    if (event.target.closest(\"button, a, input, textarea\")) {\n      return\n    }\n    const control = event.currentTarget.parentElement?.querySelector<HTMLElement>(\n      \"[data-slot=input-group-control]\"\n    )\n    control?.focus()\n  }\n\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"input-group-addon\"\n      data-align={align}\n      className={cn(inputGroupAddonVariants({ align }), className)}\n      onClick={handleClick}\n      {...props}\n    />\n  )\n}\n\nconst inputGroupButtonVariants = cva(\"shadow-none\", {\n  variants: {\n    size: {\n      xs: \"h-6 gap-1 rounded-md px-2 text-xs\",\n      sm: \"h-8 gap-1.5 px-2.5\",\n      \"icon-xs\": \"size-6 p-0\",\n      \"icon-sm\": \"size-8 p-0\",\n    },\n  },\n  defaultVariants: {\n    size: \"xs\",\n  },\n})\n\n/**\n * Props for a button that sits inside an addon.\n */\ntype InputGroupButtonProps = Omit<ComponentProps<typeof Button>, \"size\"> &\n  VariantProps<typeof inputGroupButtonVariants>\n\n/**\n * Button sized to sit inside the field. Defaults to a small ghost button.\n */\nconst InputGroupButton = ({\n  className,\n  type = \"button\",\n  variant = \"ghost\",\n  size = \"xs\",\n  ...props\n}: InputGroupButtonProps) => {\n  return (\n    <Button\n      type={type}\n      variant={variant}\n      size={size === \"icon-xs\" || size === \"icon-sm\" ? \"icon-sm\" : \"sm\"}\n      data-slot=\"input-group-button\"\n      data-size={size}\n      className={cn(inputGroupButtonVariants({ size }), className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for static addon text.\n */\ntype InputGroupTextProps = ComponentProps<\"span\">\n\n/**\n * Static text inside an addon, such as `https://` or a currency code.\n */\nconst InputGroupText = ({ className, ...props }: InputGroupTextProps) => {\n  return (\n    <span\n      data-slot=\"input-group-text\"\n      className={cn(\n        \"flex items-center gap-2 text-sm text-muted-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nconst controlClassName =\n  \"min-w-0 flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:border-transparent focus-visible:ring-0 focus-visible:ring-offset-0 aria-invalid:border-0 aria-invalid:ring-0 data-invalid:border-0 data-invalid:ring-0 data-valid:border-0 data-valid:ring-0\"\n\n/**\n * Props for the text control inside the group.\n */\ntype InputGroupInputProps = ComponentProps<typeof Input>\n\n/**\n * The text control. The group draws the border and the focus ring.\n */\nconst InputGroupInput = ({ className, ...props }: InputGroupInputProps) => {\n  return (\n    <Input\n      data-slot=\"input-group-control\"\n      className={cn(controlClassName, \"h-auto px-3 py-1\", className)}\n      {...props}\n    />\n  )\n}\n\n/**\n * Props for the multi-line control inside the group.\n */\ntype InputGroupTextareaProps = ComponentProps<typeof Textarea>\n\n/**\n * The multi-line control. Use with `block-start` or `block-end` addons.\n */\nconst InputGroupTextarea = ({ className, ...props }: InputGroupTextareaProps) => {\n  return (\n    <Textarea\n      data-slot=\"input-group-control\"\n      className={cn(controlClassName, \"min-h-20 py-2\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupText,\n  InputGroupTextarea,\n}\nexport type {\n  InputGroupAddonProps,\n  InputGroupButtonProps,\n  InputGroupInputProps,\n  InputGroupProps,\n  InputGroupTextareaProps,\n  InputGroupTextProps,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "radius": "0.5rem",
+      "foreground": "#000000",
+      "muted-foreground": "#525252",
+      "border": "#e5e5e5",
+      "input": "#e5e5e5",
+      "ring": "#000000",
+      "destructive": "#dc2626",
+      "success": "#16a34a"
+    },
+    "dark": {
+      "foreground": "#ffffff",
+      "muted-foreground": "#a3a3a3",
+      "border": "#262626",
+      "input": "#262626",
+      "ring": "#ffffff",
+      "destructive": "#ef4444",
+      "success": "#22c55e"
+    }
+  },
+  "type": "registry:ui"
+}

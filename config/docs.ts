@@ -198,6 +198,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Accessible text input on Base UI. Pair with Field for labeled forms.",
   },
   {
+    title: "Input Group",
+    href: "/docs/components/input-group",
+    description:
+      "A field with a prefix, suffix, icon, or button inside the border.",
+  },
+  {
     title: "Input OTP",
     href: "/docs/components/input-otp",
     description: "One-time verification code slots — paste, mask, grouped 3+3 layouts.",
