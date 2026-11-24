@@ -2,6 +2,7 @@
 
 ## 0.1.0
 
+- Publish Input Group as `@nk/input-group` (prefix, suffix, icon, button, and textarea inside one field; logical padding for RTL)
 - Publish Button Group as `@nk/button-group` (joined buttons and fields — rows, stacks, labels, separators; logical corners for RTL)
 - Publish Kbd as `@nk/kbd` (keycaps and chords — buttons, tooltips, command shortcuts)
 - Publish Spinner as `@nk/spinner` (loader glyphs, sizes, colors, buttons, badges, input, empty, overlays)
