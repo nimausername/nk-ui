@@ -8,7 +8,7 @@ UI you own — with real RTL. Source via the shadcn CLI. Logical CSS so Persian 
 - **Docs:** [ui.nimakhabbazi.com](https://ui.nimakhabbazi.com)
 - **Repo:** [github.com/nimausername/nk-ui](https://github.com/nimausername/nk-ui)
 - **Install:** shadcn-compatible registry `@nk/...` → `https://ui.nimakhabbazi.com/r/{name}.json`
-- **Status:** live docs + registry; kit version **`0.1.0`** — **57** items; see [CHANGELOG.md](./CHANGELOG.md)
+- **Status:** live docs + registry; kit version **`0.1.0`** — **58** items; see [CHANGELOG.md](./CHANGELOG.md)
 - **Versioning:** kit-level semver via git tags / GitHub Releases; consumers own copied source after `shadcn add` — not an npm component package
 
 ## Stack

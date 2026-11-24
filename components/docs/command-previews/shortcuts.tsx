@@ -12,6 +12,7 @@ import {
   CommandList,
   CommandShortcut,
 } from "@/components/ui/command"
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
 
 /**
  * Trailing keyboard hints with logical end alignment.
@@ -25,7 +26,8 @@ const CommandShortcutsPreview = () => {
       <p className="text-sm text-muted-foreground">
         Trailing keyboard hints with logical end alignment (
         <code className="rounded bg-muted px-1 text-xs">CommandShortcut</code>
-        ).
+        ). Keys use{" "}
+        <code className="rounded bg-muted px-1 text-xs">Kbd</code>.
       </p>
       <ComponentPreview
         code={`"use client"
@@ -42,6 +44,7 @@ import {
   CommandList,
   CommandShortcut,
 } from "@/components/ui/command"
+import { Kbd, KbdGroup } from "@/components/ui/kbd"
 
 export function CommandShortcuts() {
   const [open, setOpen] = useState(false)
@@ -58,15 +61,30 @@ export function CommandShortcuts() {
           <CommandGroup heading="Actions">
             <CommandItem onSelect={() => setOpen(false)}>
               New file
-              <CommandShortcut>⌘N</CommandShortcut>
+              <CommandShortcut>
+                <KbdGroup>
+                  <Kbd>⌘</Kbd>
+                  <Kbd>N</Kbd>
+                </KbdGroup>
+              </CommandShortcut>
             </CommandItem>
             <CommandItem onSelect={() => setOpen(false)}>
               Open
-              <CommandShortcut>⌘O</CommandShortcut>
+              <CommandShortcut>
+                <KbdGroup>
+                  <Kbd>⌘</Kbd>
+                  <Kbd>O</Kbd>
+                </KbdGroup>
+              </CommandShortcut>
             </CommandItem>
             <CommandItem onSelect={() => setOpen(false)}>
               Settings
-              <CommandShortcut>⌘,</CommandShortcut>
+              <CommandShortcut>
+                <KbdGroup>
+                  <Kbd>⌘</Kbd>
+                  <Kbd>,</Kbd>
+                </KbdGroup>
+              </CommandShortcut>
             </CommandItem>
           </CommandGroup>
         </CommandList>
@@ -102,15 +120,30 @@ export function CommandShortcuts() {
               >
                 <CommandItem onSelect={() => setOpen(false)}>
                   {direction === "rtl" ? "فایل جدید" : "New file"}
-                  <CommandShortcut>⌘N</CommandShortcut>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>N</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
                 <CommandItem onSelect={() => setOpen(false)}>
                   {direction === "rtl" ? "باز کردن" : "Open"}
-                  <CommandShortcut>⌘O</CommandShortcut>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>O</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
                 <CommandItem onSelect={() => setOpen(false)}>
                   {direction === "rtl" ? "تنظیمات" : "Settings"}
-                  <CommandShortcut>⌘,</CommandShortcut>
+                  <CommandShortcut>
+                    <KbdGroup>
+                      <Kbd>⌘</Kbd>
+                      <Kbd>,</Kbd>
+                    </KbdGroup>
+                  </CommandShortcut>
                 </CommandItem>
               </CommandGroup>
             </CommandList>

@@ -197,6 +197,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "One-time verification code slots — paste, mask, grouped 3+3 layouts.",
   },
   {
+    title: "Kbd",
+    href: "/docs/components/kbd",
+    description:
+      "Keyboard keycaps for shortcuts — single keys, chords, buttons, tooltips, and command rows.",
+  },
+  {
     title: "Menubar",
     href: "/docs/components/menubar",
     description:
