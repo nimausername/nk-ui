@@ -285,6 +285,12 @@ export const componentItems: readonly DocsNavItem[] = [
     description: "Draggable value control on Base UI — label, track, indicator, and thumb.",
   },
   {
+    title: "Spinner",
+    href: "/docs/components/spinner",
+    description:
+      "Indeterminate loading mark — loader glyphs, size, and color via className.",
+  },
+  {
     title: "Switch",
     href: "/docs/components/switch",
     description: "On/off switch with morphing thumb — RTL and reduced-motion aware.",

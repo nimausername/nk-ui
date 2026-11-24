@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Indeterminate loading mark — loader glyphs, size, and color via className.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@nk/utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/spinner.tsx",
+      "content": "import {\n  CircleDashed,\n  Loader,\n  Loader2,\n  LoaderCircle,\n  LoaderPinwheel,\n  RefreshCw,\n  type LucideIcon,\n} from \"lucide-react\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * Lucide glyphs that read as a spinner when they rotate.\n */\nconst spinnerIcons = {\n  loader: Loader,\n  \"loader-2\": Loader2,\n  circle: LoaderCircle,\n  pinwheel: LoaderPinwheel,\n  dashed: CircleDashed,\n  refresh: RefreshCw,\n} as const satisfies Record<string, LucideIcon>\n\n/**\n * Which spinner glyph to draw. Defaults to the open arc (`loader-2`).\n */\ntype SpinnerIcon = keyof typeof spinnerIcons\n\n/**\n * Props for the loading spinner.\n */\ntype SpinnerProps = ComponentProps<typeof Loader2> & {\n  /** Glyph. Size and color still come from `className`. */\n  readonly icon?: SpinnerIcon\n}\n\n/**\n * Indeterminate loading mark. Size and color via `className` (`size-*`, `text-*`).\n * Announces “Loading” unless you pass a different `aria-label`.\n */\nconst Spinner = ({\n  className,\n  icon = \"loader-2\",\n  ...props\n}: SpinnerProps) => {\n  const Icon = spinnerIcons[icon]\n\n  return (\n    <Icon\n      data-slot=\"spinner\"\n      data-icon={icon}\n      role=\"status\"\n      aria-label=\"Loading\"\n      className={cn(\"size-4 animate-spin\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Spinner, spinnerIcons }\nexport type { SpinnerIcon, SpinnerProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "foreground": "#000000",
+      "muted-foreground": "#525252"
+    },
+    "dark": {
+      "foreground": "#ffffff",
+      "muted-foreground": "#a3a3a3"
+    }
+  },
+  "type": "registry:ui"
+}

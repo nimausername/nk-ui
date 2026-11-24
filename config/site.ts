@@ -27,7 +27,7 @@ export const siteConfig = {
    * Lately shipped primitives shown as “+N new” on the home badge and OG card.
    * Bump when the catalog grows with a notable batch.
    */
-  newlyAddedCount: 6,
+  newlyAddedCount: 7,
   github: {
     owner: "nimausername",
     repo: "nk-ui",

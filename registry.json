@@ -1717,6 +1717,34 @@
       }
     },
     {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Indeterminate loading mark — loader glyphs, size, and color via className.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@nk/utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "foreground": "#000000",
+          "muted-foreground": "#525252"
+        },
+        "dark": {
+          "foreground": "#ffffff",
+          "muted-foreground": "#a3a3a3"
+        }
+      }
+    },
+    {
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",

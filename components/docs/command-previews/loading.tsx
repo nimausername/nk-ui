@@ -1,9 +1,9 @@
 "use client"
 
-import { Loader2 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 
 import { ComponentPreview } from "@/components/docs/component-preview"
+import { Spinner } from "@/components/ui/spinner"
 import {
   Command,
   CommandEmpty,
@@ -62,9 +62,9 @@ const CommandLoadingPreview = () => {
       <ComponentPreview
         code={`"use client"
 
-import { Loader2 } from "lucide-react"
 import { useState } from "react"
 
+import { Spinner } from "@/components/ui/spinner"
 import {
   Command,
   CommandEmpty,
@@ -99,7 +99,7 @@ export function CommandLoadingDemo() {
       <CommandList>
         {loading ? (
           <CommandLoading>
-            <Loader2 className="size-4 animate-spin" />
+            <Spinner />
             Searching…
           </CommandLoading>
         ) : (
@@ -132,10 +132,7 @@ export function CommandLoadingDemo() {
               <CommandList>
                 {loading ? (
                   <CommandLoading>
-                    <Loader2
-                      className="size-4 animate-spin"
-                      aria-hidden="true"
-                    />
+                    <Spinner aria-hidden="true" />
                     {direction === "rtl" ? "در حال جستجو…" : "Searching…"}
                   </CommandLoading>
                 ) : (
